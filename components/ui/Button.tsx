@@ -10,6 +10,7 @@ interface ButtonProps {
   className?: string;
   type?: 'button' | 'submit' | 'reset';
   icon?: React.ReactNode;
+  disabled?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({ 
@@ -19,7 +20,8 @@ export const Button: React.FC<ButtonProps> = ({
   onClick, 
   className = '',
   type = 'button',
-  icon
+  icon,
+  disabled = false
 }) => {
   const baseStyles = "inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 shadow-lg hover:shadow-xl transform relative overflow-hidden group";
   
@@ -31,21 +33,22 @@ export const Button: React.FC<ButtonProps> = ({
     gradient: "bg-gradient-to-r from-primary-600 via-accent-purple to-primary-700 text-white shadow-primary-500/40 hover:shadow-primary-600/50"
   };
 
-  const classes = `${baseStyles} ${variants[variant]} ${className}`;
+  const disabledStyles = disabled ? "opacity-70 cursor-not-allowed pointer-events-none" : "";
+  const classes = `${baseStyles} ${variants[variant]} ${className} ${disabledStyles}`;
 
   const content = (
     <>
       <span className="relative z-10 flex items-center gap-2">
         {children}
-        {icon && <span className="group-hover:translate-x-1 transition-transform">{icon}</span>}
+        {icon && !disabled && <span className="group-hover:translate-x-1 transition-transform">{icon}</span>}
       </span>
-      {variant === 'primary' || variant === 'gradient' ? (
+      {!disabled && (variant === 'primary' || variant === 'gradient') ? (
          <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/20" />
       ) : null}
     </>
   );
 
-  if (to) {
+  if (to && !disabled) {
     return (
       <Link to={to}>
         <motion.div
@@ -63,9 +66,10 @@ export const Button: React.FC<ButtonProps> = ({
     <motion.button 
       type={type} 
       onClick={onClick} 
+      disabled={disabled}
       className={classes}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={disabled ? {} : { scale: 1.02 }}
+      whileTap={disabled ? {} : { scale: 0.98 }}
     >
       {content}
     </motion.button>

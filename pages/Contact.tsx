@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Phone, Send, Check, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, Check, ArrowRight, ChevronDown, ChevronUp, Loader2 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { FAQS } from '../constants';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -70,11 +70,42 @@ export const Contact: React.FC = () => {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch("https://formspree.io/f/mwpzodyw", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          service: 'Multiple',
+          budget: '',
+          message: ''
+        });
+      } else {
+        alert("There was a problem submitting the form. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("There was a network error. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -173,6 +204,7 @@ export const Contact: React.FC = () => {
                     name="budget" 
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:ring-2 focus:ring-primary-200 outline-none font-medium text-slate-900"
                     onChange={handleChange}
+                    value={formData.budget}
                   >
                     <option value="">Select Range</option>
                     <option value="<5k">&lt; $5,000</option>
@@ -189,11 +221,16 @@ export const Contact: React.FC = () => {
                   className="w-full px-4 py-4 bg-slate-50 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all text-slate-900"
                   placeholder="Tell us about your pain points, timeline, and goals..."
                   onChange={handleChange}
+                  value={formData.message}
                 ></textarea>
               </div>
 
-              <Button type="submit" variant="primary" className="w-full justify-center py-5 text-lg font-bold shadow-lg hover:shadow-primary-500/30">
-                Send Inquiry <Send size={18} className="ml-2" />
+              <Button type="submit" variant="primary" className="w-full justify-center py-5 text-lg font-bold shadow-lg hover:shadow-primary-500/30" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <>Sending... <Loader2 className="ml-2 animate-spin" size={18} /></>
+                ) : (
+                  <>Send Inquiry <Send size={18} className="ml-2" /></>
+                )}
               </Button>
             </form>
           </motion.div>

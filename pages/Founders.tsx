@@ -6,22 +6,6 @@ import { FOUNDERS } from '../constants';
 import { Linkedin, Mail } from 'lucide-react';
 import { Image } from '../components/ui/Image';
 
-// Add types for R3F elements to fix JSX IntrinsicElements errors
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      group: any;
-      mesh: any;
-      boxGeometry: any;
-      planeGeometry: any;
-      meshStandardMaterial: any;
-      ambientLight: any;
-      spotLight: any;
-      pointLight: any;
-    }
-  }
-}
-
 // Cast OrbitControls to allow props that might be missing in strict definitions
 const Controls = OrbitControls as any;
 

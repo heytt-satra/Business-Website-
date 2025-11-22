@@ -4,21 +4,6 @@ import { OrbitControls, Sphere, MeshDistortMaterial, Float, Stars } from '@react
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-// Add types for R3F elements to fix JSX IntrinsicElements errors
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      ambientLight: any;
-      directionalLight: any;
-      pointLight: any;
-      mesh: any;
-      torusGeometry: any;
-      octahedronGeometry: any;
-      meshStandardMaterial: any;
-    }
-  }
-}
-
 // Cast OrbitControls to allow props that might be missing in strict definitions
 const Controls = OrbitControls as any;
 

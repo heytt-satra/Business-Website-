@@ -4,7 +4,19 @@ import { LucideIcon } from 'lucide-react';
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      [elemName: string]: any;
+      ambientLight: any;
+      pointLight: any;
+      spotLight: any;
+      directionalLight: any;
+      group: any;
+      mesh: any;
+      boxGeometry: any;
+      planeGeometry: any;
+      torusGeometry: any;
+      octahedronGeometry: any;
+      sphereGeometry: any;
+      meshStandardMaterial: any;
+      meshDistortMaterial: any;
     }
   }
 }
