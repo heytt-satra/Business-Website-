@@ -1,4 +1,5 @@
 import { LucideIcon } from 'lucide-react';
+import React from 'react';
 
 // Global declaration for React Three Fiber to fix JSX IntrinsicElements errors
 declare global {
@@ -10,6 +11,29 @@ declare global {
       directionalLight: any;
       group: any;
       mesh: any;
+      primitive: any;
+      boxGeometry: any;
+      planeGeometry: any;
+      torusGeometry: any;
+      octahedronGeometry: any;
+      sphereGeometry: any;
+      meshStandardMaterial: any;
+      meshDistortMaterial: any;
+    }
+  }
+}
+
+// Module augmentation for 'react' to support newer TS/React versions
+declare module 'react' {
+  namespace JSX {
+    interface IntrinsicElements {
+      ambientLight: any;
+      pointLight: any;
+      spotLight: any;
+      directionalLight: any;
+      group: any;
+      mesh: any;
+      primitive: any;
       boxGeometry: any;
       planeGeometry: any;
       torusGeometry: any;

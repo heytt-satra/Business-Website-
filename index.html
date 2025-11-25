@@ -6,7 +6,15 @@
     <title>NexGen | Integrated Technical Services</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+      // Initialize theme before content loads to prevent flash
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+
       tailwind.config = {
+        darkMode: 'class', // Enable class-based dark mode
         theme: {
           extend: {
             colors: {
@@ -103,7 +111,7 @@
 }
 </script>
 </head>
-  <body class="bg-slate-50 text-slate-900 antialiased selection:bg-primary-500 selection:text-white">
+  <body class="bg-slate-50 text-slate-900 antialiased selection:bg-primary-500 selection:text-white dark:bg-slate-950 dark:text-slate-50">
     <div id="root"></div>
   </body>
 </html>

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { FOUNDERS } from '../constants';
 import { Linkedin, Mail } from 'lucide-react';
 import { Image } from '../components/ui/Image';
+import '../types';
 
 // Cast OrbitControls to allow props that might be missing in strict definitions
 const Controls = OrbitControls as any;

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Linkedin, Instagram, Youtube, Search, MessageSquare, ArrowUp, ChevronRight, ChevronDown } from 'lucide-react';
+import { Menu, X, Linkedin, Instagram, Youtube, Search, MessageSquare, ArrowUp, ChevronRight, ChevronDown, Sun, Moon } from 'lucide-react';
 import { NAV_LINKS, COMPANY_NAME, SERVICES } from '../constants';
 import { Button } from './ui/Button';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTheme } from './ThemeContext';
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -13,6 +14,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
   const [showChat, setShowChat] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,15 +36,24 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
   };
 
   // Logic for header transparency/dark mode
-  // Home starts with a dark hero -> Light Header
-  // Services Hub starts with a dark hero -> Light Header
-  // Service Detail starts with a dark hero -> Light Header
-  // About starts with a light section -> Dark Header
-  // Others (Case Studies, Blog, Contact) start with light -> Dark Header
   const isDarkHeaderPage = ['/'].includes(location.pathname) || location.pathname.startsWith('/services');
   
-  const headerTextColor = isScrolled ? 'text-slate-900' : (isDarkHeaderPage ? 'text-white' : 'text-slate-900');
-  const headerBg = isScrolled ? 'bg-white/95 backdrop-blur-lg shadow-lg' : 'bg-transparent';
+  // Header Text Color Logic
+  // If scrolled: Dark text in Light Mode, White text in Dark Mode
+  // If not scrolled & darkHeaderPage: White text
+  // If not scrolled & lightHeaderPage: Dark text (Light Mode), White text (Dark Mode)
+  
+  const getHeaderTextColor = () => {
+    if (isScrolled) return 'text-slate-900 dark:text-white';
+    if (isDarkHeaderPage) return 'text-white';
+    return 'text-slate-900 dark:text-white';
+  };
+
+  const headerTextColor = getHeaderTextColor();
+  
+  const headerBg = isScrolled 
+    ? 'bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg shadow-lg border-b border-slate-200/50 dark:border-slate-800/50' 
+    : 'bg-transparent';
   
   // Adaptive Logo Logic
   const logoBgClass = isScrolled 
@@ -54,13 +65,13 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     : (isDarkHeaderPage ? 'text-primary-700' : 'text-white');
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-slate-50 overflow-x-hidden selection:bg-primary-500 selection:text-white">
+    <div className="min-h-screen flex flex-col font-sans bg-slate-50 dark:bg-slate-950 overflow-x-hidden selection:bg-primary-500 selection:text-white transition-colors duration-300">
       {/* Sticky Header */}
       <motion.header 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`fixed w-full z-50 transition-all duration-300 border-b border-transparent ${headerBg} ${isScrolled ? 'py-3 border-slate-200/50' : 'py-6'}`}
+        className={`fixed w-full z-50 transition-all duration-300 ${headerBg} ${isScrolled ? 'py-3' : 'py-6'}`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
@@ -75,14 +86,14 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center space-x-8">
+            <nav className="hidden lg:flex items-center space-x-6">
               {/* Home Link */}
               <Link
                 to="/"
                 className={`text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 ${
-                  headerTextColor === 'text-white' 
+                  !isScrolled && isDarkHeaderPage
                     ? 'text-white/90 hover:text-white hover:drop-shadow-md' 
-                    : 'text-slate-600 hover:text-primary-600'
+                    : 'text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400'
                 }`}
               >
                 Home
@@ -92,9 +103,9 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               <Link
                 to="/about"
                 className={`text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 ${
-                  headerTextColor === 'text-white' 
+                  !isScrolled && isDarkHeaderPage
                     ? 'text-white/90 hover:text-white hover:drop-shadow-md' 
-                    : 'text-slate-600 hover:text-primary-600'
+                    : 'text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400'
                 }`}
               >
                 About
@@ -104,31 +115,31 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               <div className="relative group">
                 <button
                   className={`flex items-center text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 ${
-                    headerTextColor === 'text-white' 
+                    !isScrolled && isDarkHeaderPage
                       ? 'text-white/90 hover:text-white hover:drop-shadow-md' 
-                      : 'text-slate-600 hover:text-primary-600'
+                      : 'text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400'
                   }`}
                 >
                   Services <ChevronDown size={16} className="ml-1" />
                 </button>
-                <div className="absolute left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 p-2">
+                <div className="absolute left-0 mt-2 w-64 bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 p-2">
                    {SERVICES.map(service => (
                      <Link 
                        key={service.id}
                        to={`/services/${service.id}`}
-                       className="flex items-center p-3 rounded-lg hover:bg-slate-50 transition-colors"
+                       className="flex items-center p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                      >
-                       <div className="w-8 h-8 bg-primary-50 rounded-lg flex items-center justify-center text-primary-600 mr-3">
+                       <div className="w-8 h-8 bg-primary-50 dark:bg-primary-900/30 rounded-lg flex items-center justify-center text-primary-600 dark:text-primary-400 mr-3">
                          <service.icon size={16} />
                        </div>
                        <div>
-                         <div className="text-sm font-bold text-slate-900">{service.title}</div>
-                         <div className="text-xs text-slate-500">{service.shortDescription.substring(0, 30)}...</div>
+                         <div className="text-sm font-bold text-slate-900 dark:text-slate-100">{service.title}</div>
+                         <div className="text-xs text-slate-500 dark:text-slate-400">{service.shortDescription.substring(0, 30)}...</div>
                        </div>
                      </Link>
                    ))}
-                   <div className="border-t border-slate-100 mt-2 pt-2">
-                     <Link to="/services" className="block text-center text-xs font-bold text-primary-600 hover:underline py-1">
+                   <div className="border-t border-slate-100 dark:border-slate-800 mt-2 pt-2">
+                     <Link to="/services" className="block text-center text-xs font-bold text-primary-600 dark:text-primary-400 hover:underline py-1">
                        View All Services
                      </Link>
                    </div>
@@ -141,18 +152,37 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                   key={link.name}
                   to={link.path}
                   className={`text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 ${
-                    headerTextColor === 'text-white' 
+                    !isScrolled && isDarkHeaderPage
                       ? 'text-white/90 hover:text-white hover:drop-shadow-md' 
-                      : 'text-slate-600 hover:text-primary-600'
+                      : 'text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400'
                   }`}
                 >
                   {link.name}
                 </Link>
               ))}
               
+              <div className="h-6 w-px bg-slate-200 dark:bg-slate-700/50 mx-2"></div>
+
+              {/* Theme Toggle */}
+              <button
+                onClick={toggleTheme}
+                className={`p-2 rounded-full transition-colors ${
+                   !isScrolled && isDarkHeaderPage
+                    ? 'text-white hover:bg-white/10'
+                    : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                }`}
+                aria-label="Toggle Theme"
+              >
+                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
+
               <button 
                 onClick={() => setShowSearch(!showSearch)}
-                className={`p-2 rounded-full transition-colors ${headerTextColor === 'text-white' ? 'hover:bg-white/10 text-white' : 'hover:bg-slate-100 text-slate-600'}`}
+                className={`p-2 rounded-full transition-colors ${
+                  !isScrolled && isDarkHeaderPage
+                    ? 'hover:bg-white/10 text-white' 
+                    : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300'
+                }`}
                 aria-label="Search"
               >
                 <Search size={20} />
@@ -160,23 +190,38 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
               <Button 
                 to="/contact" 
-                variant={headerTextColor === 'text-white' && !isScrolled ? 'white' : 'primary'} 
+                variant={!isScrolled && isDarkHeaderPage ? 'white' : 'primary'} 
                 className="py-2.5 px-5 text-sm rounded-lg shadow-lg hover:shadow-xl"
               >
                 Book Consultation
               </Button>
             </nav>
 
-            {/* Mobile Menu Button */}
-            <button
-              className={`lg:hidden p-2 rounded-lg transition-colors relative z-50 ${
-                isMobileMenuOpen ? 'text-slate-900' : (headerTextColor === 'text-white' ? 'text-white' : 'text-slate-900')
-              }`}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Menu"
-            >
-              {isMobileMenuOpen ? <X /> : <Menu />}
-            </button>
+            {/* Mobile Menu Buttons */}
+            <div className="flex items-center gap-4 lg:hidden">
+              <button
+                onClick={toggleTheme}
+                className={`p-2 rounded-full transition-colors relative z-50 ${
+                   !isScrolled && isDarkHeaderPage
+                    ? 'text-white'
+                    : 'text-slate-900 dark:text-white'
+                }`}
+              >
+                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
+
+              <button
+                className={`p-2 rounded-lg transition-colors relative z-50 ${
+                  isMobileMenuOpen 
+                    ? 'text-slate-900 dark:text-white' 
+                    : (!isScrolled && isDarkHeaderPage ? 'text-white' : 'text-slate-900 dark:text-white')
+                }`}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Menu"
+              >
+                {isMobileMenuOpen ? <X /> : <Menu />}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -187,17 +232,17 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-xl p-6 z-40"
+              className="absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-xl p-6 z-40"
             >
               <div className="max-w-3xl mx-auto flex items-center">
                 <Search className="text-slate-400 mr-4" />
                 <input 
                   type="text" 
                   placeholder="Search services, case studies, insights..." 
-                  className="flex-grow p-2 outline-none text-xl text-slate-900 bg-transparent placeholder:text-slate-400"
+                  className="flex-grow p-2 outline-none text-xl text-slate-900 dark:text-white bg-transparent placeholder:text-slate-400"
                   autoFocus
                 />
-                <button onClick={() => setShowSearch(false)} className="text-sm font-bold text-slate-500 hover:text-slate-900 ml-4">
+                <button onClick={() => setShowSearch(false)} className="text-sm font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white ml-4">
                   Close
                 </button>
               </div>
@@ -213,24 +258,24 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: '100vh' }}
             exit={{ opacity: 0, height: 0 }}
-            className="fixed inset-0 z-40 bg-white lg:hidden pt-24 px-6 overflow-y-auto"
+            className="fixed inset-0 z-40 bg-white dark:bg-slate-950 lg:hidden pt-24 px-6 overflow-y-auto"
           >
             <div className="flex flex-col space-y-4">
-              <Link to="/" className="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-4">Home</Link>
-              <Link to="/about" className="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-4">About</Link>
+              <Link to="/" className="text-2xl font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-4">Home</Link>
+              <Link to="/about" className="text-2xl font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-4">About</Link>
               
               {/* Mobile Services Dropdown */}
-              <div className="border-b border-slate-100 pb-4">
+              <div className="border-b border-slate-100 dark:border-slate-800 pb-4">
                 <button 
                   onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
-                  className="flex items-center justify-between w-full text-2xl font-bold text-slate-900"
+                  className="flex items-center justify-between w-full text-2xl font-bold text-slate-900 dark:text-white"
                 >
                   Services <ChevronDown className={`transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {servicesDropdownOpen && (
                   <div className="mt-4 space-y-3 pl-4">
                     {SERVICES.map(service => (
-                      <Link key={service.id} to={`/services/${service.id}`} className="block text-lg font-medium text-slate-600">
+                      <Link key={service.id} to={`/services/${service.id}`} className="block text-lg font-medium text-slate-600 dark:text-slate-400">
                         {service.title}
                       </Link>
                     ))}
@@ -242,7 +287,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 <Link
                   key={link.name}
                   to={link.path}
-                  className="block text-2xl font-bold text-slate-900 hover:text-primary-600 border-b border-slate-100 pb-4"
+                  className="block text-2xl font-bold text-slate-900 dark:text-white hover:text-primary-600 border-b border-slate-100 dark:border-slate-800 pb-4"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
@@ -264,7 +309,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
       </AnimatePresence>
 
       {/* Main Content */}
-      <main className="flex-grow relative">
+      <main className="flex-grow relative dark:bg-slate-950">
         {children}
       </main>
 
@@ -277,7 +322,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.5 }}
               onClick={scrollToTop}
-              className="p-3 bg-white rounded-full shadow-xl border border-slate-100 text-slate-400 hover:text-primary-600 hover:scale-110 transition-all duration-300"
+              className="p-3 bg-white dark:bg-slate-800 rounded-full shadow-xl border border-slate-100 dark:border-slate-700 text-slate-400 hover:text-primary-600 hover:scale-110 transition-all duration-300"
               aria-label="Back to top"
             >
               <ArrowUp size={24} />
@@ -292,19 +337,19 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                className="absolute bottom-16 right-0 w-80 bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden"
+                className="absolute bottom-16 right-0 w-80 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-100 dark:border-slate-800 overflow-hidden"
               >
                  <div className="bg-primary-600 p-4 text-white flex justify-between items-center">
                    <span className="font-bold">Chat with us</span>
                    <button onClick={() => setShowChat(false)}><X size={16} /></button>
                  </div>
-                 <div className="p-4 h-64 overflow-y-auto bg-slate-50 flex flex-col space-y-3">
-                   <div className="bg-white p-3 rounded-tl-xl rounded-tr-xl rounded-br-xl shadow-sm text-sm text-slate-700 self-start max-w-[85%] border border-slate-100">
+                 <div className="p-4 h-64 overflow-y-auto bg-slate-50 dark:bg-slate-950 flex flex-col space-y-3">
+                   <div className="bg-white dark:bg-slate-800 p-3 rounded-tl-xl rounded-tr-xl rounded-br-xl shadow-sm text-sm text-slate-700 dark:text-slate-300 self-start max-w-[85%] border border-slate-100 dark:border-slate-700">
                      Hi! Need help choosing a service?
                    </div>
                  </div>
-                 <div className="p-3 border-t border-slate-100 bg-white">
-                   <input type="text" placeholder="Type a message..." className="w-full text-sm outline-none p-2" />
+                 <div className="p-3 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
+                   <input type="text" placeholder="Type a message..." className="w-full text-sm outline-none p-2 bg-transparent text-slate-900 dark:text-white" />
                  </div>
               </motion.div>
             )}
@@ -320,7 +365,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
       </div>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-slate-300 border-t border-slate-800 relative overflow-hidden">
+      <footer className="bg-slate-900 dark:bg-slate-950 text-slate-300 border-t border-slate-800 relative overflow-hidden">
         {/* High contrast check: Dark background -> Light text */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-500 via-primary-700 to-primary-900"></div>
         

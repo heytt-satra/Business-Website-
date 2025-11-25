@@ -3,6 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial, Float, Stars } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import '../types';
 
 // Cast OrbitControls to allow props that might be missing in strict definitions
 const Controls = OrbitControls as any;
