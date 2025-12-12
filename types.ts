@@ -110,7 +110,7 @@ export interface BlogPost {
   id: string;
   title: string;
   excerpt: string;
-  content: React.ReactNode; 
+  content: React.ReactNode;
   date: string;
   category: string;
   readTime: string;
