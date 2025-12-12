@@ -20,16 +20,16 @@ export const ServiceDetail: React.FC = () => {
       {/* Modern Hero */}
       <div className="relative bg-slate-900 pt-40 pb-24 overflow-hidden">
         <div className="absolute inset-0">
-           <Image 
-             src={`https://picsum.photos/seed/${service.id}/1920/1080`} 
-             alt="Background" 
-             className="w-full h-full object-cover opacity-20 blur-sm scale-110"
-           />
-           <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/90 to-slate-50"></div>
+          <Image
+            src={`https://picsum.photos/seed/${service.id}/1920/1080`}
+            alt="Background"
+            className="w-full h-full object-cover opacity-20 blur-sm scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/90 to-slate-50"></div>
         </div>
-        
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center space-x-2 text-primary-400 font-medium mb-8 text-sm uppercase tracking-widest"
@@ -38,33 +38,33 @@ export const ServiceDetail: React.FC = () => {
             <ChevronRight size={14} />
             <span className="text-white">{service.title}</span>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-             <div className="inline-flex items-center justify-center p-3 bg-white/10 backdrop-blur-md rounded-xl text-white mb-6 border border-white/20 shadow-lg">
-               <service.icon size={32} />
-             </div>
-             <h1 className="text-5xl md:text-7xl font-bold text-white mb-8">{service.title}</h1>
-             <p className="text-xl md:text-2xl text-slate-300 max-w-3xl font-light leading-relaxed">
-               {service.fullDescription}
-             </p>
+            <div className="inline-flex items-center justify-center p-3 bg-white/10 backdrop-blur-md rounded-xl text-white mb-6 border border-white/20 shadow-lg">
+              <service.icon size={32} />
+            </div>
+            <h1 className="text-4xl md:text-7xl font-bold text-white mb-8">{service.title}</h1>
+            <p className="text-xl md:text-2xl text-slate-300 max-w-3xl font-light leading-relaxed">
+              {service.fullDescription}
+            </p>
           </motion.div>
         </div>
       </div>
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 -mt-20 relative z-20">
-        <div className="grid lg:grid-cols-3 gap-16">
-          
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16">
+
           {/* Content Column */}
           <div className="lg:col-span-2 space-y-20">
-            
+
             {/* Sub Services Cards */}
             <section>
-              <motion.h2 
+              <motion.h2
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 className="text-3xl font-bold text-slate-900 mb-8"
@@ -73,7 +73,7 @@ export const ServiceDetail: React.FC = () => {
               </motion.h2>
               <div className="grid gap-6">
                 {service.subServices.map((sub, idx) => (
-                  <motion.div 
+                  <motion.div
                     key={idx}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -103,13 +103,13 @@ export const ServiceDetail: React.FC = () => {
           </div>
 
           {/* Sidebar */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5 }}
             className="space-y-8 lg:sticky lg:top-32 h-fit"
           >
-            
+
             {/* CTA Card */}
             <div className="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-8 rounded-2xl text-center shadow-xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary-500/20 rounded-full blur-2xl"></div>
@@ -125,7 +125,7 @@ export const ServiceDetail: React.FC = () => {
             {/* Audience Card */}
             <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
               <h3 className="font-bold text-slate-900 mb-6 flex items-center text-lg">
-                <Box className="mr-3 text-primary-600" size={24} /> 
+                <Box className="mr-3 text-primary-600" size={24} />
                 Ideal For
               </h3>
               <ul className="space-y-4">
@@ -143,7 +143,7 @@ export const ServiceDetail: React.FC = () => {
             {/* Out of Box Card */}
             <div className="bg-primary-50 p-8 rounded-2xl border border-primary-100">
               <h3 className="font-bold text-primary-900 mb-6 flex items-center text-lg">
-                <Rocket className="mr-3 text-primary-600" size={24} /> 
+                <Rocket className="mr-3 text-primary-600" size={24} />
                 Quick Launch
               </h3>
               <ul className="space-y-3">
@@ -161,9 +161,9 @@ export const ServiceDetail: React.FC = () => {
 
       {/* Animated Timeline Section */}
       {service.detailedWorkflow && (
-        <ServiceTimeline 
-          workflow={service.detailedWorkflow} 
-          serviceColor={service.colorTheme} 
+        <ServiceTimeline
+          workflow={service.detailedWorkflow}
+          serviceColor={service.colorTheme}
         />
       )}
     </div>

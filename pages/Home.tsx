@@ -53,38 +53,38 @@ export const Home: React.FC = () => {
       {/* Service Selector Widget */}
       <section className="py-20 bg-slate-50 dark:bg-slate-950 relative z-20 -mt-10">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-800 p-8 md:p-12 text-center relative overflow-hidden transition-colors">
-             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary-500 to-primary-700"></div>
-             
-             {selectorStep === 0 && (
-               <motion.div initial={{opacity: 0}} animate={{opacity: 1}}>
-                 <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">Not sure where to start?</h2>
-                 <p className="text-slate-600 dark:text-slate-300 mb-8 text-lg">Tell us your primary goal, and we'll point you to the right team.</p>
-                 <div className="grid md:grid-cols-2 gap-4">
-                    {['Automate a process', 'Build a digital product', 'Manufacture a prototype', 'Grow my brand'].map((goal) => (
-                      <button 
-                        key={goal}
-                        onClick={() => { setSelectedGoal(goal); setSelectorStep(1); }}
-                        className="p-4 rounded-xl border-2 border-slate-100 dark:border-slate-800 hover:border-primary-500 dark:hover:border-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all font-bold text-slate-700 dark:text-slate-200 text-left flex items-center group"
-                      >
-                        <div className="w-6 h-6 rounded-full border-2 border-slate-300 dark:border-slate-600 mr-3 flex-shrink-0 group-hover:border-primary-500"></div>
-                        {goal}
-                      </button>
-                    ))}
-                 </div>
-               </motion.div>
-             )}
+          <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-800 p-6 md:p-12 text-center relative overflow-hidden transition-colors">
+            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary-500 to-primary-700"></div>
 
-             {selectorStep === 1 && (
-               <motion.div initial={{opacity: 0}} animate={{opacity: 1}}>
-                 <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">Great choice.</h2>
-                 <p className="text-slate-600 dark:text-slate-300 mb-8 text-lg">Based on "{selectedGoal}", we recommend exploring:</p>
-                 <div className="flex flex-col sm:flex-row justify-center gap-4">
+            {selectorStep === 0 && (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">Not sure where to start?</h2>
+                <p className="text-slate-600 dark:text-slate-300 mb-8 text-lg">Tell us your primary goal, and we'll point you to the right team.</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {['Automate a process', 'Build a digital product', 'Manufacture a prototype', 'Grow my brand'].map((goal) => (
+                    <button
+                      key={goal}
+                      onClick={() => { setSelectedGoal(goal); setSelectorStep(1); }}
+                      className="p-4 rounded-xl border-2 border-slate-100 dark:border-slate-800 hover:border-primary-500 dark:hover:border-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all font-bold text-slate-700 dark:text-slate-200 text-left flex items-center group"
+                    >
+                      <div className="w-6 h-6 rounded-full border-2 border-slate-300 dark:border-slate-600 mr-3 flex-shrink-0 group-hover:border-primary-500"></div>
+                      {goal}
+                    </button>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+
+            {selectorStep === 1 && (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">Great choice.</h2>
+                <p className="text-slate-600 dark:text-slate-300 mb-8 text-lg">Based on "{selectedGoal}", we recommend exploring:</p>
+                <div className="flex flex-col sm:flex-row justify-center gap-4">
                   <Button to="/services" variant="primary">View Recommended Services</Button>
                   <button onClick={() => setSelectorStep(0)} className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium px-6 py-3">Start Over</button>
-                 </div>
-               </motion.div>
-             )}
+                </div>
+              </motion.div>
+            )}
           </div>
         </div>
       </section>
@@ -98,28 +98,28 @@ export const Home: React.FC = () => {
               Bridging four critical domains under one roof.
             </p>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
           >
             {SERVICES.map((service) => (
-              <motion.div 
+              <motion.div
                 key={service.id}
                 variants={{
                   hidden: { opacity: 0, y: 50 },
                   show: { opacity: 1, y: 0 }
                 }}
               >
-                <Link 
+                <Link
                   to={`/services/${service.id}`}
                   className="group relative block h-full bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-100 dark:border-slate-800 overflow-hidden"
                 >
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-50 to-primary-100/50 dark:from-primary-900/20 dark:to-primary-800/20 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 duration-700"></div>
-                  
+
                   <div className="relative z-10">
                     <div className="w-14 h-14 bg-white dark:bg-slate-800 rounded-xl shadow-md flex items-center justify-center text-primary-600 dark:text-primary-400 mb-8 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 border border-slate-100 dark:border-slate-700">
                       <service.icon size={28} />
@@ -175,8 +175,8 @@ export const Home: React.FC = () => {
                 ))}
               </div>
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -185,15 +185,15 @@ export const Home: React.FC = () => {
             >
               <div className="absolute -inset-4 bg-gradient-to-r from-primary-600 to-primary-800 rounded-2xl blur-2xl opacity-30 animate-pulse"></div>
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-                 {/* Image component with fallback */}
-                 <Image 
-                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000" 
-                    alt="Engineering Collaboration" 
-                    className="w-full h-[600px] object-cover"
-                    fallbackText="Engineering Lab"
-                 />
-                 {/* Overlay for better text contrast if we put text over image */}
-                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+                {/* Image component with fallback */}
+                <Image
+                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000"
+                  alt="Engineering Collaboration"
+                  className="w-full h-[600px] object-cover"
+                  fallbackText="Engineering Lab"
+                />
+                {/* Overlay for better text contrast if we put text over image */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
               </div>
             </motion.div>
           </div>
@@ -215,8 +215,8 @@ export const Home: React.FC = () => {
 
           <div className="grid md:grid-cols-3 gap-10">
             {CASE_STUDIES.slice(0, 3).map((study, idx) => (
-              <motion.div 
-                key={study.id} 
+              <motion.div
+                key={study.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -229,9 +229,9 @@ export const Home: React.FC = () => {
                       <ArrowRight size={24} />
                     </div>
                   </div>
-                  <Image 
-                    src={study.imageUrl} 
-                    alt={study.title} 
+                  <Image
+                    src={study.imageUrl}
+                    alt={study.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute top-4 left-4 z-20">
@@ -251,7 +251,7 @@ export const Home: React.FC = () => {
       {/* Social Proof / Stats (Moved Here) */}
       <section className="py-20 bg-slate-50 dark:bg-slate-950 border-y border-slate-200 dark:border-slate-800 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="show"
@@ -264,7 +264,7 @@ export const Home: React.FC = () => {
               { label: "Lines of Code", value: "1M+" },
               { label: "Robots Deployed", value: "20+" },
             ].map((stat, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
                 variants={{
                   hidden: { opacity: 0, y: 20 },
@@ -279,13 +279,13 @@ export const Home: React.FC = () => {
           </motion.div>
 
           <div className="pt-4">
-             <p className="text-center text-slate-400 text-sm font-bold uppercase tracking-widest mb-8">Trusted By Innovators</p>
-             <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-                {/* Dummy Logos - Using text as per instruction if no SVG */}
-                {['FreshMart', 'MegaStock', 'CircuitCraft', 'CloudKompass'].map(logo => (
-                  <div key={logo} className="text-2xl font-black text-slate-400 dark:text-slate-600 hover:text-slate-800 dark:hover:text-slate-300 cursor-default transition-colors">{logo}</div>
-                ))}
-             </div>
+            <p className="text-center text-slate-400 text-sm font-bold uppercase tracking-widest mb-8">Trusted By Innovators</p>
+            <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+              {/* Dummy Logos - Using text as per instruction if no SVG */}
+              {['FreshMart', 'MegaStock', 'CircuitCraft', 'CloudKompass'].map(logo => (
+                <div key={logo} className="text-2xl font-black text-slate-400 dark:text-slate-600 hover:text-slate-800 dark:hover:text-slate-300 cursor-default transition-colors">{logo}</div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -294,58 +294,58 @@ export const Home: React.FC = () => {
       <section className="py-24 bg-white dark:bg-slate-900 transition-colors">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-16 text-slate-900 dark:text-white">What Our Clients Say</h2>
-          
+
           <div className="relative">
             <div className="overflow-hidden relative rounded-3xl bg-slate-50 dark:bg-slate-800 p-8 md:p-12 border border-slate-100 dark:border-slate-700 shadow-lg transition-colors">
-               <AnimatePresence mode="wait">
-                 <motion.div
-                   key={currentTestimonial}
-                   initial={{ opacity: 0, x: 50 }}
-                   animate={{ opacity: 1, x: 0 }}
-                   exit={{ opacity: 0, x: -50 }}
-                   transition={{ duration: 0.5 }}
-                   className="flex flex-col md:flex-row items-center gap-8 md:gap-12"
-                 >
-                   <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden flex-shrink-0 border-4 border-white dark:border-slate-600 shadow-md">
-                     <Image 
-                       src={TESTIMONIALS[currentTestimonial].avatarUrl || ""} 
-                       alt={TESTIMONIALS[currentTestimonial].name}
-                       className="w-full h-full object-cover"
-                     />
-                   </div>
-                   <div className="flex-1 text-center md:text-left">
-                     <div className="flex justify-center md:justify-start items-center mb-4 text-amber-400">
-                       {[...Array(5)].map((_, i) => (
-                         <svg key={i} width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="mr-1">
-                           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                         </svg>
-                       ))}
-                     </div>
-                     <blockquote className="text-xl md:text-2xl text-slate-700 dark:text-slate-200 italic font-light mb-6">
-                       "{TESTIMONIALS[currentTestimonial].quote}"
-                     </blockquote>
-                     <div>
-                       <div className="font-bold text-slate-900 dark:text-white text-lg">{TESTIMONIALS[currentTestimonial].name}</div>
-                       <div className="text-sm text-slate-500 dark:text-slate-400">
-                         {TESTIMONIALS[currentTestimonial].role}, {TESTIMONIALS[currentTestimonial].company}
-                       </div>
-                       <div className="mt-2 inline-block px-3 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-full text-xs font-bold text-primary-600 dark:text-primary-400 uppercase tracking-wide">
-                          {TESTIMONIALS[currentTestimonial].projectType}
-                       </div>
-                     </div>
-                   </div>
-                 </motion.div>
-               </AnimatePresence>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentTestimonial}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex flex-col md:flex-row items-center gap-8 md:gap-12"
+                >
+                  <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden flex-shrink-0 border-4 border-white dark:border-slate-600 shadow-md">
+                    <Image
+                      src={TESTIMONIALS[currentTestimonial].avatarUrl || ""}
+                      alt={TESTIMONIALS[currentTestimonial].name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex-1 text-center md:text-left">
+                    <div className="flex justify-center md:justify-start items-center mb-4 text-amber-400">
+                      {[...Array(5)].map((_, i) => (
+                        <svg key={i} width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="mr-1">
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <blockquote className="text-xl md:text-2xl text-slate-700 dark:text-slate-200 italic font-light mb-6">
+                      "{TESTIMONIALS[currentTestimonial].quote}"
+                    </blockquote>
+                    <div>
+                      <div className="font-bold text-slate-900 dark:text-white text-lg">{TESTIMONIALS[currentTestimonial].name}</div>
+                      <div className="text-sm text-slate-500 dark:text-slate-400">
+                        {TESTIMONIALS[currentTestimonial].role}, {TESTIMONIALS[currentTestimonial].company}
+                      </div>
+                      <div className="mt-2 inline-block px-3 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-full text-xs font-bold text-primary-600 dark:text-primary-400 uppercase tracking-wide">
+                        {TESTIMONIALS[currentTestimonial].projectType}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
 
             {/* Slider Controls */}
-            <button 
+            <button
               onClick={prevTestimonial}
               className="absolute top-1/2 -left-4 md:-left-12 transform -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white dark:bg-slate-800 rounded-full shadow-lg border border-slate-100 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 hover:scale-110 transition-all z-10"
             >
               <ChevronLeft size={24} />
             </button>
-            <button 
+            <button
               onClick={nextTestimonial}
               className="absolute top-1/2 -right-4 md:-right-12 transform -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white dark:bg-slate-800 rounded-full shadow-lg border border-slate-100 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 hover:scale-110 transition-all z-10"
             >
@@ -367,7 +367,7 @@ export const Home: React.FC = () => {
 
       {/* CTA */}
       <section className="py-24 px-4 bg-slate-50 dark:bg-slate-950">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}

@@ -11,7 +11,7 @@ const Controls = OrbitControls as any;
 // Animated Sphere Component
 const AnimatedSphere = () => {
   const meshRef = useRef<any>(null);
-  
+
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
     if (meshRef.current) {
@@ -19,7 +19,7 @@ const AnimatedSphere = () => {
       meshRef.current.rotation.y = time * 0.3;
     }
   });
-  
+
   return (
     <Float speed={2} rotationIntensity={1} floatIntensity={2}>
       <Sphere args={[1, 100, 100]} scale={2.2}>
@@ -42,14 +42,14 @@ const BackgroundShapes = () => {
     <>
       <Float speed={1.5} rotationIntensity={2} floatIntensity={1} position={[3, 2, -2]}>
         <mesh>
-           <torusGeometry args={[0.5, 0.2, 16, 100]} />
-           <meshStandardMaterial color="#8b5cf6" wireframe />
+          <torusGeometry args={[0.5, 0.2, 16, 100]} />
+          <meshStandardMaterial color="#8b5cf6" wireframe />
         </mesh>
       </Float>
       <Float speed={1} rotationIntensity={1.5} floatIntensity={1.5} position={[-3, -2, -1]}>
         <mesh>
-           <octahedronGeometry args={[0.8]} />
-           <meshStandardMaterial color="#14b8a6" wireframe />
+          <octahedronGeometry args={[0.8]} />
+          <meshStandardMaterial color="#14b8a6" wireframe />
         </mesh>
       </Float>
     </>
@@ -65,13 +65,13 @@ const Hero3DContent: React.FC = () => {
           <ambientLight intensity={0.5} />
           <directionalLight position={[10, 10, 5]} intensity={1} />
           <pointLight position={[-10, -10, -5]} intensity={0.5} color="#a78bfa" />
-          
+
           <AnimatedSphere />
           <BackgroundShapes />
           <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
-          
-          <Controls 
-            enableZoom={false} 
+
+          <Controls
+            enableZoom={false}
             enablePan={false}
             autoRotate
             autoRotateSpeed={0.5}
@@ -80,7 +80,7 @@ const Hero3DContent: React.FC = () => {
           />
         </Canvas>
       </div>
-      
+
       {/* Content Overlay - ALL LIGHT COLORS */}
       <div className="relative z-10 h-full flex items-center justify-center px-6 pointer-events-none">
         <div className="text-center max-w-5xl pointer-events-auto">
@@ -90,7 +90,7 @@ const Hero3DContent: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-6xl md:text-8xl font-bold mb-6 text-white tracking-tight">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-6 text-white tracking-tight">
               <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 bg-clip-text text-transparent">
                 Polymath
               </span>
@@ -98,8 +98,8 @@ const Hero3DContent: React.FC = () => {
               <span className="text-white">Engineering</span>
             </h1>
           </motion.div>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
@@ -107,8 +107,8 @@ const Hero3DContent: React.FC = () => {
           >
             Multi-vertical service excellence across Software, Robotics, Mechanical, and Branding
           </motion.p>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
@@ -120,7 +120,7 @@ const Hero3DContent: React.FC = () => {
                 Start Your Project
               </button>
             </Link>
-            
+
             {/* Outline button with light colors */}
             <Link to="/services">
               <button className="px-8 py-4 border border-slate-500 bg-slate-800/50 backdrop-blur-md text-white rounded-xl font-bold text-lg hover:bg-slate-700 hover:border-white transition-all">
@@ -128,9 +128,9 @@ const Hero3DContent: React.FC = () => {
               </button>
             </Link>
           </motion.div>
-          
+
           {/* Stats with light colors */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.9, duration: 1 }}
@@ -151,9 +151,9 @@ const Hero3DContent: React.FC = () => {
           </motion.div>
         </div>
       </div>
-      
+
       {/* Scroll Indicator - Light colored */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 10, 0] }}
         transition={{ delay: 1.2, duration: 2, repeat: Infinity }}

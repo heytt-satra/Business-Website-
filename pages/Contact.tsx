@@ -17,7 +17,7 @@ const FloatingInput = ({ label, name, type = "text", required = false, onChange,
         onChange={onChange}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        className="peer w-full px-4 py-4 bg-white rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all placeholder-transparent text-slate-900 font-medium"
+        className="peer w-full px-4 py-4 bg-white rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all placeholder-transparent text-slate-900 font-medium text-base"
         placeholder={label}
         {...props}
       />
@@ -36,7 +36,7 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="border-b border-slate-200 py-4">
-      <button 
+      <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex justify-between items-center text-left font-bold text-slate-900 hover:text-primary-600 transition-colors"
       >
@@ -45,7 +45,7 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
       </button>
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -75,7 +75,7 @@ export const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       const response = await fetch("https://formspree.io/f/mwpzodyw", {
         method: "POST",
@@ -116,17 +116,17 @@ export const Contact: React.FC = () => {
   return (
     <div className="bg-slate-50 min-h-screen pt-32 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div className="grid lg:grid-cols-2 gap-20 mb-24">
-          
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-24">
+
           {/* Info Side */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
             <span className="text-primary-600 font-bold tracking-widest uppercase text-sm mb-4 block">Get in Touch</span>
-            <h1 className="text-5xl font-bold text-slate-900 mb-8 leading-tight">Let's engineer your <br/>next breakthrough.</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-8 leading-tight">Let's engineer your <br />next breakthrough.</h1>
             <p className="text-xl text-slate-600 mb-12 leading-relaxed">
               Whether you have a strict RFP or a napkin sketch, we're ready to listen. We typically respond within 2 hours during business days.
             </p>
@@ -152,11 +152,11 @@ export const Contact: React.FC = () => {
           </motion.div>
 
           {/* Form Side */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white p-10 rounded-3xl shadow-xl border border-slate-100 relative overflow-hidden"
+            className="bg-white p-6 md:p-10 rounded-3xl shadow-xl border border-slate-100 relative overflow-hidden"
           >
             {submitted ? (
               <div className="absolute inset-0 bg-white z-10 flex flex-col items-center justify-center text-center p-12">
@@ -176,7 +176,7 @@ export const Contact: React.FC = () => {
                 <FloatingInput label="Email" name="email" type="email" required value={formData.email} onChange={handleChange} />
               </div>
 
-              <div className="grid md:grid-cols-2 gap-x-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-0 md:gap-x-6">
                 <FloatingInput label="Phone" name="phone" type="tel" required value={formData.phone} onChange={handleChange} />
                 <FloatingInput label="Company" name="company" value={formData.company} onChange={handleChange} />
               </div>
@@ -184,8 +184,8 @@ export const Contact: React.FC = () => {
               <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div className="relative">
                   <label className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Service</label>
-                  <select 
-                    name="service" 
+                  <select
+                    name="service"
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:ring-2 focus:ring-primary-200 outline-none font-medium text-slate-900"
                     onChange={handleChange}
                     value={formData.service}
@@ -200,8 +200,8 @@ export const Contact: React.FC = () => {
                 </div>
                 <div className="relative">
                   <label className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Budget Range (USD)</label>
-                  <select 
-                    name="budget" 
+                  <select
+                    name="budget"
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:ring-2 focus:ring-primary-200 outline-none font-medium text-slate-900"
                     onChange={handleChange}
                     value={formData.budget}
@@ -216,8 +216,8 @@ export const Contact: React.FC = () => {
               </div>
 
               <div className="mb-8">
-                <textarea 
-                  name="message" rows={4} 
+                <textarea
+                  name="message" rows={4}
                   className="w-full px-4 py-4 bg-slate-50 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all text-slate-900"
                   placeholder="Tell us about your pain points, timeline, and goals..."
                   onChange={handleChange}
@@ -238,12 +238,12 @@ export const Contact: React.FC = () => {
 
         {/* FAQ Section */}
         <section className="max-w-3xl mx-auto">
-           <h2 className="text-3xl font-bold text-center text-slate-900 mb-12">Frequently Asked Questions</h2>
-           <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
-              {FAQS.map(faq => (
-                <FAQItem key={faq.id} question={faq.question} answer={faq.answer} />
-              ))}
-           </div>
+          <h2 className="text-3xl font-bold text-center text-slate-900 mb-12">Frequently Asked Questions</h2>
+          <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+            {FAQS.map(faq => (
+              <FAQItem key={faq.id} question={faq.question} answer={faq.answer} />
+            ))}
+          </div>
         </section>
       </div>
     </div>
