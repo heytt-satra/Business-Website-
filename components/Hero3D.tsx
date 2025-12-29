@@ -92,10 +92,10 @@ const Hero3DContent: React.FC = () => {
           >
             <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-6 text-white tracking-tight">
               <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 bg-clip-text text-transparent">
-                Polymath
+                NexGen
               </span>
               <br />
-              <span className="text-white">Engineering</span>
+              <span className="text-white">Technical Services</span>
             </h1>
           </motion.div>
 
@@ -105,7 +105,7 @@ const Hero3DContent: React.FC = () => {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="text-xl md:text-2xl text-slate-300 mb-10 max-w-3xl mx-auto font-light leading-relaxed"
           >
-            Multi-vertical service excellence across Software, Robotics, Mechanical, and Branding
+            Transforming businesses through innovative Software Solutions and Strategic Branding
           </motion.p>
 
           <motion.div
@@ -129,26 +129,7 @@ const Hero3DContent: React.FC = () => {
             </Link>
           </motion.div>
 
-          {/* Stats with light colors */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.9, duration: 1 }}
-            className="mt-16 grid grid-cols-3 gap-8 max-w-3xl mx-auto border-t border-white/10 pt-8"
-          >
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-white mb-2">50+</div>
-              <div className="text-slate-400 text-sm uppercase tracking-widest">Projects</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-white mb-2">4</div>
-              <div className="text-slate-400 text-sm uppercase tracking-widest">Verticals</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-white mb-2">100%</div>
-              <div className="text-slate-400 text-sm uppercase tracking-widest">Satisfaction</div>
-            </div>
-          </motion.div>
+          {/* Stats removed as per request */}
         </div>
       </div>
 
@@ -188,8 +169,8 @@ class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { has
       return (
         <div className="relative h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-center px-4">
           <div className="max-w-4xl z-10">
-            <h1 className="text-6xl font-bold text-white mb-6">Polymath Engineering</h1>
-            <p className="text-xl text-slate-300 mb-8">Integrated Technical Excellence</p>
+            <h1 className="text-6xl font-bold text-white mb-6">NexGen Technical Services</h1>
+            <p className="text-xl text-slate-300 mb-8">Software Solutions & Strategic Branding</p>
             <button className="px-8 py-4 bg-white text-slate-900 rounded-xl font-bold">Get Started</button>
           </div>
         </div>

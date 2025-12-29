@@ -201,6 +201,7 @@ export const SERVICES: ServiceData[] = [
     targetAudience: ["Tech Startups", "SMEs", "E-commerce Brands"],
     colorTheme: 'blue'
   },
+  /* ROBOTICS SERVICE - COMMENTED OUT FOR FUTURE USE
   {
     id: ServiceCategory.ROBOTICS,
     title: "Robotics Services",
@@ -235,6 +236,8 @@ export const SERVICES: ServiceData[] = [
     targetAudience: ["Factories", "Warehouses", "R&D Labs"],
     colorTheme: 'blue'
   },
+  */
+  /* MECHANICAL SERVICE - COMMENTED OUT FOR FUTURE USE
   {
     id: ServiceCategory.MECHANICAL,
     title: "Mechanical Services",
@@ -269,6 +272,7 @@ export const SERVICES: ServiceData[] = [
     targetAudience: ["Product Companies", "Manufacturing Units", "Hardware Startups"],
     colorTheme: 'blue'
   },
+  */
   {
     id: ServiceCategory.BRANDING,
     title: "Branding & Content",
@@ -309,12 +313,12 @@ export const FOUNDERS: Founder[] = [
   {
     id: 1,
     name: "Heytt Satra",
-    role: "Co-Founder & Tech Lead",
+    role: "Founder & Tech Lead",
     title: "CS & Business Systems Engineer",
     background: "CS & Business Systems Engineer",
-    bio: "Heytt bridges the gap between code and business logic. With a background in freelance web development and content creation, he leads the Software and Branding verticals. His experience managing equipment rentals and podcasts gives him a unique operational perspective.",
+    bio: "Heytt bridges the gap between code and business logic. With a background in freelance web development and content creation, he leads the Software and Branding verticals at NexGen. His passion for building digital solutions that drive real business results has helped numerous startups and SMEs transform their operations.",
     linkedin: "https://www.linkedin.com/in/heytt-satra/",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800",
+    image: "/images/heytt-satra.png",
     expertise: ["Software Architecture", "AI/ML", "Business Strategy", "Content Creation"],
     skills: [
       { name: "Full-Stack Development", level: 95 },
@@ -323,6 +327,7 @@ export const FOUNDERS: Founder[] = [
       { name: "Content Strategy", level: 88 }
     ]
   },
+  /* MANAS - COMMENTED OUT FOR FUTURE USE
   {
     id: 2,
     name: "Manas",
@@ -340,6 +345,7 @@ export const FOUNDERS: Founder[] = [
       { name: "Manufacturing", level: 88 }
     ]
   }
+  */
 ];
 
 export const CASE_STUDIES: CaseStudy[] = [
@@ -386,13 +392,14 @@ export const CASE_STUDIES: CaseStudy[] = [
     imageUrl: "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&q=80&w=1200",
     testimonial: "ROI achieved in 4 months. The route optimization alone paid for the entire system."
   },
+  /* ROBOTICS CASE STUDIES - COMMENTED OUT FOR FUTURE USE
   // ROBOTICS
   {
     id: "cs-robo-1",
     title: "Warehouse Automation",
     client: "MegaStock Distributors",
     clientType: "FMCG Warehouse",
-    category: ServiceCategory.ROBOTICS,
+    category: 'robotics',
     summary: "Collaborative robot arm integration for automated palletizing.",
     challenge: "Manual palletizing was limited to 350 boxes/hour and caused frequent worker injuries and overtime costs.",
     solution: "Integrated a Universal Robots UR10 with a custom vision system and gripper for automated, safety-compliant palletizing.",
@@ -406,7 +413,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Quality Inspection Line",
     client: "CircuitCraft Manufacturing",
     clientType: "PCB Manufacturer",
-    category: ServiceCategory.ROBOTICS,
+    category: 'robotics',
     summary: "Vision-based automated inspection system for electronics.",
     challenge: "Manual visual inspection had an 8% defect pass-through rate and was the bottleneck of production.",
     solution: "Deployed an industrial camera array with a custom CNN model to detect defects in real-time on the conveyor.",
@@ -420,7 +427,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "AgriBot Sprayer",
     client: "GreenGrow Farms",
     clientType: "Hydroponic Farm",
-    category: ServiceCategory.ROBOTICS,
+    category: 'robotics',
     summary: "Autonomous mobile robot for precision pesticide spraying.",
     challenge: "Manual spraying resulted in uneven coverage, chemical waste, and health risks for workers.",
     solution: "Built a custom autonomous mobile robot using ROS Navigation and computer vision for precision nozzle control.",
@@ -435,7 +442,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Packaging Machine Design",
     client: "SnackBox Industries",
     clientType: "Food Packaging",
-    category: ServiceCategory.MECHANICAL,
+    category: 'mechanical',
     summary: "Custom semi-automatic packaging machine design and fabrication.",
     challenge: "Off-the-shelf machines were too expensive (₹80L) and didn't fit their specific product dimensions.",
     solution: "Designed a custom machine in SolidWorks, performed structural analysis, and managed local fabrication.",
@@ -449,7 +456,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Heat Exchanger Opt.",
     client: "ChemFlow Industries",
     clientType: "Chemical Plant",
-    category: ServiceCategory.MECHANICAL,
+    category: 'mechanical',
     summary: "CFD analysis and redesign of industrial heat exchangers.",
     challenge: "Equipment overheating caused 30% energy waste and frequent shutdown maintenance.",
     solution: "Utilized ANSYS Fluent for CFD analysis to redesign fins and improve coolant flow dynamics.",
@@ -463,7 +470,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "IoT Device Prototype",
     client: "SmartSense Tech",
     clientType: "IoT Startup",
-    category: ServiceCategory.MECHANICAL,
+    category: 'mechanical',
     summary: "Rapid prototyping of consumer electronics housing.",
     challenge: "Needed a functional physical prototype for an investor demo with a strict 3-week deadline.",
     solution: "Executed rapid prototyping using SLA 3D printing and post-processing for a production-grade finish.",
@@ -472,6 +479,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     imageUrl: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=1200",
     testimonial: "They turned our sketches into a stunning prototype in record time. Investors were blown away."
   },
+  */
   // BRANDING
   {
     id: "cs-brand-1",
@@ -524,18 +532,20 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   { id: "p3", title: "EduLearn", clientType: "EdTech", category: ServiceCategory.SOFTWARE, serviceTags: ["Platform", "Video"], description: "Online course marketplace.", imageUrl: "https://picsum.photos/seed/p3/600/400" },
   { id: "p4", title: "RestoBiz POS", clientType: "Hospitality", category: ServiceCategory.SOFTWARE, serviceTags: ["POS", "Cloud"], description: "Restaurant point-of-sale system.", imageUrl: "https://picsum.photos/seed/p4/600/400" },
   { id: "p5", title: "FitSync", clientType: "Wellness", category: ServiceCategory.SOFTWARE, serviceTags: ["Mobile", "IoT"], description: "Gym management and member app.", imageUrl: "https://picsum.photos/seed/p5/600/400" },
+  /* ROBOTICS PORTFOLIO ITEMS - COMMENTED OUT FOR FUTURE USE
   // Robotics
-  { id: "p6", title: "AutoSort 3000", clientType: "Logistics", category: ServiceCategory.ROBOTICS, serviceTags: ["Automation", "Vision"], description: "Parcel sorting system for couriers.", imageUrl: "https://picsum.photos/seed/p6/600/400" },
-  { id: "p7", title: "WeldBot", clientType: "Manufacturing", category: ServiceCategory.ROBOTICS, serviceTags: ["Robotic Arm", "Welding"], description: "Automated welding cell.", imageUrl: "https://picsum.photos/seed/p7/600/400" },
-  { id: "p8", title: "DroneInspect", clientType: "Infrastructure", category: ServiceCategory.ROBOTICS, serviceTags: ["Drone", "AI"], description: "Autonomous drone for tower inspection.", imageUrl: "https://picsum.photos/seed/p8/600/400" },
-  { id: "p9", title: "PickPlace Cobot", clientType: "Assembly", category: ServiceCategory.ROBOTICS, serviceTags: ["Cobot", "Integration"], description: "Assembly line pick-and-place.", imageUrl: "https://picsum.photos/seed/p9/600/400" },
-  { id: "p10", title: "AgriBot Rover", clientType: "Agriculture", category: ServiceCategory.ROBOTICS, serviceTags: ["Mobile Robot", "GPS"], description: "Field monitoring robot.", imageUrl: "https://picsum.photos/seed/p10/600/400" },
+  { id: "p6", title: "AutoSort 3000", clientType: "Logistics", category: 'robotics', serviceTags: ["Automation", "Vision"], description: "Parcel sorting system for couriers.", imageUrl: "https://picsum.photos/seed/p6/600/400" },
+  { id: "p7", title: "WeldBot", clientType: "Manufacturing", category: 'robotics', serviceTags: ["Robotic Arm", "Welding"], description: "Automated welding cell.", imageUrl: "https://picsum.photos/seed/p7/600/400" },
+  { id: "p8", title: "DroneInspect", clientType: "Infrastructure", category: 'robotics', serviceTags: ["Drone", "AI"], description: "Autonomous drone for tower inspection.", imageUrl: "https://picsum.photos/seed/p8/600/400" },
+  { id: "p9", title: "PickPlace Cobot", clientType: "Assembly", category: 'robotics', serviceTags: ["Cobot", "Integration"], description: "Assembly line pick-and-place.", imageUrl: "https://picsum.photos/seed/p9/600/400" },
+  { id: "p10", title: "AgriBot Rover", clientType: "Agriculture", category: 'robotics', serviceTags: ["Mobile Robot", "GPS"], description: "Field monitoring robot.", imageUrl: "https://picsum.photos/seed/p10/600/400" },
   // Mechanical
-  { id: "p11", title: "CustomJig", clientType: "Auto Parts", category: ServiceCategory.MECHANICAL, serviceTags: ["Fixtures", "CNC"], description: "Manufacturing fixture for auto parts.", imageUrl: "https://picsum.photos/seed/p11/600/400" },
-  { id: "p12", title: "HVAC Opt", clientType: "Industrial", category: ServiceCategory.MECHANICAL, serviceTags: ["CFD", "Thermal"], description: "Industrial cooling system redesign.", imageUrl: "https://picsum.photos/seed/p12/600/400" },
-  { id: "p13", title: "ProtoSeries", clientType: "Consumer Goods", category: ServiceCategory.MECHANICAL, serviceTags: ["Prototyping", "3D Print"], description: "Consumer product development.", imageUrl: "https://picsum.photos/seed/p13/600/400" },
-  { id: "p14", title: "ConveyorUp", clientType: "Logistics", category: ServiceCategory.MECHANICAL, serviceTags: ["Design", "Fabrication"], description: "Material handling system improvement.", imageUrl: "https://picsum.photos/seed/p14/600/400" },
-  { id: "p15", title: "PressureVessel", clientType: "Chemical", category: ServiceCategory.MECHANICAL, serviceTags: ["FEA", "Safety"], description: "Safety compliance testing.", imageUrl: "https://picsum.photos/seed/p15/600/400" },
+  { id: "p11", title: "CustomJig", clientType: "Auto Parts", category: 'mechanical', serviceTags: ["Fixtures", "CNC"], description: "Manufacturing fixture for auto parts.", imageUrl: "https://picsum.photos/seed/p11/600/400" },
+  { id: "p12", title: "HVAC Opt", clientType: "Industrial", category: 'mechanical', serviceTags: ["CFD", "Thermal"], description: "Industrial cooling system redesign.", imageUrl: "https://picsum.photos/seed/p12/600/400" },
+  { id: "p13", title: "ProtoSeries", clientType: "Consumer Goods", category: 'mechanical', serviceTags: ["Prototyping", "3D Print"], description: "Consumer product development.", imageUrl: "https://picsum.photos/seed/p13/600/400" },
+  { id: "p14", title: "ConveyorUp", clientType: "Logistics", category: 'mechanical', serviceTags: ["Design", "Fabrication"], description: "Material handling system improvement.", imageUrl: "https://picsum.photos/seed/p14/600/400" },
+  { id: "p15", title: "PressureVessel", clientType: "Chemical", category: 'mechanical', serviceTags: ["FEA", "Safety"], description: "Safety compliance testing.", imageUrl: "https://picsum.photos/seed/p15/600/400" },
+  */
   // Branding
   { id: "p16", title: "TechNova", clientType: "Software", category: ServiceCategory.BRANDING, serviceTags: ["Rebrand", "Identity"], description: "Complete brand overhaul.", imageUrl: "https://picsum.photos/seed/p16/600/400" },
   { id: "p17", title: "Launch Video", clientType: "Product", category: ServiceCategory.BRANDING, serviceTags: ["Video", "Social"], description: "Product announcement content series.", imageUrl: "https://picsum.photos/seed/p17/600/400" },
@@ -553,27 +563,27 @@ export const TESTIMONIALS: Testimonial[] = [
     quote: "The team delivered our e-commerce platform in 6 weeks. Sales tripled immediately.",
     rating: 5,
     projectType: "Software Development",
-    avatarUrl: "https://randomuser.me/api/portraits/women/44.jpg"
+    avatarUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200"
   },
   {
     id: "t2",
     name: "Vikram Patel",
     role: "Operations Head",
     company: "MegaStock Distributors",
-    quote: "The warehouse robot paid for itself in under a year. Best investment we made.",
+    quote: "The inventory management system they built transformed our operations. Best investment we made.",
     rating: 5,
-    projectType: "Robotics Automation",
-    avatarUrl: "https://randomuser.me/api/portraits/men/32.jpg"
+    projectType: "Software Development",
+    avatarUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=200"
   },
   {
     id: "t3",
     name: "Anil Desai",
     role: "Founder",
-    company: "CircuitCraft Mfg",
-    quote: "Quality inspection accuracy went from 92% to 99.7%. Customer complaints vanished.",
+    company: "TechVentures",
+    quote: "Their software solutions transformed our business operations completely. Highly recommend their team.",
     rating: 5,
-    projectType: "Quality Control",
-    avatarUrl: "https://randomuser.me/api/portraits/men/12.jpg"
+    projectType: "Software Solutions",
+    avatarUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200"
   },
   {
     id: "t4",
@@ -583,27 +593,27 @@ export const TESTIMONIALS: Testimonial[] = [
     quote: "We looked like a million-dollar company from day one. The brand strategy brought serious leads.",
     rating: 5,
     projectType: "Branding",
-    avatarUrl: "https://randomuser.me/api/portraits/women/68.jpg"
+    avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"
   },
   {
     id: "t5",
     name: "Rajesh Kulkarni",
     role: "CTO",
     company: "SmartSense Tech",
-    quote: "They turned our concept into a prototype in 3 weeks. We secured funding at our first pitch.",
+    quote: "They turned our concept into a working prototype in 3 weeks. We secured funding at our first pitch.",
     rating: 5,
-    projectType: "Prototyping",
-    avatarUrl: "https://randomuser.me/api/portraits/men/86.jpg"
+    projectType: "Software Development",
+    avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200"
   },
   {
     id: "t6",
     name: "Sanjay Mehta",
     role: "Managing Director",
-    company: "Mehta Logistics",
-    quote: "NexGen's fleet tracking system saved us ₹45L in fuel costs in just one year. Incredible ROI.",
+    company: "Mehta Enterprises",
+    quote: "NexGen's software solutions saved us lakhs in operational costs. Incredible ROI.",
     rating: 5,
     projectType: "Software Solutions",
-    avatarUrl: "https://randomuser.me/api/portraits/men/54.jpg"
+    avatarUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200"
   },
   {
     id: "t7",
@@ -613,17 +623,17 @@ export const TESTIMONIALS: Testimonial[] = [
     quote: "Their integrated approach to software and branding gave our product launch the momentum it needed.",
     rating: 5,
     projectType: "Integrated Product",
-    avatarUrl: "https://randomuser.me/api/portraits/women/23.jpg"
+    avatarUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=200"
   },
   {
     id: "t8",
     name: "Arjun Reddy",
-    role: "Plant Manager",
-    company: "Reddy Chemicals",
-    quote: "The predictive maintenance sensors have completely eliminated unscheduled downtime at our plant.",
+    role: "Business Owner",
+    company: "Reddy Solutions",
+    quote: "The branding transformation completely changed how customers perceive our business.",
     rating: 5,
-    projectType: "IoT & Mechanical",
-    avatarUrl: "https://randomuser.me/api/portraits/men/91.jpg"
+    projectType: "Branding & Content",
+    avatarUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200"
   }
 ];
 
@@ -665,6 +675,7 @@ export const BLOG_POSTS: BlogPost[] = [
       </>
     )
   },
+  /* ROBOTICS BLOG POST - COMMENTED OUT FOR FUTURE USE
   {
     id: "blog-2",
     title: "Automating Mumbai's SMEs for Under ₹10 Lakhs",
@@ -688,6 +699,8 @@ export const BLOG_POSTS: BlogPost[] = [
       </>
     )
   },
+  */
+  /* MECHANICAL BLOG POST - COMMENTED OUT FOR FUTURE USE
   {
     id: "blog-3",
     title: "3D Printing vs CNC: A Prototyping Guide",
@@ -698,16 +711,17 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Manas",
     imageUrl: "https://images.unsplash.com/photo-1631541909061-71e349d1f203?auto=format&fit=crop&q=80&w=1200",
     content: (
-       <>
-         <p>Speed vs Precision. It's the classic engineering trade-off. Knowing when to switch from additive (3D Printing) to subtractive (CNC) manufacturing can save your startup weeks of development time.</p>
-         <h3>Rule of Thumb</h3>
-         <ul>
-           <li><strong>Use 3D Printing (SLA/FDM)</strong> for: Form checks, fit testing, and complex geometries that are impossible to machine.</li>
-           <li><strong>Use CNC</strong> for: Structural testing, final material validation, and tight tolerances (+/- 0.01mm).</li>
-         </ul>
-       </>
+      <>
+        <p>Speed vs Precision. It's the classic engineering trade-off. Knowing when to switch from additive (3D Printing) to subtractive (CNC) manufacturing can save your startup weeks of development time.</p>
+        <h3>Rule of Thumb</h3>
+        <ul>
+          <li><strong>Use 3D Printing (SLA/FDM)</strong> for: Form checks, fit testing, and complex geometries that are impossible to machine.</li>
+          <li><strong>Use CNC</strong> for: Structural testing, final material validation, and tight tolerances (+/- 0.01mm).</li>
+        </ul>
+      </>
     )
   },
+  */
   {
     id: "blog-4",
     title: "The Founder's Guide to LinkedIn Growth",
@@ -719,9 +733,9 @@ export const BLOG_POSTS: BlogPost[] = [
     imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=1200",
     content: (
       <>
-         <p>In B2B, people buy from people. Your personal brand is your company's biggest asset. I spent the last quarter analyzing what works on LinkedIn, and the results were clear: Authenticity wins.</p>
-         <h3>The 90-Day Sprint</h3>
-         <p>Consistency is key. Posting 3x a week about your specific niche—sharing failures, not just wins—builds trust. We helped a SaaS founder grow their network by 400% simply by documenting their build-in-public journey.</p>
+        <p>In B2B, people buy from people. Your personal brand is your company's biggest asset. I spent the last quarter analyzing what works on LinkedIn, and the results were clear: Authenticity wins.</p>
+        <h3>The 90-Day Sprint</h3>
+        <p>Consistency is key. Posting 3x a week about your specific niche—sharing failures, not just wins—builds trust. We helped a SaaS founder grow their network by 400% simply by documenting their build-in-public journey.</p>
       </>
     )
   },
@@ -742,6 +756,7 @@ export const BLOG_POSTS: BlogPost[] = [
       </>
     )
   },
+  /* INDUSTRY 4.0 / MECHANICAL BLOG POST - COMMENTED OUT FOR FUTURE USE
   {
     id: "blog-6",
     title: "Predictive Maintenance: Saving ₹50L Annually",
@@ -758,6 +773,8 @@ export const BLOG_POSTS: BlogPost[] = [
       </>
     )
   },
+    */
+  /* FEA / MECHANICAL BLOG POST - COMMENTED OUT FOR FUTURE USE
   {
     id: "blog-7",
     title: "FEA Explained for Non-Engineers",
@@ -773,6 +790,7 @@ export const BLOG_POSTS: BlogPost[] = [
       </>
     )
   },
+  */
   {
     id: "blog-8",
     title: "Case Study Videos That Convert",

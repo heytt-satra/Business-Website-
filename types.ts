@@ -47,8 +47,8 @@ declare module 'react' {
 
 export enum ServiceCategory {
   SOFTWARE = 'software',
-  ROBOTICS = 'robotics',
-  MECHANICAL = 'mechanical',
+  // ROBOTICS = 'robotics', // Commented out for future use
+  // MECHANICAL = 'mechanical', // Commented out for future use
   BRANDING = 'branding',
 }
 
