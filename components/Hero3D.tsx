@@ -92,10 +92,10 @@ const Hero3DContent: React.FC = () => {
           >
             <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-6 text-white tracking-tight">
               <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 bg-clip-text text-transparent">
-                NexGen
+                Tera
               </span>
               <br />
-              <span className="text-white">Technical Services</span>
+              <span className="text-white">Industries</span>
             </h1>
           </motion.div>
 
@@ -169,7 +169,7 @@ class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { has
       return (
         <div className="relative h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-center px-4">
           <div className="max-w-4xl z-10">
-            <h1 className="text-6xl font-bold text-white mb-6">NexGen Technical Services</h1>
+            <h1 className="text-6xl font-bold text-white mb-6">Tera Industries</h1>
             <p className="text-xl text-slate-300 mb-8">Software Solutions & Strategic Branding</p>
             <button className="px-8 py-4 bg-white text-slate-900 rounded-xl font-bold">Get Started</button>
           </div>

@@ -75,7 +75,7 @@ export const About: React.FC = () => {
                   <span className="text-white font-semibold"> great software deserves great branding</span>, and vice versa.
                 </p>
                 <p className="text-lg text-slate-400 leading-relaxed">
-                  NexGen was built as a <span className="text-cyan-400 font-semibold">one-stop solution</span>—combining technical excellence with strategic brand thinking to help businesses truly stand out.
+                  Tera Industries was built as a <span className="text-cyan-400 font-semibold">one-stop solution</span>—combining technical excellence with strategic brand thinking to help businesses truly stand out.
                 </p>
               </div>
             </motion.div>
@@ -166,7 +166,7 @@ export const About: React.FC = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <span className="text-cyan-400 font-bold tracking-widest uppercase text-sm mb-4 block">The Person Behind NexGen</span>
+              <span className="text-cyan-400 font-bold tracking-widest uppercase text-sm mb-4 block">The Person Behind Tera Industries</span>
               <h2 className="text-4xl font-bold text-white mb-4">Meet the Founder</h2>
               <p className="text-xl text-slate-400">The vision and expertise driving your success.</p>
             </motion.div>
@@ -251,7 +251,7 @@ export const About: React.FC = () => {
 
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">The Vision Ahead</h2>
               <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-12 leading-relaxed">
-                NexGen is more than a service provider—it's a mission to democratize quality digital solutions for growing businesses.
+                Tera Industries is more than a service provider—it's a mission to democratize quality digital solutions for growing businesses.
                 My goal is to help 100+ businesses transform their digital presence and brand identity by 2026.
               </p>
 

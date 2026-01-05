@@ -157,7 +157,7 @@ export const Contact: React.FC = () => {
 
               <div className="space-y-8 mb-16">
                 {[
-                  { icon: Mail, title: "Email Us", value: "hello@nexgen.com", desc: "For general inquiries & RFPs" },
+                  { icon: Mail, title: "Email Us", value: "hello@teraindustries.com", desc: "For general inquiries & RFPs" },
                   { icon: Phone, title: "Call Us", value: "+91 98765 43210", desc: "Mon-Fri, 9am - 7pm IST" },
                   { icon: MapPin, title: "Visit Us", value: "Mumbai, India", desc: "Technical HQ" }
                 ].map((item, idx) => (

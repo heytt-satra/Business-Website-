@@ -14,7 +14,7 @@ const Controls = OrbitControls as any;
 function Founder3DCard({ position, founder, onClick }: any) {
   const meshRef = useRef<any>(null);
   const [hovered, setHovered] = useState(false);
-  
+
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
     if (meshRef.current) {
@@ -22,7 +22,7 @@ function Founder3DCard({ position, founder, onClick }: any) {
       meshRef.current.position.y = position[1] + Math.sin(time) * 0.1;
     }
   });
-  
+
   return (
     <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5} position={position}>
       <group
@@ -34,25 +34,25 @@ function Founder3DCard({ position, founder, onClick }: any) {
         {/* Card background */}
         <mesh>
           <boxGeometry args={[2, 2.8, 0.1]} />
-          <meshStandardMaterial 
+          <meshStandardMaterial
             color={hovered ? "#3b82f6" : "#1e293b"}
             metalness={0.8}
             roughness={0.2}
           />
         </mesh>
-        
+
         {/* Note: Text3D requires font files. Using simple meshes/colors to represent card content for stability */}
         <mesh position={[0, 0.5, 0.1]}>
-           <planeGeometry args={[1.5, 0.2]} />
-           <meshStandardMaterial color="#ffffff" />
+          <planeGeometry args={[1.5, 0.2]} />
+          <meshStandardMaterial color="#ffffff" />
         </mesh>
         <mesh position={[0, 0, 0.1]}>
-           <planeGeometry args={[1.2, 1.2]} />
-           <meshStandardMaterial color="#64748b" />
+          <planeGeometry args={[1.2, 1.2]} />
+          <meshStandardMaterial color="#64748b" />
         </mesh>
         <mesh position={[0, -0.8, 0.1]}>
-           <planeGeometry args={[1, 0.1]} />
-           <meshStandardMaterial color="#94a3b8" />
+          <planeGeometry args={[1, 0.1]} />
+          <meshStandardMaterial color="#94a3b8" />
         </mesh>
       </group>
     </Float>
@@ -72,27 +72,27 @@ export const Founders: React.FC = () => {
             <ambientLight intensity={0.3} />
             <spotLight position={[10, 10, 10]} angle={0.3} intensity={1} color="#60a5fa" />
             <spotLight position={[-10, -10, -10]} angle={0.3} intensity={0.5} color="#a78bfa" />
-            
-            <Founder3DCard 
-              position={[-2.5, 0, 0]} 
+
+            <Founder3DCard
+              position={[-2.5, 0, 0]}
               founder={FOUNDERS[0]}
               onClick={() => setSelectedFounder(FOUNDERS[0])}
             />
-            <Founder3DCard 
-              position={[2.5, 0, 0]} 
+            <Founder3DCard
+              position={[2.5, 0, 0]}
               founder={FOUNDERS[1]}
               onClick={() => setSelectedFounder(FOUNDERS[1])}
             />
-            
+
             <Environment preset="city" />
             <Controls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
           </Canvas>
         </div>
-        
+
         {/* Content Overlay - Light colors */}
         <div className="relative z-10 h-full flex items-center justify-center px-6 pointer-events-none">
           <div className="text-center pointer-events-auto">
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-lg"
@@ -103,8 +103,8 @@ export const Founders: React.FC = () => {
                 Founders
               </span>
             </motion.h1>
-            
-            <motion.p 
+
+            <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
@@ -112,7 +112,7 @@ export const Founders: React.FC = () => {
             >
               Two engineers. Four verticals. Infinite possibilities.
             </motion.p>
-            
+
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -147,19 +147,19 @@ export const Founders: React.FC = () => {
                   >
                     {/* Animated background gradient */}
                     <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl opacity-30 blur-2xl animate-pulse"></div>
-                    
+
                     {/* Image container */}
                     <div className="relative bg-slate-800 rounded-3xl overflow-hidden border-2 border-slate-700 hover:border-blue-500 transition-all duration-300">
                       <div className="aspect-[3/4] relative">
-                        <Image 
-                          src={founder.image} 
+                        <Image
+                          src={founder.image}
                           alt={founder.name}
                           className="w-full h-full object-cover"
                         />
-                        
+
                         {/* Overlay with light content */}
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
-                          <a 
+                          <a
                             href={founder.linkedin}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -171,7 +171,7 @@ export const Founders: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     {/* Floating badge */}
                     <motion.div
                       animate={{ y: [0, -10, 0] }}
@@ -188,15 +188,15 @@ export const Founders: React.FC = () => {
                   <h2 className="text-5xl font-bold text-white mb-4">
                     {founder.name}
                   </h2>
-                  
+
                   <p className="text-2xl text-blue-400 mb-6 font-medium">
                     {founder.title}
                   </p>
-                  
+
                   <p className="text-xl text-slate-300 mb-8 leading-relaxed font-light">
                     {founder.bio}
                   </p>
-                  
+
                   {/* Expertise Tags */}
                   <div className="mb-8">
                     <h3 className="text-lg font-semibold text-white mb-4 uppercase tracking-widest text-sm">Core Expertise</h3>
@@ -212,7 +212,7 @@ export const Founders: React.FC = () => {
                       ))}
                     </div>
                   </div>
-                  
+
                   {/* Skills Progress Bars */}
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-4 uppercase tracking-widest text-sm">Technical Proficiency</h3>
@@ -255,7 +255,7 @@ export const Founders: React.FC = () => {
         <div className="absolute inset-0 opacity-20 pointer-events-none">
           <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
         </div>
-        
+
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -268,39 +268,39 @@ export const Founders: React.FC = () => {
           </motion.div>
 
           <div className="relative">
-             {/* Vertical Line */}
-             <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-600 to-purple-600 transform md:-translate-x-1/2"></div>
+            {/* Vertical Line */}
+            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-600 to-purple-600 transform md:-translate-x-1/2"></div>
 
-             {[
+            {[
               { year: "2021", title: "The Beginning", description: "Met during college rover team. Built autonomous navigation systems together.", side: "left" },
               { year: "2022", title: "First Projects", description: "Started freelancing. Delivered first websites and mechanical prototypes.", side: "right" },
               { year: "2023", title: "Vision Formed", description: "Realized the power of combining software, hardware, and business expertise.", side: "left" },
-              { year: "2024", title: "NexGen Born", description: "Officially launched multi-vertical service company. First enterprise clients.", side: "right" },
-             ].map((milestone, idx) => (
-                <motion.div 
-                   key={idx}
-                   initial={{ opacity: 0, x: milestone.side === 'left' ? -50 : 50 }}
-                   whileInView={{ opacity: 1, x: 0 }}
-                   viewport={{ once: true }}
-                   transition={{ duration: 0.6 }}
-                   className={`flex flex-col md:flex-row gap-8 mb-12 items-center relative ${milestone.side === 'right' ? 'md:flex-row-reverse' : ''}`}
-                >
-                   <div className={`flex-1 w-full ${milestone.side === 'left' ? 'md:text-right' : 'md:text-left'} ml-16 md:ml-0`}>
-                      <div className="bg-slate-900 border border-slate-800 p-6 rounded-2xl hover:border-blue-500 transition-all">
-                         <h3 className="text-2xl font-bold text-white mb-2">{milestone.title}</h3>
-                         <p className="text-slate-400">{milestone.description}</p>
-                      </div>
-                   </div>
-                   
-                   <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-12 h-12 bg-slate-950 border-4 border-blue-500 rounded-full flex items-center justify-center z-10 shadow-[0_0_20px_rgba(59,130,246,0.5)]">
-                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                   </div>
+              { year: "2024", title: "Tera Industries Born", description: "Officially launched multi-vertical service company. First enterprise clients.", side: "right" },
+            ].map((milestone, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: milestone.side === 'left' ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className={`flex flex-col md:flex-row gap-8 mb-12 items-center relative ${milestone.side === 'right' ? 'md:flex-row-reverse' : ''}`}
+              >
+                <div className={`flex-1 w-full ${milestone.side === 'left' ? 'md:text-right' : 'md:text-left'} ml-16 md:ml-0`}>
+                  <div className="bg-slate-900 border border-slate-800 p-6 rounded-2xl hover:border-blue-500 transition-all">
+                    <h3 className="text-2xl font-bold text-white mb-2">{milestone.title}</h3>
+                    <p className="text-slate-400">{milestone.description}</p>
+                  </div>
+                </div>
 
-                   <div className={`flex-1 w-full ${milestone.side === 'right' ? 'md:text-right' : 'md:text-left'} ml-16 md:ml-0`}>
-                      <span className="text-5xl font-bold text-slate-800/50 select-none">{milestone.year}</span>
-                   </div>
-                </motion.div>
-             ))}
+                <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-12 h-12 bg-slate-950 border-4 border-blue-500 rounded-full flex items-center justify-center z-10 shadow-[0_0_20px_rgba(59,130,246,0.5)]">
+                  <div className="w-3 h-3 bg-white rounded-full"></div>
+                </div>
+
+                <div className={`flex-1 w-full ${milestone.side === 'right' ? 'md:text-right' : 'md:text-left'} ml-16 md:ml-0`}>
+                  <span className="text-5xl font-bold text-slate-800/50 select-none">{milestone.year}</span>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -336,7 +336,7 @@ export const Founders: React.FC = () => {
               >
                 {/* Glowing background */}
                 <div className={`absolute -inset-1 bg-gradient-to-r ${value.color} rounded-2xl opacity-20 group-hover:opacity-40 blur-xl transition-opacity`}></div>
-                
+
                 <div className="relative bg-slate-800 border border-slate-700 p-8 rounded-2xl h-full hover:border-slate-600 transition-all">
                   <h3 className="text-2xl font-bold text-white mb-4">{value.title}</h3>
                   <p className="text-slate-400 text-sm leading-relaxed">{value.desc}</p>

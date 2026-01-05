@@ -81,7 +81,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 <span className={`font-extrabold text-xl ${logoTextClass}`}>N</span>
               </div>
               <span className={`text-xl font-bold tracking-tight transition-colors duration-300 ${headerTextColor} drop-shadow-sm`}>
-                NexGen
+                Tera Industries
               </span>
             </Link>
 
@@ -91,8 +91,8 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               <Link
                 to="/"
                 className={`text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 ${!isScrolled && isDarkHeaderPage
-                    ? 'text-white/90 hover:text-white hover:drop-shadow-md'
-                    : 'text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400'
+                  ? 'text-white/90 hover:text-white hover:drop-shadow-md'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400'
                   }`}
               >
                 Home
@@ -102,8 +102,8 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               <Link
                 to="/about"
                 className={`text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 ${!isScrolled && isDarkHeaderPage
-                    ? 'text-white/90 hover:text-white hover:drop-shadow-md'
-                    : 'text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400'
+                  ? 'text-white/90 hover:text-white hover:drop-shadow-md'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400'
                   }`}
               >
                 About
@@ -113,8 +113,8 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               <div className="relative group">
                 <button
                   className={`flex items-center text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 ${!isScrolled && isDarkHeaderPage
-                      ? 'text-white/90 hover:text-white hover:drop-shadow-md'
-                      : 'text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400'
+                    ? 'text-white/90 hover:text-white hover:drop-shadow-md'
+                    : 'text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400'
                     }`}
                 >
                   Services <ChevronDown size={16} className="ml-1" />
@@ -149,8 +149,8 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                   key={link.name}
                   to={link.path}
                   className={`text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 ${!isScrolled && isDarkHeaderPage
-                      ? 'text-white/90 hover:text-white hover:drop-shadow-md'
-                      : 'text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400'
+                    ? 'text-white/90 hover:text-white hover:drop-shadow-md'
+                    : 'text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400'
                     }`}
                 >
                   {link.name}
@@ -163,8 +163,8 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               <button
                 onClick={toggleTheme}
                 className={`p-2 rounded-full transition-colors ${!isScrolled && isDarkHeaderPage
-                    ? 'text-white hover:bg-white/10'
-                    : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                  ? 'text-white hover:bg-white/10'
+                  : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
                   }`}
                 aria-label="Toggle Theme"
               >
@@ -174,8 +174,8 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               <button
                 onClick={() => setShowSearch(!showSearch)}
                 className={`p-2 rounded-full transition-colors ${!isScrolled && isDarkHeaderPage
-                    ? 'hover:bg-white/10 text-white'
-                    : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300'
+                  ? 'hover:bg-white/10 text-white'
+                  : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300'
                   }`}
                 aria-label="Search"
               >
@@ -196,8 +196,8 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               <button
                 onClick={toggleTheme}
                 className={`p-2 rounded-full transition-colors relative z-50 ${!isScrolled && isDarkHeaderPage
-                    ? 'text-white'
-                    : 'text-slate-900 dark:text-white'
+                  ? 'text-white'
+                  : 'text-slate-900 dark:text-white'
                   }`}
               >
                 {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
@@ -205,8 +205,8 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
               <button
                 className={`p-2 rounded-lg transition-colors relative z-50 ${isMobileMenuOpen
-                    ? 'text-slate-900 dark:text-white'
-                    : (!isScrolled && isDarkHeaderPage ? 'text-white' : 'text-slate-900 dark:text-white')
+                  ? 'text-slate-900 dark:text-white'
+                  : (!isScrolled && isDarkHeaderPage ? 'text-white' : 'text-slate-900 dark:text-white')
                   }`}
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label="Menu"

@@ -188,7 +188,7 @@ export const Home: React.FC = () => {
             <div className="grid lg:grid-cols-2 gap-20 items-center">
               <motion.div {...fadeInUp}>
                 <div className="inline-block px-4 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs font-bold uppercase tracking-wider mb-6">
-                  Why NexGen?
+                  Why Tera Industries?
                 </div>
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">
                   Founders Building <br />For Founders.

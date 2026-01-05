@@ -1,8 +1,8 @@
 import { Code2, Bot, Settings, Megaphone } from 'lucide-react';
 import { ServiceData, ServiceCategory, CaseStudy, BlogPost, Founder, PortfolioItem, Testimonial, FAQ, WorkflowStep } from './types';
 
-export const COMPANY_NAME = "NexGen Technical Services";
-export const CONTACT_EMAIL = "hello@nexgen.com";
+export const COMPANY_NAME = "Tera Industries";
+export const CONTACT_EMAIL = "hello@teraindustries.com";
 
 export const NAV_LINKS = [
   { name: 'Home', path: '/' },
@@ -316,7 +316,7 @@ export const FOUNDERS: Founder[] = [
     role: "Founder & Tech Lead",
     title: "CS & Business Systems Engineer",
     background: "CS & Business Systems Engineer",
-    bio: "Heytt bridges the gap between code and business logic. With a background in freelance web development and content creation, he leads the Software and Branding verticals at NexGen. His passion for building digital solutions that drive real business results has helped numerous startups and SMEs transform their operations.",
+    bio: "Heytt bridges the gap between code and business logic. With a background in freelance web development and content creation, he leads the Software and Branding verticals at Tera Industries. His passion for building digital solutions that drive real business results has helped numerous startups and SMEs transform their operations.",
     linkedin: "https://www.linkedin.com/in/heytt-satra/",
     image: "/images/heytt-satra.png",
     expertise: ["Software Architecture", "AI/ML", "Business Strategy", "Content Creation"],
@@ -610,7 +610,7 @@ export const TESTIMONIALS: Testimonial[] = [
     name: "Sanjay Mehta",
     role: "Managing Director",
     company: "Mehta Enterprises",
-    quote: "NexGen's software solutions saved us lakhs in operational costs. Incredible ROI.",
+    quote: "Tera Industries' software solutions saved us lakhs in operational costs. Incredible ROI.",
     rating: 5,
     projectType: "Software Solutions",
     avatarUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200"
