@@ -299,24 +299,17 @@ export const Home: React.FC = () => {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -50 }}
                     transition={{ duration: 0.5 }}
-                    className="flex flex-col md:flex-row items-center gap-8 md:gap-12"
+                    className="w-full max-w-4xl mx-auto"
                   >
-                    <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden flex-shrink-0 border-4 border-white/20 shadow-md">
-                      <Image
-                        src={TESTIMONIALS[currentTestimonial].avatarUrl || ""}
-                        alt={TESTIMONIALS[currentTestimonial].name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="flex-1 text-center md:text-left">
-                      <div className="flex justify-center md:justify-start items-center mb-4 text-amber-400">
+                    <div className="text-center">
+                      <div className="flex justify-center items-center mb-6 text-amber-400">
                         {[...Array(5)].map((_, i) => (
-                          <svg key={i} width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="mr-1">
+                          <svg key={i} width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="mr-1">
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                           </svg>
                         ))}
                       </div>
-                      <blockquote className="text-xl md:text-2xl text-slate-300 italic font-light mb-6">
+                      <blockquote className="text-2xl md:text-3xl text-slate-200 italic font-light mb-8 leading-normal">
                         "{TESTIMONIALS[currentTestimonial].quote}"
                       </blockquote>
                       <div>
