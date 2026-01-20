@@ -157,12 +157,12 @@ export const Contact: React.FC = () => {
 
               <div className="space-y-8 mb-16">
                 {[
-                  { icon: Mail, title: "Email Us", value: "hello@teraindustries.com", desc: "For general inquiries & RFPs" },
-                  { icon: Phone, title: "Call Us", value: "+91 98765 43210", desc: "Mon-Fri, 9am - 7pm IST" },
+                  { icon: Mail, title: "Email Us", value: "heyttsatra@teraindustries.com", desc: "For general inquiries & RFPs" },
+                  { icon: Phone, title: "Call Us", value: "+91 8433855224", desc: "Mon-Fri, 9am - 7pm IST" },
                   { icon: MapPin, title: "Visit Us", value: "Mumbai, India", desc: "Technical HQ" }
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start group">
-                    <div className="w-14 h-14 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center text-slate-400 group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-cyan-500 group-hover:to-blue-500 group-hover:border-transparent transition-all duration-300 mr-6">
+                    <div className="w-14 h-14 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center text-cyan-400 group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-cyan-500 group-hover:to-blue-500 group-hover:border-transparent transition-all duration-300 mr-6">
                       <item.icon size={24} />
                     </div>
                     <div>

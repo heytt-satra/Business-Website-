@@ -1,188 +1,255 @@
-import React, { useRef, useState, useEffect } from 'react';
+'use client';
+
+import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Sphere, MeshDistortMaterial, Float, Stars } from '@react-three/drei';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import '../types';
+import { Float, Points, PointMaterial, Stars } from '@react-three/drei';
+import * as THREE from 'three';
 
-// Cast OrbitControls to allow props that might be missing in strict definitions
-const Controls = OrbitControls as any;
+// Starfield Background Component
+function StarField() {
+  const starsRef = useRef<THREE.Points>(null);
 
-// Animated Sphere Component
-const AnimatedSphere = () => {
-  const meshRef = useRef<any>(null);
+  // Create random star positions
+  const starPositions = useMemo(() => {
+    const count = 800; // Reduced from 3000 for performance
+    const positions = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      // Spread stars in a large sphere around the scene
+      const radius = 50 + Math.random() * 100;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
 
+      positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+      positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+      positions[i * 3 + 2] = radius * Math.cos(phi);
+    }
+    return positions;
+  }, []);
+
+  // Slow rotation for parallax effect
   useFrame((state) => {
-    const time = state.clock.getElapsedTime();
-    if (meshRef.current) {
-      meshRef.current.rotation.x = time * 0.2;
-      meshRef.current.rotation.y = time * 0.3;
+    if (starsRef.current) {
+      starsRef.current.rotation.y = state.clock.elapsedTime * 0.01;
+      starsRef.current.rotation.x = state.clock.elapsedTime * 0.005;
     }
   });
 
   return (
-    <Float speed={2} rotationIntensity={1} floatIntensity={2}>
-      <Sphere args={[1, 100, 100]} scale={2.2}>
-        <MeshDistortMaterial
-          color="#60a5fa"
-          attach="material"
-          distort={0.4}
-          speed={2}
-          roughness={0.2}
-          metalness={0.8}
-        />
-      </Sphere>
-    </Float>
-  );
-};
-
-// Secondary shapes for background interest
-const BackgroundShapes = () => {
-  return (
     <>
-      <Float speed={1.5} rotationIntensity={2} floatIntensity={1} position={[3, 2, -2]}>
-        <mesh>
-          <torusGeometry args={[0.5, 0.2, 16, 100]} />
-          <meshStandardMaterial color="#8b5cf6" wireframe />
-        </mesh>
-      </Float>
-      <Float speed={1} rotationIntensity={1.5} floatIntensity={1.5} position={[-3, -2, -1]}>
-        <mesh>
-          <octahedronGeometry args={[0.8]} />
-          <meshStandardMaterial color="#14b8a6" wireframe />
-        </mesh>
-      </Float>
+      {/* Primary star layer - bright stars */}
+      <Points ref={starsRef} positions={starPositions}>
+        <PointMaterial
+          color="#ffffff"
+          size={0.15}
+          transparent
+          opacity={0.8}
+          sizeAttenuation
+          depthWrite={false}
+        />
+      </Points>
+
+      {/* Secondary star layer - dimmer, more numerous */}
+      <Stars
+        radius={80}
+        depth={100}
+        count={1500} // Reduced from 5000
+        factor={3}
+        saturation={0}
+        fade
+        speed={0.5}
+      />
+
+      {/* Blue-tinted distant stars */}
+      <Stars
+        radius={120}
+        depth={80}
+        count={800} // Reduced from 2000
+        factor={2}
+        saturation={1}
+        fade
+        speed={0.3}
+      />
     </>
-  )
+  );
 }
 
-const Hero3DContent: React.FC = () => {
-  return (
-    <section className="relative h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      {/* 3D Canvas Background */}
-      <div className="absolute inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 5], fov: 75 }} dpr={[1, 2]}>
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[10, 10, 5]} intensity={1} />
-          <pointLight position={[-10, -10, -5]} intensity={0.5} color="#a78bfa" />
+// Conspiracy Scientific Object - Geodesic Sphere with Particles
+function ConspiracyObject() {
+  const groupRef = useRef<THREE.Group>(null);
+  const innerRef = useRef<THREE.Mesh>(null);
+  const outerRef = useRef<THREE.Mesh>(null);
+  const particlesRef = useRef<THREE.Points>(null);
 
-          <AnimatedSphere />
-          <BackgroundShapes />
-          <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
+  // Create particle positions around the sphere
+  const particlePositions = useMemo(() => {
+    const positions = new Float32Array(150 * 3); // Slightly reduced
+    for (let i = 0; i < 150; i++) {
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      const r = 2.5 + Math.random() * 1.5;
+      positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+      positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+      positions[i * 3 + 2] = r * Math.cos(phi);
+    }
+    return positions;
+  }, []);
 
-          <Controls
-            enableZoom={false}
-            enablePan={false}
-            autoRotate
-            autoRotateSpeed={0.5}
-            maxPolarAngle={Math.PI / 2}
-            minPolarAngle={Math.PI / 2}
-          />
-        </Canvas>
-      </div>
+  // Create orbit ring particles
+  const orbitParticles = useMemo(() => {
+    const positions = new Float32Array(80 * 3); // Slightly reduced
+    for (let i = 0; i < 80; i++) {
+      const angle = (i / 80) * Math.PI * 2;
+      const r = 2.8;
+      positions[i * 3] = Math.cos(angle) * r;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 0.3;
+      positions[i * 3 + 2] = Math.sin(angle) * r;
+    }
+    return positions;
+  }, []);
 
-      {/* Content Overlay - ALL LIGHT COLORS */}
-      <div className="relative z-10 h-full flex items-center justify-center px-6 pointer-events-none">
-        <div className="text-center max-w-5xl pointer-events-auto">
-          {/* Light colored text on dark background */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-6 text-white tracking-tight">
-              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 bg-clip-text text-transparent">
-                Tera
-              </span>
-              <br />
-              <span className="text-white">Industries</span>
-            </h1>
-          </motion.div>
+  useFrame((state) => {
+    const time = state.clock.elapsedTime;
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-xl md:text-2xl text-slate-300 mb-10 max-w-3xl mx-auto font-light leading-relaxed"
-          >
-            Transforming businesses through innovative Software Solutions and Strategic Branding
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            {/* Light background buttons */}
-            <Link to="/contact">
-              <button className="px-8 py-4 bg-white text-slate-900 rounded-xl font-bold text-lg hover:bg-blue-50 hover:scale-105 transition-all shadow-xl shadow-blue-900/20">
-                Start Your Project
-              </button>
-            </Link>
-
-            {/* Outline button with light colors */}
-            <Link to="/services">
-              <button className="px-8 py-4 border border-slate-500 bg-slate-800/50 backdrop-blur-md text-white rounded-xl font-bold text-lg hover:bg-slate-700 hover:border-white transition-all">
-                Explore Services
-              </button>
-            </Link>
-          </motion.div>
-
-          {/* Stats removed as per request */}
-        </div>
-      </div>
-
-      {/* Scroll Indicator - Light colored */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: [0, 10, 0] }}
-        transition={{ delay: 1.2, duration: 2, repeat: Infinity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20"
-      >
-        <div className="w-6 h-10 border-2 border-slate-500 rounded-full flex justify-center p-2">
-          <div className="w-1 h-1 bg-white rounded-full"></div>
-        </div>
-      </motion.div>
-    </section>
-  );
-};
-
-// Error Boundary for WebGL Context Loss or R3F issues
-class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
-  constructor(props: { children: React.ReactNode }) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError(error: any) {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error: any, errorInfo: any) {
-    console.error("3D Error:", error, errorInfo);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      // Fallback to a CSS gradient if 3D fails
-      return (
-        <div className="relative h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-center px-4">
-          <div className="max-w-4xl z-10">
-            <h1 className="text-6xl font-bold text-white mb-6">Tera Industries</h1>
-            <p className="text-xl text-slate-300 mb-8">Software Solutions & Strategic Branding</p>
-            <button className="px-8 py-4 bg-white text-slate-900 rounded-xl font-bold">Get Started</button>
-          </div>
-        </div>
-      );
+    // Smooth constant rotation for the main group
+    if (groupRef.current) {
+      groupRef.current.rotation.y = time * 0.1; // Gentle continuous rotation
+      groupRef.current.rotation.x = 0; // Keep stable
     }
 
-    return this.props.children;
-  }
+    // Counter-rotation for inner layers adds depth
+    if (innerRef.current) {
+      innerRef.current.rotation.y = -time * 0.15;
+      innerRef.current.rotation.z = time * 0.05;
+    }
+
+    // Different speed for outer layer
+    if (outerRef.current) {
+      outerRef.current.rotation.y = time * 0.08;
+    }
+
+    // Particles drift smoothly
+    if (particlesRef.current) {
+      particlesRef.current.rotation.y = time * 0.02;
+    }
+  });
+
+  return (
+    <Float speed={1} rotationIntensity={0.1} floatIntensity={0.3}>
+      <group ref={groupRef}>
+        {/* Inner geodesic sphere - more detailed */}
+        <mesh ref={innerRef}>
+          <icosahedronGeometry args={[1.5, 0]} /> {/* Reduced detail from 1 to 0 */}
+          <meshBasicMaterial
+            color="#00A3FF"
+            wireframe
+            transparent
+            opacity={0.8}
+          />
+        </mesh>
+
+        {/* Middle geodesic sphere */}
+        <mesh ref={outerRef}>
+          <icosahedronGeometry args={[1.8, 1]} /> {/* Reduced detail from 2 to 1 */}
+          <meshBasicMaterial
+            color="#00A3FF"
+            wireframe
+            transparent
+            opacity={0.4}
+          />
+        </mesh>
+
+        {/* Outer geodesic sphere - low detail, subtle */}
+        <mesh>
+          <icosahedronGeometry args={[2.2, 0]} /> {/* Reduced detail from 1 to 0 */}
+          <meshBasicMaterial
+            color="#00A3FF"
+            wireframe
+            transparent
+            opacity={0.15}
+          />
+        </mesh>
+
+        {/* Glowing vertices/nodes */}
+        <Points positions={new Float32Array(new THREE.IcosahedronGeometry(1.5, 1).attributes.position.array)}>
+          <PointMaterial
+            color="#00A3FF"
+            size={0.08}
+            transparent
+            opacity={0.9}
+            sizeAttenuation
+          />
+        </Points>
+
+        {/* Scattered particles around the sphere */}
+        <Points ref={particlesRef} positions={particlePositions}>
+          <PointMaterial
+            color="#00A3FF"
+            size={0.03}
+            transparent
+            opacity={0.5}
+            sizeAttenuation
+          />
+        </Points>
+
+        {/* Orbit ring particles */}
+        <Points positions={orbitParticles}>
+          <PointMaterial
+            color="#00A3FF"
+            size={0.02}
+            transparent
+            opacity={0.3}
+            sizeAttenuation
+          />
+        </Points>
+
+        {/* Inner core glow */}
+        <mesh>
+          <sphereGeometry args={[0.3, 16, 16]} />
+          <meshBasicMaterial
+            color="#00A3FF"
+            transparent
+            opacity={0.3}
+          />
+        </mesh>
+
+        {/* Core bright point */}
+        <mesh>
+          <sphereGeometry args={[0.1, 8, 8]} />
+          <meshBasicMaterial color="#ffffff" />
+        </mesh>
+      </group>
+    </Float>
+  );
 }
 
-export const Hero3D = () => (
-  <ErrorBoundary>
-    <Hero3DContent />
-  </ErrorBoundary>
-);
+function Scene() {
+  return (
+    <>
+      {/* 3D Starfield Background */}
+      <StarField />
+
+      {/* Minimal lighting for glow effects */}
+      <ambientLight intensity={0.1} />
+      <pointLight position={[0, 5, 0]} intensity={0.5} color="#00A3FF" />
+
+      {/* Main conspiracy object */}
+      <ConspiracyObject />
+    </>
+  );
+}
+
+// Renamed to Hero3D for compatibility with existing imports
+export function Hero3D() {
+  return (
+    // Added mt-16 for spacing from header
+    <div className="w-full h-[500px] relative mt-16">
+      <Canvas
+        camera={{ position: [0, 0.5, 6], fov: 45 }}
+        gl={{ antialias: true, alpha: true }}
+        style={{ background: 'transparent' }}
+      >
+        <Scene />
+      </Canvas>
+    </div>
+  );
+}

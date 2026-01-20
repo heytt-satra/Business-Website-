@@ -1,15 +1,13 @@
-import { Code2, Bot, Settings, Megaphone } from 'lucide-react';
+import { Code2, Megaphone } from 'lucide-react';
 import { ServiceData, ServiceCategory, CaseStudy, BlogPost, Founder, PortfolioItem, Testimonial, FAQ, WorkflowStep } from './types';
 
 export const COMPANY_NAME = "Tera Industries";
-export const CONTACT_EMAIL = "hello@teraindustries.com";
+export const CONTACT_EMAIL = "heyttsatra@teraindustries.com";
 
 export const NAV_LINKS = [
   { name: 'Home', path: '/' },
   { name: 'About', path: '/about' },
   // Services is handled via dropdown in Layout
-  { name: 'Case Studies', path: '/case-studies' },
-  { name: 'Blog', path: '/blog' },
   { name: 'Contact', path: '/contact' },
 ];
 
@@ -638,14 +636,14 @@ export const TESTIMONIALS: Testimonial[] = [
 ];
 
 export const FAQS: FAQ[] = [
-  { id: "f1", category: "General", question: "How much does a typical project cost?", answer: "Project costs vary widely based on scope. Small web projects might start at ₹50k, while complex robotics integration can range from ₹5L to ₹50L+. We provide transparent, itemized quotes after our initial consultation." },
-  { id: "f2", category: "General", question: "What's the average project timeline?", answer: "Web/Brand projects typically take 4-8 weeks. Robotics/Mechanical projects range from 8-16 weeks depending on hardware lead times and complexity." },
+  { id: "f1", category: "General", question: "How much does a typical project cost?", answer: "Project costs vary widely based on scope. Small web projects might start at roughly ₹50k, while complex enterprise platforms can range higher. We provide transparent, itemized quotes after our initial consultation." },
+  { id: "f2", category: "General", question: "What's the average project timeline?", answer: "Web/Brand projects typically take 4-8 weeks depending on complexity. Integrated product launches may take 8-12 weeks." },
   { id: "f3", category: "General", question: "Do you work with startups?", answer: "Yes! We specialize in working with startups and SMEs. We understand budget constraints and focus on high-impact, scalable solutions." },
-  { id: "f4", category: "Process", question: "Can you handle projects remotely?", answer: "Software and Branding work is 100% remote-friendly. For Robotics/Mechanical, we may need site visits for installation/measurement, but design work happens at our lab in Mumbai." },
+  { id: "f4", category: "Process", question: "Can you handle projects remotely?", answer: "Yes, our entire process—from discovery to deployment—is 100% remote-friendly. We work with clients globally using tools like Slack, Figma, and Zoom." },
   { id: "f5", category: "Process", question: "What happens if we need changes?", answer: "We work in agile sprints with regular check-ins to incorporate feedback early. Post-launch changes are handled via maintenance contracts or ad-hoc support." },
-  { id: "f6", category: "Support", question: "Do you provide ongoing support?", answer: "Absolutely. We offer AMC (Annual Maintenance Contracts) for robotics/software to ensure uptime and performance." },
-  { id: "f7", category: "General", question: "Which industries do you specialize in?", answer: "Our core strengths are in Manufacturing, Logistics, B2B SaaS, and DeepTech/IoT." },
-  { id: "f8", category: "Quality", question: "How do you ensure project quality?", answer: "We use industry-standard testing (Unit Tests for code, FEA/CFD for hardware, Simulation for robots) before any deployment." },
+  { id: "f6", category: "Support", question: "Do you provide ongoing support?", answer: "Absolutely. We offer AMC (Annual Maintenance Contracts) for software to ensure uptime, security updates, and performance monitoring." },
+  { id: "f7", category: "General", question: "Which industries do you specialize in?", answer: "Our core strengths are in B2B SaaS, E-commerce, FinTech, and Digital-First Brands." },
+  { id: "f8", category: "Quality", question: "How do you ensure project quality?", answer: "We use industry-standard testing (Unit Tests, Automated QA, Performance Audits) before any deployment to ensure bug-free releases." },
   { id: "f9", category: "General", question: "Can we see examples of past work?", answer: "Yes, please check our Case Studies page for detailed breakdowns of our recent projects." },
   { id: "f10", category: "Process", question: "What do I need to get a quote?", answer: "Just a brief description of your problem! We'll help you scope the solution during our discovery call." }
 ];

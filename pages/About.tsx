@@ -70,12 +70,12 @@ export const About: React.FC = () => {
               className="max-w-3xl mx-auto"
             >
               <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10">
-                <p className="text-xl md:text-2xl text-slate-300 leading-relaxed mb-6">
+                <p className="text-xl md:text-2xl text-slate-300 leading-relaxed mb-6 text-justify">
                   It started with late-night coding sessions and a simple belief:
                   <span className="text-white font-semibold"> great software deserves great branding</span>, and vice versa.
                 </p>
-                <p className="text-lg text-slate-400 leading-relaxed">
-                  Tera Industries was built as a <span className="text-cyan-400 font-semibold">one-stop solution</span>—combining technical excellence with strategic brand thinking to help businesses truly stand out.
+                <p className="text-lg text-slate-400 leading-relaxed text-justify">
+                  Tera Industries was built as a <span className="text-cyan-400 font-semibold">one-stop solution</span> - combining technical excellence with strategic brand thinking to help businesses truly stand out.
                 </p>
               </div>
             </motion.div>
@@ -101,7 +101,7 @@ export const About: React.FC = () => {
           </div>
         </section>
 
-        {/* Core Values Section - Seamless continuation */}
+        {/* Core Values Section - Slider on Mobile, Grid on Desktop */}
         <section className="py-24 px-4">
           <div className="max-w-7xl mx-auto">
             <motion.div
@@ -115,7 +115,8 @@ export const About: React.FC = () => {
               <p className="text-slate-400 text-lg max-w-2xl mx-auto">The principles that drive every project I take on.</p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Mobile Slider / Desktop Grid Container */}
+            <div className="flex overflow-x-auto snap-x snaps-mandatory md:grid md:grid-cols-3 gap-6 pb-8 md:pb-0 px-2 md:px-0 no-scrollbar">
               {[
                 {
                   icon: Lightbulb,
@@ -142,14 +143,14 @@ export const About: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.15 }}
                   viewport={{ once: true }}
-                  className="group"
+                  className="min-w-[85%] md:min-w-0 snap-center"
                 >
-                  <div className="relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-cyan-500/50 transition-all duration-300 h-full hover:bg-white/10">
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${val.gradient} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform`}>
+                  <div className="h-full bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-cyan-500/50 transition-all duration-300 hover:bg-white/10 flex flex-col items-start text-left">
+                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${val.gradient} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform shrink-0`}>
                       <val.icon size={28} className="text-white" />
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-3">{val.title}</h3>
-                    <p className="text-slate-400 leading-relaxed">{val.desc}</p>
+                    <p className="text-slate-400 leading-relaxed text-justify">{val.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -208,7 +209,7 @@ export const About: React.FC = () => {
                   <div className="lg:w-1/2 text-center lg:text-left">
                     <h3 className="text-4xl font-bold text-white mb-2">{founder.name}</h3>
                     <div className="text-cyan-400 font-bold text-xl mb-6">{founder.role}</div>
-                    <p className="text-slate-300 text-lg leading-relaxed mb-8">{founder.bio}</p>
+                    <p className="text-slate-300 text-lg leading-relaxed mb-8 text-justify">{founder.bio}</p>
 
                     <div className="mb-8">
                       <h4 className="text-sm font-bold text-white uppercase tracking-widest mb-4">Expertise</h4>
@@ -250,12 +251,12 @@ export const About: React.FC = () => {
               </div>
 
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">The Vision Ahead</h2>
-              <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-12 leading-relaxed">
-                Tera Industries is more than a service provider—it's a mission to democratize quality digital solutions for growing businesses.
+              <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-12 leading-relaxed text-justify">
+                Tera Industries is more than a service provider - it's a mission to democratize quality digital solutions for growing businesses.
                 My goal is to help 100+ businesses transform their digital presence and brand identity by 2026.
               </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+              <div className="flex overflow-x-auto snap-x snaps-mandatory md:grid md:grid-cols-3 gap-6 mt-16 pb-8 md:pb-0 px-2 md:px-0 no-scrollbar">
                 {[
                   { number: "100+", label: "Businesses Transformed", icon: Users },
                   { number: "2026", label: "Vision Year", icon: Target },
@@ -267,11 +268,13 @@ export const About: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: idx * 0.1 }}
                     viewport={{ once: true }}
-                    className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-cyan-500/50 transition-colors"
+                    className="min-w-[85%] md:min-w-0 snap-center"
                   >
-                    <div className="text-5xl md:text-6xl font-bold text-white mb-2">{item.number}</div>
-                    <div className="text-slate-400 uppercase tracking-widest text-sm flex items-center justify-center gap-2">
-                      <item.icon size={16} /> {item.label}
+                    <div className="h-full bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-cyan-500/50 transition-colors flex flex-col items-center justify-center">
+                      <div className="text-5xl md:text-6xl font-bold text-white mb-2">{item.number}</div>
+                      <div className="text-slate-400 uppercase tracking-widest text-sm flex items-center justify-center gap-2">
+                        <item.icon size={16} /> {item.label}
+                      </div>
                     </div>
                   </motion.div>
                 ))}

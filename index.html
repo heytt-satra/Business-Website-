@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>Tera Industries | Software & Branding Solutions</title>
+  <link rel="icon" type="image/png" href="/images/tera-icon.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="apple-touch-icon" href="/images/tera-icon.png" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Initialize theme before content loads to prevent flash
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-
+    <!-- Theme script removed, enforced dark mode -->
     tailwind.config = {
       darkMode: 'class', // Enable class-based dark mode
       theme: {
@@ -72,8 +73,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
   <style>
+    /* Native App Feel */
+    html {
+      font-size: 15px;
+      -webkit-tap-highlight-color: transparent;
+      overscroll-behavior-y: none;
+      touch-action: manipulation;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
+      overscroll-behavior-y: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .hide-scrollbar::-webkit-scrollbar {
@@ -114,6 +126,16 @@
   class="bg-slate-50 text-slate-900 antialiased selection:bg-primary-500 selection:text-white dark:bg-slate-950 dark:text-slate-50">
   <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
+  <script>
+    // Register service worker for PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then((reg) => console.log('SW registered:', reg.scope))
+          .catch((err) => console.log('SW registration failed:', err));
+      });
+    }
+  </script>
 </body>
 
 </html>

@@ -19,6 +19,9 @@ declare global {
       sphereGeometry: any;
       meshStandardMaterial: any;
       meshDistortMaterial: any;
+      meshBasicMaterial: any;
+      icosahedronGeometry: any;
+      circleGeometry: any;
     }
   }
 }
@@ -40,7 +43,11 @@ declare module 'react' {
       octahedronGeometry: any;
       sphereGeometry: any;
       meshStandardMaterial: any;
+      meshStandardMaterial: any;
       meshDistortMaterial: any;
+      meshBasicMaterial: any;
+      icosahedronGeometry: any;
+      circleGeometry: any;
     }
   }
 }

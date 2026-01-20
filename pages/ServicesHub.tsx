@@ -50,7 +50,7 @@ export const ServicesHub: React.FC = () => {
               <span className="text-white">Our </span>
               <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400">Services</span>
             </h1>
-            <p className="text-xl text-slate-300 leading-relaxed">
+            <p className="text-xl text-slate-300 leading-relaxed text-justify max-w-2xl mx-auto">
               Two powerful verticals working together to transform your business. We provide the comprehensive technical infrastructure you need to scale.
             </p>
           </motion.div>
@@ -84,8 +84,8 @@ export const ServicesHub: React.FC = () => {
                 </div>
 
                 {/* Content Side */}
-                <div className="lg:w-1/2 w-full">
-                  <div className="flex items-center space-x-3 mb-6">
+                <div className="lg:w-1/2 w-full text-center lg:text-left">
+                  <div className="flex items-center justify-center lg:justify-start space-x-3 mb-6">
                     <span className="h-px w-12 bg-cyan-500"></span>
                     <span className="text-cyan-400 font-bold uppercase tracking-widest text-sm">
                       0{index + 1} — {service.id}
@@ -93,25 +93,32 @@ export const ServicesHub: React.FC = () => {
                   </div>
 
                   <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">{service.title}</h2>
-                  <p className="text-slate-300 text-lg mb-10 leading-relaxed">
+                  <p className="text-slate-300 text-lg mb-10 leading-relaxed text-justify">
                     {service.fullDescription}
                   </p>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-10">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-10 text-left">
                     {service.subServices.map((sub, idx) => (
                       <div key={idx} className="bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10 hover:bg-white/10 hover:border-cyan-500/50 transition-colors">
                         <div className="flex items-center mb-2">
                           <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 shadow-[0_0_10px_#22d3ee]"></div>
                           <span className="text-white font-bold">{sub.title}</span>
                         </div>
-                        <p className="text-slate-400 text-sm pl-5">{sub.description}</p>
+                        <p className="text-slate-400 text-sm pl-5 mb-3 text-justify">{sub.description}</p>
+                        <div className="flex flex-wrap gap-2 pl-5">
+                          {sub.tools?.map((tool, tIdx) => (
+                            <span key={tIdx} className="text-xs text-cyan-300 bg-cyan-950/50 px-2 py-1 rounded border border-cyan-500/20">
+                              {tool}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     ))}
                   </div>
 
                   <Link
                     to={`/services/${service.id}`}
-                    className="inline-flex items-center bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-all shadow-lg"
+                    className="inline-flex items-center bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-all shadow-lg mx-auto lg:mx-0"
                   >
                     View Details & Pricing <ArrowRight className="ml-2" size={20} />
                   </Link>

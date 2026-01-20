@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Image } from '../components/ui/Image';
-import { SERVICES, CASE_STUDIES, TESTIMONIALS } from '../constants';
-import { ServiceCategory } from '../types';
+import { SERVICES, TESTIMONIALS } from '../constants';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Hero3D } from '../components/Hero3D';
+
+// Lazy load the heavy 3D component
+// Lazy load the new Modern Hero component
+const HeroModern = React.lazy(() => import('../components/HeroModern').then(module => ({ default: module.HeroModern })));
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -33,11 +35,6 @@ export const Home: React.FC = () => {
 
   // Client logos - placeholder names that can be replaced with actual logos later
   const clientLogos = ['Client 1', 'Client 2', 'Client 3', 'Client 4', 'Client 5', 'Client 6'];
-
-  // Filter case studies to only show software and branding
-  const filteredCaseStudies = CASE_STUDIES.filter(
-    study => study.category === ServiceCategory.SOFTWARE || study.category === ServiceCategory.BRANDING
-  );
 
   // Auto-rotate testimonials
   useEffect(() => {
@@ -90,8 +87,10 @@ export const Home: React.FC = () => {
 
       {/* Main Content */}
       <div className="relative z-10">
-        {/* 3D Immersive Hero Section */}
-        <Hero3D />
+        {/* Hero Section */}
+        <React.Suspense fallback={<div className="w-full h-[500px] mt-16 bg-transparent" />}>
+          <HeroModern />
+        </React.Suspense>
 
         {/* Service Selector Widget */}
         <section className="py-20 relative z-20 -mt-10 px-4">
@@ -193,7 +192,7 @@ export const Home: React.FC = () => {
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">
                   Founders Building <br />For Founders.
                 </h2>
-                <p className="text-slate-300 text-lg mb-10 leading-relaxed">
+                <p className="text-slate-300 text-lg mb-10 leading-relaxed text-left">
                   We aren't a typical agency outsourcing tickets. We are engineers and product owners who treat your project with the same rigor as our own startups.
                 </p>
                 <div className="space-y-6">
@@ -208,7 +207,7 @@ export const Home: React.FC = () => {
                       </div>
                       <div>
                         <h4 className="font-bold text-xl text-white mb-2">{item.title}</h4>
-                        <p className="text-slate-400 text-sm">{item.desc}</p>
+                        <p className="text-slate-400 text-sm text-left">{item.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -237,54 +236,6 @@ export const Home: React.FC = () => {
           </div>
         </section>
 
-        {/* Featured Case Studies */}
-        <section className="py-32 px-4">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-16">
-              <motion.div {...fadeInUp} className="max-w-2xl">
-                <h2 className="text-4xl font-bold text-white mb-4">Proven Results</h2>
-                <p className="text-slate-400 text-lg">Real challenges solved with precision engineering.</p>
-              </motion.div>
-              <Button to="/case-studies" variant="outline" className="hidden md:inline-flex border-white/20 text-white hover:bg-white/10 mt-4 md:mt-0">
-                View All Case Studies
-              </Button>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-10">
-              {filteredCaseStudies.slice(0, 3).map((study, idx) => (
-                <motion.div
-                  key={study.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.2 }}
-                  className="group cursor-pointer flex flex-col h-full"
-                >
-                  <div className="relative overflow-hidden rounded-2xl mb-6 aspect-[4/3] border border-white/10">
-                    <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/40 transition-colors duration-300 z-10 flex items-center justify-center">
-                      <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 border border-white/30">
-                        <ArrowRight size={24} />
-                      </div>
-                    </div>
-                    <Image
-                      src={study.imageUrl}
-                      alt={study.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute top-4 left-4 z-20">
-                      <span className="px-3 py-1 bg-white/95 backdrop-blur text-slate-900 text-xs font-bold uppercase tracking-wider rounded-full shadow-sm">
-                        {study.category}
-                      </span>
-                    </div>
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">{study.title}</h3>
-                  <p className="text-slate-400 mb-4 line-clamp-2 leading-relaxed flex-grow">{study.summary}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Social Proof / Stats */}
         <section className="py-20 px-4">
           <div className="max-w-7xl mx-auto">
@@ -296,10 +247,10 @@ export const Home: React.FC = () => {
               className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-16"
             >
               {[
-                { label: "Projects Delivered", value: "25+" },
+                { label: "Projects Delivered", value: "12+" },
                 { label: "Client Satisfaction", value: "100%" },
-                { label: "Lines of Code", value: "500K+" },
-                { label: "Happy Clients", value: "15+" },
+                { label: "Lines of Code", value: "20K+" },
+                { label: "Happy Clients", value: "10+" },
               ].map((stat, idx) => (
                 <motion.div
                   key={idx}

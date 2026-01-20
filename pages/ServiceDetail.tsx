@@ -71,7 +71,7 @@ export const ServiceDetail: React.FC = () => {
                 <service.icon size={32} />
               </div>
               <h1 className="text-4xl md:text-7xl font-bold text-white mb-8">{service.title}</h1>
-              <p className="text-xl md:text-2xl text-slate-300 max-w-3xl font-light leading-relaxed">
+              <p className="text-xl md:text-2xl text-slate-300 max-w-3xl font-light leading-relaxed text-justify">
                 {service.fullDescription}
               </p>
             </motion.div>
@@ -110,7 +110,7 @@ export const ServiceDetail: React.FC = () => {
                           <Info size={18} className="text-cyan-400" />
                         </div>
                       </div>
-                      <p className="text-slate-400 mb-6 leading-relaxed">{sub.description}</p>
+                      <p className="text-slate-400 mb-6 leading-relaxed text-justify">{sub.description}</p>
                       <div className="flex flex-wrap gap-3">
                         {sub.tools.map((tool, tIdx) => (
                           <span key={tIdx} className="bg-white/10 text-slate-300 border border-white/20 text-xs font-bold uppercase px-3 py-1.5 rounded-md tracking-wide">
