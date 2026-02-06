@@ -302,11 +302,15 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 Tera Industries is the high-scale engineering firm architecting the intelligence and infrastructure of the future.
               </p>
               <div className="flex space-x-4 pt-4">
-                {[Linkedin, Instagram, Youtube].map((Icon, i) => (
-                  <a key={i} href="#" className="group w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-gradient-to-br hover:from-primary-600 hover:to-cyan-600 hover:border-transparent transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25">
-                    <Icon size={20} className="text-slate-400 group-hover:text-white transition-colors" />
-                  </a>
-                ))}
+                <a href="https://www.linkedin.com/company/tera-industries" target="_blank" rel="noopener noreferrer" className="group w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-gradient-to-br hover:from-primary-600 hover:to-cyan-600 hover:border-transparent transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25" aria-label="LinkedIn">
+                  <Linkedin size={20} className="text-slate-400 group-hover:text-white transition-colors" />
+                </a>
+                <a href="https://www.instagram.com/teraindustries" target="_blank" rel="noopener noreferrer" className="group w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-gradient-to-br hover:from-primary-600 hover:to-cyan-600 hover:border-transparent transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25" aria-label="Instagram">
+                  <Instagram size={20} className="text-slate-400 group-hover:text-white transition-colors" />
+                </a>
+                <a href="https://www.youtube.com/@teraindustries" target="_blank" rel="noopener noreferrer" className="group w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-gradient-to-br hover:from-primary-600 hover:to-cyan-600 hover:border-transparent transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25" aria-label="YouTube">
+                  <Youtube size={20} className="text-slate-400 group-hover:text-white transition-colors" />
+                </a>
               </div>
             </div>
 
