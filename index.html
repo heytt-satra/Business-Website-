@@ -14,6 +14,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Tera Industries offers expert software development and branding solutions for startups. We build high-performance web applications, digital products, and brand identities." />
+  <meta name="keywords"
+    content="software development, branding, web applications, UI/UX design, startup agency, digital product" />
+  <link rel="canonical" href="https://www.teraindustries.com/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.teraindustries.com/" />
+  <meta property="og:title" content="Tera Industries | Software & Branding Solutions" />
+  <meta property="og:description"
+    content="Expert software development and branding for startups. We build digital experiences that grow brands." />
+  <meta property="og:image" content="https://www.teraindustries.com/images/tera-logo-full.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.teraindustries.com/" />
+  <meta property="twitter:title" content="Tera Industries | Software & Branding Solutions" />
+  <meta property="twitter:description"
+    content="Expert software development and branding for startups. We build digital experiences that grow brands." />
+  <meta property="twitter:image" content="https://www.teraindustries.com/images/tera-logo-full.png" />
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Tera Industries",
+      "url": "https://www.teraindustries.com",
+      "logo": "https://www.teraindustries.com/images/tera-icon.png",
+      "description": "Software development and branding agency for startups.",
+      "sameAs": [
+        "https://linkedin.com/company/tera-industries",
+        "https://twitter.com/teraindustries"
+      ]
+    }
+  </script>
+
   <title>Tera Industries | Software & Branding Solutions</title>
   <link rel="icon" type="image/png" href="/images/tera-icon.png" />
   <link rel="manifest" href="/manifest.json" />
@@ -140,7 +180,13 @@
 
 <body
   class="bg-slate-50 text-slate-900 antialiased selection:bg-primary-500 selection:text-white dark:bg-slate-950 dark:text-slate-50">
-  <div id="root"></div>
+  <div id="root">
+    <div style="opacity: 0; position: absolute; pointer-events: none; z-index: -1;">
+      <h1>Tera Industries - Software & Branding Solutions</h1>
+      <p>Expert software development and digital branding for startups. We build high-performance web applications,
+        mobile apps, and data-driven marketing strategies.</p>
+    </div>
+  </div>
   <script>
     // Register service worker for PWA
     if ('serviceWorker' in navigator) {
