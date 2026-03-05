@@ -1,0 +1,324 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* ── Color Tokens (derived from Delta Arrow logo) ── */
+  --color-bg: #F4F8FB;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #EAF2F8;
+  --color-primary: #0C2340;
+  --color-secondary: #122D4D;
+  --color-accent: #1B6B9A;
+  --color-accent-light: #D6EBF5;
+  --color-accent-2: #5BC0EB;
+  --color-accent-2-light: #E3F4FC;
+  --color-muted: #6B8299;
+  --color-muted-light: #9BB3C7;
+  --color-border: #D1DEE8;
+  --color-border-dark: #B5C8D8;
+  --color-dark-surface: #0C2340;
+  --color-dark-surface-alt: #0F2A4A;
+  --color-dark-border: #1E3A5F;
+
+  /* Cyan highlight for special elements */
+  --color-cyan: #5BC0EB;
+  --color-cyan-light: #B8E4F8;
+  --color-navy: #0C2340;
+  --color-ocean: #1B6B9A;
+  --color-sky: #5BC0EB;
+  --color-ice: #B8E4F8;
+
+  /* ── Font Families ── */
+  --font-heading: var(--font-cabinet), 'Cabinet Grotesk', 'Space Grotesk', sans-serif;
+  --font-body: var(--font-inter), 'Inter', 'DM Sans', sans-serif;
+  --font-mono: var(--font-jetbrains), 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* ── Fluid Typography Scale ── */
+  --text-xs: clamp(11px, 1vw, 12px);
+  --text-sm: clamp(13px, 1.2vw, 14px);
+  --text-base: clamp(15px, 1.4vw, 16px);
+  --text-md: clamp(17px, 1.6vw, 20px);
+  --text-lg: clamp(19px, 2vw, 28px);
+  --text-xl: clamp(26px, 3.5vw, 40px);
+  --text-2xl: clamp(34px, 5vw, 60px);
+  --text-3xl: clamp(42px, 7vw, 80px);
+  --text-4xl: clamp(56px, 9vw, 110px);
+  --text-5xl: clamp(70px, 11vw, 140px);
+  --text-display: clamp(72px, 13vw, 180px);
+}
+
+/* ── Base Styles ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+  /* Lenis handles smooth scroll */
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+/* Hide native cursor when custom cursor is active */
+.custom-cursor-active {
+  cursor: none !important;
+}
+
+.custom-cursor-active *:not(input):not(textarea):not(select) {
+  cursor: none !important;
+}
+
+/* ── Selection Styles ── */
+::selection {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-dark);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted);
+}
+
+/* ── Typography Utilities ── */
+.text-display {
+  font-size: var(--text-display);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+}
+
+.heading-xl {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: 900;
+  line-height: 0.93;
+  letter-spacing: -0.04em;
+  color: var(--color-primary);
+}
+
+.heading-lg {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: var(--color-primary);
+}
+
+.heading-md {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 767px) {
+  .heading-xl {
+    line-height: 0.97;
+    letter-spacing: -0.03em;
+  }
+
+  .heading-lg {
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+  }
+
+  .text-display {
+    font-size: clamp(56px, 16vw, 88px);
+    line-height: 0.92;
+  }
+
+  .custom-cursor-active,
+  .custom-cursor-active * {
+    cursor: auto !important;
+  }
+}
+
+.label-mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+}
+
+/* ── Noise Texture Overlay ── */
+.noise-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  z-index: 1;
+}
+
+/* Blueprint Hero Layers */
+.hero-blueprint-glow {
+  background:
+    radial-gradient(ellipse at 10% 12%, rgba(91, 192, 235, 0.14) 0%, rgba(91, 192, 235, 0) 45%),
+    radial-gradient(ellipse at 86% 16%, rgba(27, 107, 154, 0.16) 0%, rgba(27, 107, 154, 0) 52%),
+    radial-gradient(ellipse at 52% 72%, rgba(12, 35, 64, 0.08) 0%, rgba(12, 35, 64, 0) 58%);
+  opacity: 0.85;
+}
+
+.hero-blueprint-grid {
+  background-image:
+    linear-gradient(rgba(27, 107, 154, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27, 107, 154, 0.12) 1px, transparent 1px),
+    linear-gradient(rgba(12, 35, 64, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(12, 35, 64, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 1px 1px, rgba(91, 192, 235, 0.4) 1px, transparent 1.2px);
+  background-size: 28px 28px, 28px 28px, 140px 140px, 140px 140px, 28px 28px;
+  background-position: 0 0, 0 0, 0 0, 0 0, 14px 14px;
+  opacity: 0.36;
+  mask-image: radial-gradient(ellipse at center, #000 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 60%, transparent 100%);
+}
+
+.hero-blueprint-rules {
+  background-image:
+    linear-gradient(90deg, transparent 0%, rgba(27, 107, 154, 0.35) 12%, rgba(27, 107, 154, 0.35) 88%, transparent 100%),
+    linear-gradient(90deg, transparent 0%, rgba(12, 35, 64, 0.24) 6%, rgba(12, 35, 64, 0.24) 94%, transparent 100%);
+  background-size: 100% 1px, 100% 1px;
+  background-position: 0 34%, 0 74%;
+  background-repeat: no-repeat;
+  opacity: 0.75;
+}
+
+.hero-blueprint-guide {
+  background: linear-gradient(to bottom, transparent 0%, rgba(27, 107, 154, 0.34) 12%, rgba(27, 107, 154, 0.34) 88%, transparent 100%);
+  opacity: 0.65;
+}
+
+/* ── Marquee Animation ── */
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.marquee-left {
+  animation: marquee-left var(--marquee-speed, 40s) linear infinite;
+}
+
+.marquee-right {
+  animation: marquee-right var(--marquee-speed, 35s) linear infinite;
+}
+
+.marquee-row:hover .marquee-left,
+.marquee-row:hover .marquee-right {
+  animation-play-state: paused;
+}
+
+/* ── Orb Drift Animations ── */
+@keyframes orb-drift-1 {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(-40px, 30px);
+  }
+}
+
+@keyframes orb-drift-2 {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(50px, -40px);
+  }
+}
+
+/* ── Curtain Wipe Page Transition ── */
+@keyframes curtain-down {
+  from {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  to {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}
+
+@keyframes curtain-up {
+  from {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+
+  to {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .marquee-left,
+  .marquee-right {
+    animation: none !important;
+  }
+}

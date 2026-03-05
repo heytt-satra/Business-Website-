@@ -1,29 +1,33 @@
 {
-  "name": "tera-industries",
+  "name": "tera-industries-website",
+  "version": "0.1.0",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
   },
   "dependencies": {
-    "@react-three/drei": "9.99.0",
-    "@react-three/fiber": "8.15.16",
-    "framer-motion": "^12.23.26",
-    "lucide-react": "0.344.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-router-dom": "6.22.0",
-    "three": "0.161.0",
-    "@vitejs/plugin-react": "^5.0.0",
-    "vite": "^6.2.0"
+    "@gsap/react": "^2.1.2",
+    "framer-motion": "^12.34.3",
+    "gsap": "^3.14.2",
+    "lenis": "^1.3.18",
+    "lucide-react": "^0.576.0",
+    "next": "16.1.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-hook-form": "^7.71.2",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
-    "typescript": "~5.8.2"
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
