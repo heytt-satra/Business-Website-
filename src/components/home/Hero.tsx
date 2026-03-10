@@ -1,116 +1,294 @@
-﻿"use client";
+"use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import Link from "next/link";
+import { Code, Figma } from "lucide-react";
 
-const words = ["We Build Things", "That Actually", "Ship."];
+const featureChips = [
+  { label: "Design systems", color: "#1B6B9A" },
+  { label: "Research", color: "#5BC0EB" },
+  { label: "Strategy", color: "#0C2340" },
+  { label: "Web animations", color: "#2E8CE6" },
+  { label: "UI/UX", color: "#1B6B9A" },
+];
+
+const timeSlots = [
+  { start: "6:30pm", end: "6:45pm", active: false },
+  { start: "6:45pm", end: "7:00pm", active: true },
+  { start: "7:00pm", end: "7:15pm", active: false },
+];
 
 export default function Hero() {
-    const sectionRef = useRef<HTMLElement>(null);
+  return (
+    <section className="relative min-h-screen w-full overflow-hidden bg-[#F4F8FB] px-4 pb-16 pt-22 sm:px-6 sm:pb-22 sm:pt-28 md:px-10 md:pb-32 md:pt-36 lg:px-16">
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(12,35,64,0.07) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(12,35,64,0.07) 1px, transparent 1px)
+          `,
+          backgroundSize: "70px 70px",
+        }}
+      />
 
-    const { scrollYProgress } = useScroll({
-        target: sectionRef,
-        offset: ["start start", "end start"],
-    });
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-[4%] top-[10%] h-16 w-16 bg-[#EAF2F8] sm:h-20 sm:w-20" />
+        <div className="absolute left-[13%] top-[30%] h-12 w-12 bg-[#E6EEF5] sm:h-16 sm:w-16" />
+        <div className="absolute right-[8%] top-[20%] h-16 w-16 bg-[#E7F0F7] sm:h-20 sm:w-20" />
+        <div className="absolute right-[18%] top-[40%] h-12 w-12 bg-[#E9F1F8] sm:h-16 sm:w-16" />
+        <div className="absolute bottom-[24%] left-[18%] h-14 w-14 bg-[#E6EEF5] sm:h-[72px] sm:w-[72px]" />
+        <div className="absolute bottom-[14%] right-[24%] h-16 w-16 bg-[#E7F0F7] sm:h-20 sm:w-20" />
+      </div>
 
-    const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.96]);
-    const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0.2]);
+      <motion.div
+        initial={{ opacity: 0, y: 20, rotate: -16 }}
+        animate={{ opacity: 1, y: 0, rotate: -14 }}
+        transition={{ delay: 0.3, duration: 0.45 }}
+        className="absolute left-[7%] top-[36%] z-10 hidden h-14 w-14 items-center justify-center rounded-2xl border-[4px] border-[#1B6B9A] bg-white text-[#1B6B9A] shadow-[0_14px_28px_rgba(27,107,154,0.24)] md:flex lg:left-[17%] lg:h-16 lg:w-16"
+      >
+        <Figma size={24} />
+      </motion.div>
 
-    return (
-        <section
-            ref={sectionRef}
-            className="relative flex min-h-svh items-center overflow-hidden bg-bg px-5 sm:px-6 md:px-20"
+      <motion.div
+        initial={{ opacity: 0, y: 20, rotate: 16 }}
+        animate={{ opacity: 1, y: 0, rotate: 14 }}
+        transition={{ delay: 0.35, duration: 0.45 }}
+        className="absolute right-[7%] top-[33%] z-10 hidden h-14 w-14 items-center justify-center rounded-2xl border-[4px] border-[#1B6B9A] bg-white text-[#1B6B9A] shadow-[0_14px_28px_rgba(27,107,154,0.24)] md:flex lg:right-[17%] lg:h-16 lg:w-16"
+      >
+        <Code size={24} />
+      </motion.div>
+
+      <div className="relative z-10 mx-auto mt-10 max-w-[1300px] text-center sm:mt-16 md:mt-20">
+        <div className="mb-2 hidden items-end justify-between px-[14%] sm:flex md:px-[22%] lg:px-[26%]">
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="text-lg text-[#0C2340] md:text-xl lg:text-2xl"
+            style={{
+              fontFamily: '"Bradley Hand", "Comic Sans MS", cursive',
+              transform: "rotate(-12deg)",
+              display: "inline-block",
+            }}
+          >
+            Deliver
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.55, duration: 0.5 }}
+            className="text-lg text-[#0C2340] md:text-xl lg:text-2xl"
+            style={{
+              fontFamily: '"Bradley Hand", "Comic Sans MS", cursive',
+              transform: "rotate(10deg)",
+              display: "inline-block",
+            }}
+          >
+            Create
+          </motion.span>
+        </div>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15, duration: 0.6 }}
+          className="mb-1 text-[clamp(36px,14vw,96px)] font-semibold leading-[0.92] tracking-[-0.048em] text-[#8A9CAE] sm:mb-2"
+          style={{
+            textShadow: "0 2px 0 rgba(255,255,255,0.95), 0 12px 28px rgba(12,35,64,0.24)",
+          }}
         >
-            {/* Single accent shape */}
-            <div
-                className="pointer-events-none absolute -right-20 top-[-80px] h-[280px] w-[280px] rounded-[28%] sm:h-[340px] sm:w-[340px] md:-right-28 md:top-[-110px] md:h-[420px] md:w-[420px]"
-                style={{
-                    background: "linear-gradient(140deg, rgba(27,107,154,0.95) 0%, rgba(91,192,235,0.9) 100%)",
-                    transform: "rotate(16deg)",
-                    opacity: 0.16,
-                }}
-            />
+          Premium
+        </motion.h2>
 
-            <motion.div
-                className="relative z-10 mx-auto w-full max-w-6xl pb-14 pt-24 sm:pb-16 sm:pt-28 md:pt-32"
-                style={{ scale: heroScale, opacity: heroOpacity }}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25, duration: 0.6 }}
+          className="relative mx-auto w-fit"
+        >
+          <div className="pointer-events-none absolute inset-x-[7%] -bottom-5 h-8 rounded-full bg-[#1B6B9A]/30 blur-2xl" />
+          <div className="rounded-[999px] border-[5px] border-[#1B6B9A] bg-[#F8FBFE] px-6 py-3 shadow-[0_10px_0_rgba(27,107,154,0.95),0_24px_40px_rgba(27,107,154,0.24)] sm:border-[6px] sm:px-14 sm:py-5 md:px-20">
+            <motion.h1
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: [0, -2, 0] }}
+              transition={{
+                opacity: { delay: 0.35, duration: 0.55 },
+                y: { delay: 0.85, duration: 3.2, repeat: Infinity, ease: "easeInOut" },
+              }}
+              className="text-[clamp(32px,11vw,86px)] font-medium leading-[0.9] tracking-[-0.05em] text-[#0C2340]"
             >
-                <motion.p
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.55, ease: [0.25, 0.1, 0.25, 1] }}
-                    className="label-mono mb-6"
+              Solutions
+            </motion.h1>
+          </div>
+          <span className="absolute -left-3 -top-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
+          <span className="absolute -right-3 -top-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
+          <span className="absolute -bottom-3 -left-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
+          <span className="absolute -bottom-3 -right-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="mt-5 flex flex-wrap items-center justify-center gap-3 sm:mt-7 sm:gap-5"
+        >
+          <span
+            className="hidden text-xl text-[#0C2340] sm:inline-block sm:text-2xl md:text-3xl"
+            style={{ fontFamily: '"Bradley Hand", "Comic Sans MS", cursive' }}
+          >
+            Click me
+          </span>
+          <svg width="74" height="24" viewBox="0 0 74 24" className="hidden text-[#0C2340] sm:block" fill="none">
+            <path d="M3 3c13 11 30 16 54 14m0 0l-8-6m8 6l-9 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <Link
+            href="/contact"
+            className="inline-flex w-full max-w-[260px] items-center justify-center rounded-full bg-[#1B6B9A] px-6 py-3 text-base font-semibold text-white shadow-[0_12px_32px_rgba(27,107,154,0.33)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#245F86] sm:w-auto sm:max-w-none sm:px-8 sm:py-3.5 sm:text-lg"
+          >
+            Let&apos;s Build
+          </Link>
+        </motion.div>
+      </div>
+
+      <div className="relative z-10 mx-auto mt-12 max-w-[1300px] sm:mt-20 md:mt-24">
+        <svg
+          className="pointer-events-none absolute left-[24%] top-[-20px] z-10 hidden h-[74px] w-[230px] md:block"
+          viewBox="0 0 230 74"
+          fill="none"
+          aria-hidden="true"
+          style={{ filter: "drop-shadow(0 1px 2px rgba(27,107,154,0.2))" }}
+        >
+          <path d="M14 60 C64 10, 154 10, 214 60" stroke="#1B6B9A" strokeWidth="2.6" strokeLinecap="round" />
+          <circle cx="14" cy="60" r="5.8" fill="#F4F8FB" stroke="#1B6B9A" strokeWidth="2.6" />
+          <circle cx="214" cy="60" r="5.8" fill="#F4F8FB" stroke="#1B6B9A" strokeWidth="2.6" />
+        </svg>
+
+        <svg
+          className="pointer-events-none absolute right-[20%] top-[72px] z-10 hidden h-[96px] w-[210px] md:block"
+          viewBox="0 0 210 96"
+          fill="none"
+          aria-hidden="true"
+          style={{ filter: "drop-shadow(0 1px 2px rgba(27,107,154,0.2))" }}
+        >
+          <path
+            d="M12 18 C10 44, 28 60, 50 56 C64 54, 68 42, 58 34 C48 26, 46 44, 60 52 C92 68, 150 56, 196 22"
+            stroke="#1B6B9A"
+            strokeWidth="2.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <circle cx="12" cy="18" r="5.8" fill="#F4F8FB" stroke="#1B6B9A" strokeWidth="2.6" />
+          <circle cx="196" cy="22" r="5.8" fill="#F4F8FB" stroke="#1B6B9A" strokeWidth="2.6" />
+        </svg>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-10 lg:gap-12">
+          <motion.article
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+            className="relative z-20 mx-auto w-full max-w-[420px] rounded-[30px] border border-[#D5E1EB] bg-white/78 p-4 shadow-[0_18px_38px_rgba(12,35,64,0.1)] backdrop-blur-md sm:rounded-[34px] sm:p-6 md:-rotate-[4deg]"
+          >
+            <div className="relative mb-5 rounded-[18px] border border-[#D2DFEA] bg-[#EDF4FA] p-3 sm:mb-7 sm:rounded-[20px] sm:p-4">
+              <div className="pointer-events-none absolute inset-x-3 top-2 -z-10 h-full rounded-[18px] border border-[#DDE7F0] bg-[#F4F8FC]" />
+              <div className="pointer-events-none absolute inset-x-6 top-4 -z-20 h-full rounded-[16px] border border-[#E6EDF4] bg-[#F8FBFE]" />
+              <div className="space-y-2.5">
+                {timeSlots.map((slot) => (
+                  <div key={slot.start} className="flex items-center gap-2.5 text-[13px] font-medium text-[#7C93A8]">
+                    {slot.active ? (
+                      <span className="relative h-[18px] w-[30px] shrink-0 rounded-full bg-[#BCD5E8]">
+                        <span className="absolute right-[2px] top-[2px] h-[14px] w-[14px] rounded-full bg-[#1B6B9A]" />
+                      </span>
+                    ) : (
+                      <span className="h-[16px] w-[16px] shrink-0 rounded-full border border-[#D2DEE8] bg-[#ECF2F8]" />
+                    )}
+                    <span className={slot.active ? "font-semibold text-[#243447]" : ""}>{slot.start}</span>
+                    <span className="text-[#9AA9B8]">-</span>
+                    <span>{slot.end}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.13em] text-[#859BB0]">STEP 1</p>
+            <p className="text-[clamp(18px,7.2vw,36px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[#243447]">
+              Book a <span className="text-[#1B6B9A]">free</span> consultation call to
+              learn about your needs
+            </p>
+          </motion.article>
+
+          <motion.article
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="relative z-20 mx-auto w-full max-w-[420px] rounded-[30px] border border-[#D5E1EB] bg-white/78 p-4 shadow-[0_18px_38px_rgba(12,35,64,0.1)] backdrop-blur-md sm:rounded-[34px] sm:p-6"
+          >
+            <div className="mb-5 flex flex-wrap gap-2 sm:mb-7 sm:gap-2.5">
+              {featureChips.map((chip) => (
+                <span
+                  key={chip.label}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-[#CFDCE8] bg-white px-2.5 py-1 text-[11px] font-medium text-[#243447] shadow-[0_2px_8px_rgba(12,35,64,0.16)] sm:px-3 sm:text-[12px]"
                 >
-                    Product Studio
-                </motion.p>
+                  <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: chip.color }} />
+                  {chip.label}
+                </span>
+              ))}
+            </div>
 
-                <h1
-                    className="mb-7 font-heading font-black text-primary tracking-[-0.045em]"
-                    style={{
-                        fontSize: "clamp(44px, 12vw, 132px)",
-                        lineHeight: 0.95,
-                        maxWidth: "11ch",
-                    }}
-                >
-                    {words.map((line, i) => (
-                        <span key={i} className="block overflow-hidden">
-                            <motion.span
-                                initial={{ y: "104%" }}
-                                animate={{ y: "0%" }}
-                                transition={{
-                                    delay: 0.15 + i * 0.12,
-                                    duration: 0.75,
-                                    ease: [0.16, 1, 0.3, 1],
-                                }}
-                                className="inline-block"
-                            >
-                                {i === words.length - 1 ? (
-                                    <>
-                                        Ship<span className="text-accent">.</span>
-                                    </>
-                                ) : (
-                                    line
-                                )}
-                            </motion.span>
-                        </span>
-                    ))}
-                </h1>
+            <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.13em] text-[#859BB0]">STEP 2</p>
+            <p className="text-[clamp(18px,7.2vw,36px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[#243447]">
+              <span className="text-[#1B6B9A]">Design services</span> for all your needs
+              and requirements
+            </p>
+          </motion.article>
 
-                <motion.p
-                    initial={{ opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.45, duration: 0.55, ease: [0.25, 0.1, 0.25, 1] }}
-                    className="mb-9 text-[clamp(18px,4.8vw,40px)] text-muted sm:mb-11"
-                    style={{ maxWidth: "20ch", lineHeight: 1.24 }}
-                >
-                    Launch-ready products for teams that need speed, clarity, and zero agency chaos.
-                </motion.p>
+          <motion.article
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+            className="relative z-20 mx-auto w-full max-w-[420px] rounded-[30px] border border-[#D5E1EB] bg-white/78 p-4 shadow-[0_18px_38px_rgba(12,35,64,0.1)] backdrop-blur-md sm:rounded-[34px] sm:p-6 md:rotate-[4deg]"
+          >
+            <div className="mb-5 rounded-[20px] border border-[#D2DFEA] bg-[#EDF4FA] p-3 pb-2 sm:mb-7 sm:rounded-[22px]">
+              <div className="mb-1.5 flex items-start justify-between text-xs">
+                <span className="rounded-full bg-[#1B6B9A]/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-[#1B6B9A]">
+                  +25.5%
+                </span>
+                <div className="text-right leading-tight">
+                  <span className="block text-[10px] text-[#7D8792]">Total Profit</span>
+                  <span className="block text-sm font-semibold text-[#243447]">$2400.68</span>
+                </div>
+              </div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.62, duration: 0.55 }}
-                    className="mb-12 flex flex-wrap items-center gap-4"
-                >
-                    <Link
-                        href="/work"
-                        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white shadow-[0_12px_36px_rgba(12,35,64,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-secondary sm:w-auto sm:px-10 sm:py-5 sm:text-lg"
-                    >
-                        See Our Work
-                        <ArrowRight size={18} />
-                    </Link>
+              <svg viewBox="0 0 340 120" className="h-24 w-full sm:h-28" fill="none">
+                <defs>
+                  <linearGradient id="heroChartGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="rgba(27,107,154,0.22)" />
+                    <stop offset="100%" stopColor="rgba(27,107,154,0.02)" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M0 80 C30 46 60 52 90 84 C110 102 140 102 160 64 C178 32 200 8 220 26 C240 42 260 56 286 44 C310 32 328 40 340 64 L340 120 L0 120 Z"
+                  fill="url(#heroChartGrad)"
+                />
+                <path
+                  d="M0 80 C30 46 60 52 90 84 C110 102 140 102 160 64 C178 32 200 8 220 26 C240 42 260 56 286 44 C310 32 328 40 340 64"
+                  stroke="#1B6B9A"
+                  strokeWidth="3"
+                  fill="none"
+                />
+                <circle cx="160" cy="64" r="5.5" fill="#1B6B9A" />
+                <circle cx="160" cy="64" r="9" fill="none" stroke="#1B6B9A" strokeWidth="1.5" opacity="0.28" />
+              </svg>
+            </div>
 
-                    <Link
-                        href="/contact"
-                        className="inline-flex w-full items-center justify-center rounded-full border border-border px-6 py-3 text-base font-semibold text-primary transition-colors duration-200 hover:text-accent sm:w-auto sm:border-0 sm:px-6 sm:py-3.5"
-                    >
-                        Book a Call
-                    </Link>
-                </motion.div>
-
-            </motion.div>
-        </section>
-    );
+            <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.13em] text-[#859BB0]">STEP 3</p>
+            <p className="text-[clamp(18px,7.2vw,36px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[#243447]">
+              <span className="text-[#1B6B9A]">Launch your product</span> with active
+              conversion rate optimisations
+            </p>
+          </motion.article>
+        </div>
+      </div>
+    </section>
+  );
 }
