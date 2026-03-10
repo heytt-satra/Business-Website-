@@ -45,6 +45,24 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20, rotate: -16 }}
         animate={{ opacity: 1, y: 0, rotate: -14 }}
         transition={{ delay: 0.3, duration: 0.45 }}
+        className="absolute left-[10%] top-[52%] z-10 flex h-11 w-11 items-center justify-center rounded-2xl border-[3px] border-[#1B6B9A] bg-white text-[#1B6B9A] shadow-[0_12px_24px_rgba(27,107,154,0.22)] md:hidden"
+      >
+        <Figma size={18} />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20, rotate: 16 }}
+        animate={{ opacity: 1, y: 0, rotate: 14 }}
+        transition={{ delay: 0.35, duration: 0.45 }}
+        className="absolute right-[10%] top-[50%] z-10 flex h-11 w-11 items-center justify-center rounded-2xl border-[3px] border-[#1B6B9A] bg-white text-[#1B6B9A] shadow-[0_12px_24px_rgba(27,107,154,0.22)] md:hidden"
+      >
+        <Code size={18} />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20, rotate: -16 }}
+        animate={{ opacity: 1, y: 0, rotate: -14 }}
+        transition={{ delay: 0.3, duration: 0.45 }}
         className="absolute left-[7%] top-[36%] z-10 hidden h-14 w-14 items-center justify-center rounded-2xl border-[4px] border-[#1B6B9A] bg-white text-[#1B6B9A] shadow-[0_14px_28px_rgba(27,107,154,0.24)] md:flex lg:left-[17%] lg:h-16 lg:w-16"
       >
         <Figma size={24} />
@@ -59,96 +77,200 @@ export default function Hero() {
         <Code size={24} />
       </motion.div>
 
-      <div className="relative z-10 mx-auto mt-10 max-w-[1300px] text-center sm:mt-16 md:mt-20">
-        <div className="mb-2 hidden items-end justify-between px-[14%] sm:flex md:px-[22%] lg:px-[26%]">
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+      <div className="relative z-10 mx-auto mt-10 max-w-[1300px] md:mt-20">
+        <div className="mx-auto max-w-[360px] text-center md:hidden">
+          <div className="mb-2 flex items-end justify-between px-4">
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+              className="text-base text-[#0C2340]"
+              style={{
+                fontFamily: '"Bradley Hand", "Comic Sans MS", cursive',
+                transform: "rotate(-12deg)",
+                display: "inline-block",
+              }}
+            >
+              Deliver
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.55, duration: 0.5 }}
+              className="text-base text-[#0C2340]"
+              style={{
+                fontFamily: '"Bradley Hand", "Comic Sans MS", cursive',
+                transform: "rotate(10deg)",
+                display: "inline-block",
+              }}
+            >
+              Create
+            </motion.span>
+          </div>
+          <span className="mx-auto mb-1 block h-2.5 w-2.5 rounded-full bg-[#8AA0B6]" />
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15, duration: 0.6 }}
+            className="mb-2 text-[62px] font-semibold leading-[0.92] tracking-[-0.05em] text-[#8A9CAE]"
+            style={{
+              textShadow: "0 2px 0 rgba(255,255,255,0.95), 0 12px 28px rgba(12,35,64,0.24)",
+            }}
+          >
+            Premium
+          </motion.h2>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.6 }}
+            className="relative mx-auto w-fit"
+          >
+            <div className="pointer-events-none absolute inset-x-[8%] -bottom-5 h-8 rounded-full bg-[#1B6B9A]/30 blur-2xl" />
+            <div className="rounded-[999px] border-[5px] border-[#1B6B9A] bg-[#F8FBFE] px-8 py-3 shadow-[0_10px_0_rgba(27,107,154,0.95),0_24px_40px_rgba(27,107,154,0.24)]">
+              <motion.h1
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: [0, -2, 0] }}
+                transition={{
+                  opacity: { delay: 0.35, duration: 0.55 },
+                  y: { delay: 0.85, duration: 3.2, repeat: Infinity, ease: "easeInOut" },
+                }}
+                className="text-[52px] font-medium leading-[0.9] tracking-[-0.05em] text-[#0C2340]"
+              >
+                Solutions
+              </motion.h1>
+            </div>
+            <span className="absolute -left-2.5 -top-2.5 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
+            <span className="absolute -right-2.5 -top-2.5 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
+            <span className="absolute -bottom-2.5 -left-2.5 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
+            <span className="absolute -bottom-2.5 -right-2.5 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
-            className="text-lg text-[#0C2340] md:text-xl lg:text-2xl"
-            style={{
-              fontFamily: '"Bradley Hand", "Comic Sans MS", cursive',
-              transform: "rotate(-12deg)",
-              display: "inline-block",
-            }}
+            className="mt-5 flex flex-col items-center gap-3"
           >
-            Deliver
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.55, duration: 0.5 }}
-            className="text-lg text-[#0C2340] md:text-xl lg:text-2xl"
-            style={{
-              fontFamily: '"Bradley Hand", "Comic Sans MS", cursive',
-              transform: "rotate(10deg)",
-              display: "inline-block",
-            }}
-          >
-            Create
-          </motion.span>
+            <div className="flex items-center gap-2">
+              <span
+                className="inline-block text-[58px] leading-none text-[#0C2340]"
+                style={{ fontFamily: '"Bradley Hand", "Comic Sans MS", cursive' }}
+              >
+                Click me
+              </span>
+              <svg width="58" height="32" viewBox="0 0 58 32" className="text-[#0C2340]" fill="none">
+                <path
+                  d="M2 6c10 10 20 15 44 18m0 0l-7-6m7 6l-9 4"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+            <Link
+              href="/contact"
+              className="inline-flex w-full max-w-[265px] items-center justify-center rounded-full bg-[#1B6B9A] px-6 py-3 text-base font-semibold text-white shadow-[0_12px_32px_rgba(27,107,154,0.33)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#245F86]"
+            >
+              Let&apos;s Build
+            </Link>
+          </motion.div>
         </div>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.6 }}
-          className="mb-1 text-[clamp(36px,14vw,96px)] font-semibold leading-[0.92] tracking-[-0.048em] text-[#8A9CAE] sm:mb-2"
-          style={{
-            textShadow: "0 2px 0 rgba(255,255,255,0.95), 0 12px 28px rgba(12,35,64,0.24)",
-          }}
-        >
-          Premium
-        </motion.h2>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.25, duration: 0.6 }}
-          className="relative mx-auto w-fit"
-        >
-          <div className="pointer-events-none absolute inset-x-[7%] -bottom-5 h-8 rounded-full bg-[#1B6B9A]/30 blur-2xl" />
-          <div className="rounded-[999px] border-[5px] border-[#1B6B9A] bg-[#F8FBFE] px-6 py-3 shadow-[0_10px_0_rgba(27,107,154,0.95),0_24px_40px_rgba(27,107,154,0.24)] sm:border-[6px] sm:px-14 sm:py-5 md:px-20">
-            <motion.h1
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: [0, -2, 0] }}
-              transition={{
-                opacity: { delay: 0.35, duration: 0.55 },
-                y: { delay: 0.85, duration: 3.2, repeat: Infinity, ease: "easeInOut" },
+        <div className="hidden text-center md:block">
+          <div className="mb-2 flex items-end justify-between px-[14%] lg:px-[26%]">
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+              className="text-xl text-[#0C2340] lg:text-2xl"
+              style={{
+                fontFamily: '"Bradley Hand", "Comic Sans MS", cursive',
+                transform: "rotate(-12deg)",
+                display: "inline-block",
               }}
-              className="text-[clamp(32px,11vw,86px)] font-medium leading-[0.9] tracking-[-0.05em] text-[#0C2340]"
             >
-              Solutions
-            </motion.h1>
+              Deliver
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.55, duration: 0.5 }}
+              className="text-xl text-[#0C2340] lg:text-2xl"
+              style={{
+                fontFamily: '"Bradley Hand", "Comic Sans MS", cursive',
+                transform: "rotate(10deg)",
+                display: "inline-block",
+              }}
+            >
+              Create
+            </motion.span>
           </div>
-          <span className="absolute -left-3 -top-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
-          <span className="absolute -right-3 -top-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
-          <span className="absolute -bottom-3 -left-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
-          <span className="absolute -bottom-3 -right-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
-        </motion.div>
+          <span className="mx-auto mb-2 block h-3 w-3 rounded-full bg-[#8AA0B6]" />
 
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
-          className="mt-5 flex flex-wrap items-center justify-center gap-3 sm:mt-7 sm:gap-5"
-        >
-          <span
-            className="hidden text-xl text-[#0C2340] sm:inline-block sm:text-2xl md:text-3xl"
-            style={{ fontFamily: '"Bradley Hand", "Comic Sans MS", cursive' }}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15, duration: 0.6 }}
+            className="mb-2 text-[clamp(72px,8vw,104px)] font-semibold leading-[0.92] tracking-[-0.048em] text-[#8A9CAE]"
+            style={{
+              textShadow: "0 2px 0 rgba(255,255,255,0.95), 0 12px 28px rgba(12,35,64,0.24)",
+            }}
           >
-            Click me
-          </span>
-          <svg width="74" height="24" viewBox="0 0 74 24" className="hidden text-[#0C2340] sm:block" fill="none">
-            <path d="M3 3c13 11 30 16 54 14m0 0l-8-6m8 6l-9 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          <Link
-            href="/contact"
-            className="inline-flex w-full max-w-[260px] items-center justify-center rounded-full bg-[#1B6B9A] px-6 py-3 text-base font-semibold text-white shadow-[0_12px_32px_rgba(27,107,154,0.33)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#245F86] sm:w-auto sm:max-w-none sm:px-8 sm:py-3.5 sm:text-lg"
+            Premium
+          </motion.h2>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.6 }}
+            className="relative mx-auto w-fit"
           >
-            Let&apos;s Build
-          </Link>
-        </motion.div>
+            <div className="pointer-events-none absolute inset-x-[7%] -bottom-5 h-8 rounded-full bg-[#1B6B9A]/30 blur-2xl" />
+            <div className="rounded-[999px] border-[6px] border-[#1B6B9A] bg-[#F8FBFE] px-14 py-5 shadow-[0_12px_0_rgba(27,107,154,0.95),0_28px_46px_rgba(27,107,154,0.28)] md:px-20">
+              <motion.h1
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: [0, -2, 0] }}
+                transition={{
+                  opacity: { delay: 0.35, duration: 0.55 },
+                  y: { delay: 0.85, duration: 3.2, repeat: Infinity, ease: "easeInOut" },
+                }}
+                className="text-[clamp(64px,6vw,92px)] font-medium leading-[0.9] tracking-[-0.05em] text-[#0C2340]"
+              >
+                Solutions
+              </motion.h1>
+            </div>
+            <span className="absolute -left-3 -top-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
+            <span className="absolute -right-3 -top-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
+            <span className="absolute -bottom-3 -left-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
+            <span className="absolute -bottom-3 -right-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="mt-7 flex items-center justify-center gap-5"
+          >
+            <span
+              className="text-[44px] leading-none text-[#0C2340] lg:text-[56px]"
+              style={{ fontFamily: '"Bradley Hand", "Comic Sans MS", cursive' }}
+            >
+              Click me
+            </span>
+            <svg width="74" height="24" viewBox="0 0 74 24" className="text-[#0C2340]" fill="none">
+              <path d="M3 3c13 11 30 16 54 14m0 0l-8-6m8 6l-9 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-full bg-[#1B6B9A] px-8 py-3.5 text-lg font-semibold text-white shadow-[0_12px_32px_rgba(27,107,154,0.33)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#245F86]"
+            >
+              Let&apos;s Build
+            </Link>
+          </motion.div>
+        </div>
       </div>
 
       <div className="relative z-10 mx-auto mt-12 max-w-[1300px] sm:mt-20 md:mt-24">
