@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 interface CursorState {
     x: number;
@@ -19,43 +19,28 @@ export default function CustomCursor() {
         x: 0, y: 0, scale: 1, label: "", variant: "default",
     });
     const [visible, setVisible] = useState(false);
-    const [isTouch, setIsTouch] = useState(false);
     const rafRef = useRef<number>(0);
+    const isTouch = useSyncExternalStore(
+        (callback) => {
+            if (typeof window === "undefined") return () => { };
 
-    const updateCursor = useCallback(() => {
-        if (!cursorRef.current) return;
+            const mediaQuery = window.matchMedia("(pointer: coarse)");
+            mediaQuery.addEventListener("change", callback);
 
-        // Update trail positions with lag
-        for (let i = trailPos.current.length - 1; i >= 0; i--) {
-            const target = i === 0 ? pos.current : trailPos.current[i - 1];
-            trailPos.current[i].x += (target.x - trailPos.current[i].x) * 0.12;
-            trailPos.current[i].y += (target.y - trailPos.current[i].y) * 0.12;
-
-            if (trailRefs.current[i]) {
-                trailRefs.current[i].style.transform =
-                    `translate(${trailPos.current[i].x}px, ${trailPos.current[i].y}px) translate(-50%, -50%)`;
-            }
-        }
-
-        // Smooth cursor follow
-        cursorRef.current.style.transform =
-            `translate(${pos.current.x}px, ${pos.current.y}px) translate(-50%, -50%) scale(${state.scale})`;
-
-        rafRef.current = requestAnimationFrame(updateCursor);
-    }, [state.scale]);
+            return () => mediaQuery.removeEventListener("change", callback);
+        },
+        () => typeof window !== "undefined" && (window.matchMedia("(pointer: coarse)").matches || navigator.maxTouchPoints > 0),
+        () => false
+    );
 
     useEffect(() => {
-        // Detect touch device
-        if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-            setIsTouch(true);
-            return;
-        }
+        if (isTouch) return;
 
         document.body.classList.add("custom-cursor-active");
 
         const onMouseMove = (e: MouseEvent) => {
             pos.current = { x: e.clientX, y: e.clientY };
-            if (!visible) setVisible(true);
+            setVisible(true);
         };
 
         const onMouseEnter = () => setVisible(true);
@@ -85,6 +70,28 @@ export default function CustomCursor() {
             }
         };
 
+        const updateCursor = () => {
+            if (!cursorRef.current) return;
+
+            // Update trail positions with lag
+            for (let i = trailPos.current.length - 1; i >= 0; i--) {
+                const target = i === 0 ? pos.current : trailPos.current[i - 1];
+                trailPos.current[i].x += (target.x - trailPos.current[i].x) * 0.12;
+                trailPos.current[i].y += (target.y - trailPos.current[i].y) * 0.12;
+
+                if (trailRefs.current[i]) {
+                    trailRefs.current[i].style.transform =
+                        `translate(${trailPos.current[i].x}px, ${trailPos.current[i].y}px) translate(-50%, -50%)`;
+                }
+            }
+
+            // Smooth cursor follow
+            cursorRef.current.style.transform =
+                `translate(${pos.current.x}px, ${pos.current.y}px) translate(-50%, -50%) scale(${state.scale})`;
+
+            rafRef.current = requestAnimationFrame(updateCursor);
+        };
+
         window.addEventListener("mousemove", onMouseMove);
         document.addEventListener("mouseenter", onMouseEnter);
         document.addEventListener("mouseleave", onMouseLeave);
@@ -100,7 +107,7 @@ export default function CustomCursor() {
             document.body.classList.remove("custom-cursor-active");
             cancelAnimationFrame(rafRef.current);
         };
-    }, [updateCursor, visible]);
+    }, [isTouch, state.scale]);
 
     if (isTouch) return null;
 

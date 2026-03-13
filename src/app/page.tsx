@@ -5,7 +5,6 @@ import WorkPreview from "@/components/home/WorkPreview";
 import ProcessSteps from "@/components/home/ProcessSteps";
 import StatsStrip from "@/components/home/StatsStrip";
 import Testimonials from "@/components/home/Testimonials";
-import TechStack from "@/components/home/TechStack";
 import HomeCTA from "@/components/home/HomeCTA";
 
 export default function Home() {
@@ -18,7 +17,6 @@ export default function Home() {
       <ProcessSteps />
       <StatsStrip />
       <Testimonials />
-      <TechStack />
       <HomeCTA />
     </>
   );

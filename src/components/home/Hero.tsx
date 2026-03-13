@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import type { MouseEvent as ReactMouseEvent } from "react";
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
 import { Code, Figma } from "lucide-react";
 
@@ -19,8 +20,40 @@ const timeSlots = [
 ];
 
 export default function Hero() {
+  const prefersReducedMotion = useReducedMotion();
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const springX = useSpring(pointerX, { stiffness: 140, damping: 22, mass: 0.4 });
+  const springY = useSpring(pointerY, { stiffness: 140, damping: 22, mass: 0.4 });
+
+  const cardOneX = useTransform(springX, [-0.5, 0.5], [-12, 12]);
+  const cardTwoX = useTransform(springX, [-0.5, 0.5], [-6, 6]);
+  const cardThreeX = useTransform(springX, [-0.5, 0.5], [12, -12]);
+  const cardRotateX = useTransform(springY, [-0.5, 0.5], [4, -4]);
+  const cardRotateY = useTransform(springX, [-0.5, 0.5], [-5, 5]);
+
+  const handlePointerMove = (event: ReactMouseEvent<HTMLElement>) => {
+    if (prefersReducedMotion) return;
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const normalizedX = (event.clientX - rect.left) / rect.width - 0.5;
+    const normalizedY = (event.clientY - rect.top) / rect.height - 0.5;
+
+    pointerX.set(normalizedX);
+    pointerY.set(normalizedY);
+  };
+
+  const resetPointer = () => {
+    pointerX.set(0);
+    pointerY.set(0);
+  };
+
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-[#F4F8FB] px-4 pb-16 pt-22 sm:px-6 sm:pb-22 sm:pt-28 md:px-10 md:pb-32 md:pt-36 lg:px-16">
+    <section
+      className="relative min-h-screen w-full overflow-hidden bg-[#F4F8FB] px-4 pb-16 pt-22 sm:px-6 sm:pb-22 sm:pt-28 md:px-10 md:pb-32 md:pt-36 lg:px-16"
+      onMouseMove={handlePointerMove}
+      onMouseLeave={resetPointer}
+    >
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -43,8 +76,16 @@ export default function Hero() {
 
       <motion.div
         initial={{ opacity: 0, y: 20, rotate: -16 }}
-        animate={{ opacity: 1, y: 0, rotate: -14 }}
-        transition={{ delay: 0.3, duration: 0.45 }}
+        animate={prefersReducedMotion ? { opacity: 1, y: 0, rotate: -14 } : { opacity: 1, y: [0, -4, 0], rotate: [-14, -12, -14] }}
+        transition={
+          prefersReducedMotion
+            ? { delay: 0.3, duration: 0.45 }
+            : {
+                opacity: { delay: 0.3, duration: 0.45 },
+                y: { delay: 1, duration: 4.4, repeat: Infinity, ease: "easeInOut" },
+                rotate: { delay: 1, duration: 4.4, repeat: Infinity, ease: "easeInOut" },
+              }
+        }
         className="absolute left-[10%] top-[52%] z-10 flex h-11 w-11 items-center justify-center rounded-2xl border-[3px] border-[#1B6B9A] bg-white text-[#1B6B9A] shadow-[0_12px_24px_rgba(27,107,154,0.22)] md:hidden"
       >
         <Figma size={18} />
@@ -52,8 +93,16 @@ export default function Hero() {
 
       <motion.div
         initial={{ opacity: 0, y: 20, rotate: 16 }}
-        animate={{ opacity: 1, y: 0, rotate: 14 }}
-        transition={{ delay: 0.35, duration: 0.45 }}
+        animate={prefersReducedMotion ? { opacity: 1, y: 0, rotate: 14 } : { opacity: 1, y: [0, -5, 0], rotate: [14, 12, 14] }}
+        transition={
+          prefersReducedMotion
+            ? { delay: 0.35, duration: 0.45 }
+            : {
+                opacity: { delay: 0.35, duration: 0.45 },
+                y: { delay: 1.1, duration: 4.8, repeat: Infinity, ease: "easeInOut" },
+                rotate: { delay: 1.1, duration: 4.8, repeat: Infinity, ease: "easeInOut" },
+              }
+        }
         className="absolute right-[10%] top-[50%] z-10 flex h-11 w-11 items-center justify-center rounded-2xl border-[3px] border-[#1B6B9A] bg-white text-[#1B6B9A] shadow-[0_12px_24px_rgba(27,107,154,0.22)] md:hidden"
       >
         <Code size={18} />
@@ -61,8 +110,16 @@ export default function Hero() {
 
       <motion.div
         initial={{ opacity: 0, y: 20, rotate: -16 }}
-        animate={{ opacity: 1, y: 0, rotate: -14 }}
-        transition={{ delay: 0.3, duration: 0.45 }}
+        animate={prefersReducedMotion ? { opacity: 1, y: 0, rotate: -14 } : { opacity: 1, y: [0, -6, 0], rotate: [-14, -12, -14] }}
+        transition={
+          prefersReducedMotion
+            ? { delay: 0.3, duration: 0.45 }
+            : {
+                opacity: { delay: 0.3, duration: 0.45 },
+                y: { delay: 1.1, duration: 4.6, repeat: Infinity, ease: "easeInOut" },
+                rotate: { delay: 1.1, duration: 4.6, repeat: Infinity, ease: "easeInOut" },
+              }
+        }
         className="absolute left-[7%] top-[36%] z-10 hidden h-14 w-14 items-center justify-center rounded-2xl border-[4px] border-[#1B6B9A] bg-white text-[#1B6B9A] shadow-[0_14px_28px_rgba(27,107,154,0.24)] md:flex lg:left-[17%] lg:h-16 lg:w-16"
       >
         <Figma size={24} />
@@ -70,8 +127,16 @@ export default function Hero() {
 
       <motion.div
         initial={{ opacity: 0, y: 20, rotate: 16 }}
-        animate={{ opacity: 1, y: 0, rotate: 14 }}
-        transition={{ delay: 0.35, duration: 0.45 }}
+        animate={prefersReducedMotion ? { opacity: 1, y: 0, rotate: 14 } : { opacity: 1, y: [0, -7, 0], rotate: [14, 12, 14] }}
+        transition={
+          prefersReducedMotion
+            ? { delay: 0.35, duration: 0.45 }
+            : {
+                opacity: { delay: 0.35, duration: 0.45 },
+                y: { delay: 1.15, duration: 5, repeat: Infinity, ease: "easeInOut" },
+                rotate: { delay: 1.15, duration: 5, repeat: Infinity, ease: "easeInOut" },
+              }
+        }
         className="absolute right-[7%] top-[33%] z-10 hidden h-14 w-14 items-center justify-center rounded-2xl border-[4px] border-[#1B6B9A] bg-white text-[#1B6B9A] shadow-[0_14px_28px_rgba(27,107,154,0.24)] md:flex lg:right-[17%] lg:h-16 lg:w-16"
       >
         <Code size={24} />
@@ -123,11 +188,22 @@ export default function Hero() {
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25, duration: 0.6 }}
+            animate={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: [0, -4, 0] }}
+            transition={
+              prefersReducedMotion
+                ? { delay: 0.25, duration: 0.6 }
+                : {
+                    opacity: { delay: 0.25, duration: 0.6 },
+                    y: { delay: 0.95, duration: 4.5, repeat: Infinity, ease: "easeInOut" },
+                  }
+            }
             className="relative mx-auto w-fit"
           >
-            <div className="pointer-events-none absolute inset-x-[8%] -bottom-5 h-8 rounded-full bg-[#1B6B9A]/30 blur-2xl" />
+            <motion.div
+              className="pointer-events-none absolute inset-x-[8%] -bottom-5 h-8 rounded-full bg-[#1B6B9A]/30 blur-2xl"
+              animate={prefersReducedMotion ? { opacity: 1 } : { opacity: [0.28, 0.48, 0.28] }}
+              transition={prefersReducedMotion ? { duration: 0 } : { delay: 0.95, duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+            />
             <div className="rounded-[999px] border-[5px] border-[#1B6B9A] bg-[#F8FBFE] px-8 py-3 shadow-[0_10px_0_rgba(27,107,154,0.95),0_24px_40px_rgba(27,107,154,0.24)]">
               <motion.h1
                 initial={{ opacity: 0, y: 18 }}
@@ -141,10 +217,26 @@ export default function Hero() {
                 Solutions
               </motion.h1>
             </div>
-            <span className="absolute -left-2.5 -top-2.5 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
-            <span className="absolute -right-2.5 -top-2.5 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
-            <span className="absolute -bottom-2.5 -left-2.5 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
-            <span className="absolute -bottom-2.5 -right-2.5 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
+            <motion.span
+              className="absolute -left-2.5 -top-2.5 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]"
+              animate={prefersReducedMotion ? { scale: 1 } : { scale: [1, 1.12, 1] }}
+              transition={prefersReducedMotion ? { duration: 0 } : { delay: 1.2, duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.span
+              className="absolute -right-2.5 -top-2.5 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]"
+              animate={prefersReducedMotion ? { scale: 1 } : { scale: [1, 1.12, 1] }}
+              transition={prefersReducedMotion ? { duration: 0 } : { delay: 1.45, duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.span
+              className="absolute -bottom-2.5 -left-2.5 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]"
+              animate={prefersReducedMotion ? { scale: 1 } : { scale: [1, 1.12, 1] }}
+              transition={prefersReducedMotion ? { duration: 0 } : { delay: 1.7, duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.span
+              className="absolute -bottom-2.5 -right-2.5 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]"
+              animate={prefersReducedMotion ? { scale: 1 } : { scale: [1, 1.12, 1] }}
+              transition={prefersReducedMotion ? { duration: 0 } : { delay: 1.95, duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+            />
           </motion.div>
 
           <motion.div
@@ -224,11 +316,22 @@ export default function Hero() {
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25, duration: 0.6 }}
+            animate={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: [0, -5, 0] }}
+            transition={
+              prefersReducedMotion
+                ? { delay: 0.25, duration: 0.6 }
+                : {
+                    opacity: { delay: 0.25, duration: 0.6 },
+                    y: { delay: 0.95, duration: 4.8, repeat: Infinity, ease: "easeInOut" },
+                  }
+            }
             className="relative mx-auto w-fit"
           >
-            <div className="pointer-events-none absolute inset-x-[7%] -bottom-5 h-8 rounded-full bg-[#1B6B9A]/30 blur-2xl" />
+            <motion.div
+              className="pointer-events-none absolute inset-x-[7%] -bottom-5 h-8 rounded-full bg-[#1B6B9A]/30 blur-2xl"
+              animate={prefersReducedMotion ? { opacity: 1 } : { opacity: [0.26, 0.46, 0.26] }}
+              transition={prefersReducedMotion ? { duration: 0 } : { delay: 0.95, duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
+            />
             <div className="rounded-[999px] border-[6px] border-[#1B6B9A] bg-[#F8FBFE] px-14 py-5 shadow-[0_12px_0_rgba(27,107,154,0.95),0_28px_46px_rgba(27,107,154,0.28)] md:px-20">
               <motion.h1
                 initial={{ opacity: 0, y: 18 }}
@@ -242,10 +345,26 @@ export default function Hero() {
                 Solutions
               </motion.h1>
             </div>
-            <span className="absolute -left-3 -top-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
-            <span className="absolute -right-3 -top-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
-            <span className="absolute -bottom-3 -left-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
-            <span className="absolute -bottom-3 -right-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]" />
+            <motion.span
+              className="absolute -left-3 -top-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]"
+              animate={prefersReducedMotion ? { scale: 1 } : { scale: [1, 1.1, 1] }}
+              transition={prefersReducedMotion ? { duration: 0 } : { delay: 1.15, duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.span
+              className="absolute -right-3 -top-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]"
+              animate={prefersReducedMotion ? { scale: 1 } : { scale: [1, 1.1, 1] }}
+              transition={prefersReducedMotion ? { duration: 0 } : { delay: 1.4, duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.span
+              className="absolute -bottom-3 -left-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]"
+              animate={prefersReducedMotion ? { scale: 1 } : { scale: [1, 1.1, 1] }}
+              transition={prefersReducedMotion ? { duration: 0 } : { delay: 1.65, duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.span
+              className="absolute -bottom-3 -right-3 h-3.5 w-3.5 border-2 border-[#1B6B9A] bg-[#F8FBFE]"
+              animate={prefersReducedMotion ? { scale: 1 } : { scale: [1, 1.1, 1] }}
+              transition={prefersReducedMotion ? { duration: 0 } : { delay: 1.9, duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+            />
           </motion.div>
 
           <motion.div
@@ -281,9 +400,39 @@ export default function Hero() {
           aria-hidden="true"
           style={{ filter: "drop-shadow(0 1px 2px rgba(27,107,154,0.2))" }}
         >
-          <path d="M14 60 C64 10, 154 10, 214 60" stroke="#1B6B9A" strokeWidth="2.6" strokeLinecap="round" />
-          <circle cx="14" cy="60" r="5.8" fill="#F4F8FB" stroke="#1B6B9A" strokeWidth="2.6" />
-          <circle cx="214" cy="60" r="5.8" fill="#F4F8FB" stroke="#1B6B9A" strokeWidth="2.6" />
+          <motion.path
+            d="M14 60 C64 10, 154 10, 214 60"
+            stroke="#1B6B9A"
+            strokeWidth="2.6"
+            strokeLinecap="round"
+            initial={{ pathLength: prefersReducedMotion ? 1 : 0, opacity: prefersReducedMotion ? 1 : 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ delay: 0.85, duration: 0.85, ease: "easeInOut" }}
+          />
+          <motion.circle
+            cx="14"
+            cy="60"
+            r="5.8"
+            fill="#F4F8FB"
+            stroke="#1B6B9A"
+            strokeWidth="2.6"
+            initial={{ scale: prefersReducedMotion ? 1 : 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 1.55, duration: 0.25 }}
+            style={{ originX: "14px", originY: "60px" }}
+          />
+          <motion.circle
+            cx="214"
+            cy="60"
+            r="5.8"
+            fill="#F4F8FB"
+            stroke="#1B6B9A"
+            strokeWidth="2.6"
+            initial={{ scale: prefersReducedMotion ? 1 : 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 1.6, duration: 0.25 }}
+            style={{ originX: "214px", originY: "60px" }}
+          />
         </svg>
 
         <svg
@@ -293,23 +442,66 @@ export default function Hero() {
           aria-hidden="true"
           style={{ filter: "drop-shadow(0 1px 2px rgba(27,107,154,0.2))" }}
         >
-          <path
+          <motion.path
             d="M12 18 C10 44, 28 60, 50 56 C64 54, 68 42, 58 34 C48 26, 46 44, 60 52 C92 68, 150 56, 196 22"
             stroke="#1B6B9A"
             strokeWidth="2.6"
             strokeLinecap="round"
             strokeLinejoin="round"
+            initial={{ pathLength: prefersReducedMotion ? 1 : 0, opacity: prefersReducedMotion ? 1 : 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ delay: 1.05, duration: 0.95, ease: "easeInOut" }}
           />
-          <circle cx="12" cy="18" r="5.8" fill="#F4F8FB" stroke="#1B6B9A" strokeWidth="2.6" />
-          <circle cx="196" cy="22" r="5.8" fill="#F4F8FB" stroke="#1B6B9A" strokeWidth="2.6" />
+          <motion.circle
+            cx="12"
+            cy="18"
+            r="5.8"
+            fill="#F4F8FB"
+            stroke="#1B6B9A"
+            strokeWidth="2.6"
+            initial={{ scale: prefersReducedMotion ? 1 : 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 1.85, duration: 0.25 }}
+            style={{ originX: "12px", originY: "18px" }}
+          />
+          <motion.circle
+            cx="196"
+            cy="22"
+            r="5.8"
+            fill="#F4F8FB"
+            stroke="#1B6B9A"
+            strokeWidth="2.6"
+            initial={{ scale: prefersReducedMotion ? 1 : 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 1.9, duration: 0.25 }}
+            style={{ originX: "196px", originY: "22px" }}
+          />
         </svg>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-10 lg:gap-12">
           <motion.article
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
+            animate={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: [0, -8, 0] }}
+            transition={
+              prefersReducedMotion
+                ? { delay: 0.4, duration: 0.5 }
+                : {
+                    opacity: { delay: 0.4, duration: 0.5 },
+                    y: { delay: 1.15, duration: 5.4, repeat: Infinity, ease: "easeInOut" },
+                  }
+            }
             className="relative z-20 mx-auto w-full max-w-[420px] rounded-[30px] border border-[#D5E1EB] bg-white/78 p-4 shadow-[0_18px_38px_rgba(12,35,64,0.1)] backdrop-blur-md sm:rounded-[34px] sm:p-6 md:-rotate-[4deg]"
+            style={
+              prefersReducedMotion
+                ? undefined
+                : {
+                    x: cardOneX,
+                    rotateX: cardRotateX,
+                    rotateY: cardRotateY,
+                    transformPerspective: 1200,
+                  }
+            }
+            whileHover={prefersReducedMotion ? undefined : { scale: 1.02, y: -12 }}
           >
             <div className="relative mb-5 rounded-[18px] border border-[#D2DFEA] bg-[#EDF4FA] p-3 sm:mb-7 sm:rounded-[20px] sm:p-4">
               <div className="pointer-events-none absolute inset-x-3 top-2 -z-10 h-full rounded-[18px] border border-[#DDE7F0] bg-[#F4F8FC]" />
@@ -341,19 +533,43 @@ export default function Hero() {
 
           <motion.article
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
+            animate={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: [0, -6, 0] }}
+            transition={
+              prefersReducedMotion
+                ? { delay: 0.5, duration: 0.5 }
+                : {
+                    opacity: { delay: 0.5, duration: 0.5 },
+                    y: { delay: 1.35, duration: 5.8, repeat: Infinity, ease: "easeInOut" },
+                  }
+            }
             className="relative z-20 mx-auto w-full max-w-[420px] rounded-[30px] border border-[#D5E1EB] bg-white/78 p-4 shadow-[0_18px_38px_rgba(12,35,64,0.1)] backdrop-blur-md sm:rounded-[34px] sm:p-6"
+            style={
+              prefersReducedMotion
+                ? undefined
+                : {
+                    x: cardTwoX,
+                    rotateX: cardRotateX,
+                    rotateY: cardRotateY,
+                    transformPerspective: 1200,
+                  }
+            }
+            whileHover={prefersReducedMotion ? undefined : { scale: 1.018, y: -10 }}
           >
             <div className="mb-5 flex flex-wrap gap-2 sm:mb-7 sm:gap-2.5">
               {featureChips.map((chip) => (
-                <span
+                <motion.span
                   key={chip.label}
                   className="inline-flex items-center gap-1.5 rounded-full border border-[#CFDCE8] bg-white px-2.5 py-1 text-[11px] font-medium text-[#243447] shadow-[0_2px_8px_rgba(12,35,64,0.16)] sm:px-3 sm:text-[12px]"
+                  animate={prefersReducedMotion ? { y: 0 } : { y: [0, -2, 0] }}
+                  transition={
+                    prefersReducedMotion
+                      ? { duration: 0 }
+                      : { delay: 1.45 + featureChips.indexOf(chip) * 0.15, duration: 3.2, repeat: Infinity, ease: "easeInOut" }
+                  }
                 >
                   <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: chip.color }} />
                   {chip.label}
-                </span>
+                </motion.span>
               ))}
             </div>
 
@@ -366,9 +582,27 @@ export default function Hero() {
 
           <motion.article
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.5 }}
+            animate={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: [0, -9, 0] }}
+            transition={
+              prefersReducedMotion
+                ? { delay: 0.6, duration: 0.5 }
+                : {
+                    opacity: { delay: 0.6, duration: 0.5 },
+                    y: { delay: 1.25, duration: 5.6, repeat: Infinity, ease: "easeInOut" },
+                  }
+            }
             className="relative z-20 mx-auto w-full max-w-[420px] rounded-[30px] border border-[#D5E1EB] bg-white/78 p-4 shadow-[0_18px_38px_rgba(12,35,64,0.1)] backdrop-blur-md sm:rounded-[34px] sm:p-6 md:rotate-[4deg]"
+            style={
+              prefersReducedMotion
+                ? undefined
+                : {
+                    x: cardThreeX,
+                    rotateX: cardRotateX,
+                    rotateY: cardRotateY,
+                    transformPerspective: 1200,
+                  }
+            }
+            whileHover={prefersReducedMotion ? undefined : { scale: 1.02, y: -12 }}
           >
             <div className="mb-5 rounded-[20px] border border-[#D2DFEA] bg-[#EDF4FA] p-3 pb-2 sm:mb-7 sm:rounded-[22px]">
               <div className="mb-1.5 flex items-start justify-between text-xs">
@@ -398,8 +632,27 @@ export default function Hero() {
                   strokeWidth="3"
                   fill="none"
                 />
-                <circle cx="160" cy="64" r="5.5" fill="#1B6B9A" />
-                <circle cx="160" cy="64" r="9" fill="none" stroke="#1B6B9A" strokeWidth="1.5" opacity="0.28" />
+                <motion.circle
+                  cx="160"
+                  cy="64"
+                  r="5.5"
+                  fill="#1B6B9A"
+                  animate={prefersReducedMotion ? { scale: 1 } : { scale: [1, 1.08, 1] }}
+                  transition={prefersReducedMotion ? { duration: 0 } : { delay: 1.55, duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+                  style={{ originX: "160px", originY: "64px" }}
+                />
+                <motion.circle
+                  cx="160"
+                  cy="64"
+                  r="9"
+                  fill="none"
+                  stroke="#1B6B9A"
+                  strokeWidth="1.5"
+                  opacity="0.28"
+                  animate={prefersReducedMotion ? { scale: 1, opacity: 0.28 } : { scale: [1, 1.45, 1], opacity: [0.28, 0.06, 0.28] }}
+                  transition={prefersReducedMotion ? { duration: 0 } : { delay: 1.55, duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+                  style={{ originX: "160px", originY: "64px" }}
+                />
               </svg>
             </div>
 
