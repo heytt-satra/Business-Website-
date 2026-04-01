@@ -1,4 +1,5 @@
 import * as React from "react"
+import Link from "next/link"
 import { cva, type VariantProps } from "class-variance-authority"
 import { Slot } from "radix-ui"
 
@@ -41,6 +42,28 @@ const buttonVariants = cva(
   }
 )
 
+const legacyButtonVariants = cva(
+  "group inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        primary:
+          "bg-primary text-primary-foreground shadow-[0_18px_40px_-24px_rgba(12,35,64,0.85)] hover:-translate-y-0.5 hover:bg-secondary",
+        secondary:
+          "border border-primary/12 bg-white text-primary shadow-[0_18px_40px_-28px_rgba(12,35,64,0.28)] hover:-translate-y-0.5 hover:border-accent/35 hover:bg-accent-light/55",
+      },
+      glow: {
+        true: "shadow-[0_0_0_1px_rgba(91,192,235,0.18),0_22px_60px_-24px_rgba(91,192,235,0.7)]",
+        false: "",
+      },
+    },
+    defaultVariants: {
+      variant: "primary",
+      glow: false,
+    },
+  }
+)
+
 function Button({
   className,
   variant = "default",
@@ -64,4 +87,42 @@ function Button({
   )
 }
 
+type LegacyButtonProps = Omit<React.ComponentProps<"button">, "children"> & {
+  children?: React.ReactNode
+  className?: string
+  glow?: boolean
+  href?: string
+  label?: string
+  variant?: "primary" | "secondary"
+}
+
+function LegacyButton({
+  children,
+  className,
+  glow = false,
+  href,
+  label,
+  type = "button",
+  variant = "primary",
+  ...props
+}: LegacyButtonProps) {
+  const content = children ?? label
+  const classes = cn(legacyButtonVariants({ variant, glow, className }))
+
+  if (href) {
+    return (
+      <Link href={href} className={classes}>
+        {content}
+      </Link>
+    )
+  }
+
+  return (
+    <button type={type} className={classes} {...props}>
+      {content}
+    </button>
+  )
+}
+
 export { Button, buttonVariants }
+export default LegacyButton
