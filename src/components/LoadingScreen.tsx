@@ -59,7 +59,7 @@ export default function LoadingScreen() {
                     >
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                            src="/favicon.png"
+                            src="/logo.png"
                             alt="Loading..."
                             className="w-20 h-20 object-contain"
                         />

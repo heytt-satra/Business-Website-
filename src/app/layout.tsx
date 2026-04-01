@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import LenisProvider from "@/components/providers/LenisProvider";
-import CustomCursor from "@/components/ui/CustomCursor";
-
-import LoadingScreen from "@/components/LoadingScreen";
+import AppShell from "@/components/providers/AppShell";
+import { getSiteUrlObject } from "@/lib/site";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-cabinet",
@@ -27,9 +24,10 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: getSiteUrlObject(),
   title: {
-    default: "TeraIndustries — MVPs, SaaS & AI Products That Ship Fast",
-    template: "%s — TeraIndustries",
+    default: "TeraIndustries - MVPs, SaaS & AI Products That Ship Fast",
+    template: "%s | TeraIndustries",
   },
   description:
     "We build MVPs, SaaS platforms, websites, apps, and AI integrations. From idea to deployed product in weeks, not months.",
@@ -42,6 +40,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "TeraIndustries",
   },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
@@ -53,11 +54,7 @@ export default function RootLayout({
     <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="antialiased">
         <LenisProvider>
-          <LoadingScreen />
-          <CustomCursor />
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
+          <AppShell>{children}</AppShell>
         </LenisProvider>
       </body>
     </html>
