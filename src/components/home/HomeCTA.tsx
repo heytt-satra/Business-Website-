@@ -39,7 +39,7 @@ export default function HomeCTA() {
     const lines = text.split("\n");
 
     return (
-        <section ref={sectionRef} className="relative overflow-hidden bg-surface-alt px-5 py-24 sm:px-6 sm:py-32 md:px-20 md:py-40">
+        <section ref={sectionRef} className="relative overflow-hidden bg-bg px-5 py-24 sm:px-6 sm:py-32 md:px-20 md:py-40">
             {/* Background Delta Arrow */}
             <motion.div
                 animate={{ rotate: 360 }}

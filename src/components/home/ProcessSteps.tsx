@@ -127,9 +127,9 @@ export default function ProcessSteps() {
     }, []);
 
     return (
-        <section ref={sectionRef} className="bg-gradient-to-b from-white to-surface-alt/40 py-14 sm:py-18 md:py-20">
-            <div className="mx-auto max-w-6xl px-5 sm:px-6 md:px-20">
-                <div className="mb-8 sm:mb-10 md:mb-12">
+        <section ref={sectionRef} className="bg-bg py-12 sm:py-14 md:py-16">
+            <div className="w-full px-5 sm:px-6 md:px-20">
+                <div className="mb-6 sm:mb-8 md:mb-10">
                     <p className="label-mono mb-4">How We Work</p>
                     <h2 className="heading-lg">From idea to live product, one focused system.</h2>
                 </div>
@@ -137,8 +137,6 @@ export default function ProcessSteps() {
 
             <div className="relative left-1/2 w-screen -translate-x-1/2">
                 <div ref={pinWrapRef} className="relative overflow-hidden">
-                    <div className="pointer-events-none absolute left-6 right-6 top-10 hidden h-px bg-gradient-to-r from-transparent via-border to-transparent md:block" />
-
                     <div
                         ref={trackRef}
                         className="process-track flex gap-4 px-5 pb-2 pt-2 [will-change:transform] sm:gap-5 sm:px-6 md:gap-7 md:px-20 md:pb-5"
@@ -148,8 +146,8 @@ export default function ProcessSteps() {
                         {steps.map((step, i) => (
                             <article
                                 key={step.number}
-                            className="process-card relative flex h-[400px] w-[78vw] min-w-[280px] max-w-[320px] shrink-0 snap-start flex-col overflow-hidden rounded-[26px] border border-border/85 bg-gradient-to-b from-white to-surface-alt/55 p-5 shadow-[0_10px_24px_rgba(12,35,64,0.08)] transition-all duration-300 md:hover:-translate-y-1 md:hover:border-accent/45 md:hover:shadow-[0_18px_45px_rgba(12,35,64,0.16)] sm:h-[430px] sm:w-[320px] sm:max-w-[340px] sm:p-6 md:h-[455px] md:w-[340px]"
-                        >
+                                className="process-card relative flex h-[min(360px,calc(100vh-19rem))] w-[78vw] min-w-[280px] max-w-[320px] shrink-0 snap-start flex-col overflow-hidden rounded-[26px] border border-border/85 bg-gradient-to-b from-white to-surface-alt/55 p-5 shadow-[0_10px_24px_rgba(12,35,64,0.08)] transition-all duration-300 md:hover:-translate-y-1 md:hover:border-accent/45 md:hover:shadow-[0_18px_45px_rgba(12,35,64,0.16)] sm:h-[min(390px,calc(100vh-17rem))] sm:w-[320px] sm:max-w-[340px] sm:p-6 md:h-[min(420px,calc(100vh-15rem))] md:w-[340px]"
+                            >
                                 <div className="pointer-events-none absolute -right-16 top-14 hidden h-36 w-36 rounded-full bg-accent/10 blur-2xl sm:block" />
                                 <p className="pointer-events-none absolute right-4 top-4 select-none text-[64px] font-black leading-none tracking-[-0.03em] text-primary/[0.06]">
                                     {step.number}

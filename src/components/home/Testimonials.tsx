@@ -66,11 +66,11 @@ const secondRow = testimonials.slice(splitIndex);
 export default function Testimonials() {
   return (
     <section className="overflow-hidden bg-bg py-20 sm:py-24 md:py-28">
-      <div className="relative mx-auto mb-12 max-w-7xl px-5 sm:px-6 md:mb-16 md:px-20">
+      <div className="relative mb-12 w-full px-5 sm:px-6 md:mb-16 md:px-20">
         <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl">
             <p className="label-mono mb-4">Client Love</p>
-            <h2 className="heading-lg text-center md:text-left">
+            <h2 className="heading-lg">
               The work moved fast. The feedback was even faster.
             </h2>
           </div>
