@@ -141,13 +141,13 @@ function AboutHero() {
     ];
 
     return (
-        <section id="company" className="min-h-[85vh] scroll-mt-36 bg-bg px-5 sm:px-6 md:px-20 pt-32 sm:pt-36 md:pt-40 pb-16 sm:pb-20">
+        <section id="company" className="min-h-[72svh] scroll-mt-36 bg-bg px-5 pb-16 pt-32 sm:min-h-[85vh] sm:px-6 sm:pb-20 sm:pt-36 md:px-20 md:pt-40">
             <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 items-center">
                 <div>
                     <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="label-mono mb-6">
                         {"//"} Who We Are
                     </motion.p>
-                    <h1 className="mb-8" style={{ fontSize: "clamp(42px, 11vw, 90px)", fontWeight: 900, letterSpacing: "-0.04em", lineHeight: 0.95 }}>
+                    <h1 className="mb-8" style={{ fontSize: "clamp(40px, 13vw, 90px)", fontWeight: 900, letterSpacing: "-0.04em", lineHeight: 0.95 }}>
                         {lines.map((line, i) => (
                             <span key={i} className="block overflow-hidden">
                                 <motion.span
@@ -263,11 +263,11 @@ function ValuesSection() {
             <div className="mx-auto max-w-6xl">
                 <p className="label-mono mb-4">Our Values</p>
                 <h2 className="heading-lg mb-12 sm:mb-14 md:mb-16">What drives{"\n"}how we build.</h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
                     {values.map((v) => (
                         <div
                             key={v.title}
-                            className={`value-card rounded-3xl ${v.bg} border border-border p-6 transition-all hover:scale-[1.02] hover:shadow-lg sm:p-8 ${v.span} ${v.dark ? "text-bg border-dark-border" : ""}`}
+                            className={`value-card rounded-3xl ${v.bg} border border-border p-6 transition-all hover:scale-[1.02] hover:shadow-lg sm:p-8 ${v.span.replace("col-span-", "md:col-span-")} ${v.dark ? "text-bg border-dark-border" : ""}`}
                         >
                             <div className={`mb-4 ${v.dark ? "text-accent-2" : "text-accent"}`}>{v.icon}</div>
                             <h3 className={`text-xl font-bold mb-2 ${v.dark ? "text-bg" : "text-primary"}`}>{v.title}</h3>
@@ -316,7 +316,7 @@ function TeamSection() {
                     {team.map((member) => (
                         <div
                             key={member.name}
-                            className="team-card flex h-[410px] w-[270px] shrink-0 snap-start flex-col rounded-3xl border border-border bg-white p-6 transition-all hover:-translate-y-2 hover:shadow-lg sm:h-[440px] sm:w-[300px] sm:p-8"
+                            className="team-card flex h-[410px] w-[82vw] max-w-[270px] shrink-0 snap-start flex-col rounded-3xl border border-border bg-white p-6 transition-all hover:-translate-y-2 hover:shadow-lg sm:h-[440px] sm:w-[300px] sm:max-w-none sm:p-8"
                         >
                             {/* Avatar placeholder */}
                             <div className="mb-6 flex h-36 w-full items-center justify-center rounded-2xl sm:h-40" style={{ background: "linear-gradient(135deg, var(--color-accent-light), var(--color-surface-alt))" }}>
@@ -356,7 +356,7 @@ function AboutCTA() {
                 <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
                     <Link
                         href="/contact"
-                        className="inline-flex items-center gap-2 rounded-full bg-white text-primary px-8 py-4 text-lg font-semibold transition-all hover:bg-accent hover:text-white group"
+                        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-lg font-semibold text-primary transition-all group hover:bg-accent hover:text-white sm:w-auto"
                     >
                         Start a Conversation
                         <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />

@@ -38,8 +38,18 @@ export default function HomeCTA() {
     const text = "Ready to build\nsomething great?";
     const lines = text.split("\n");
 
+    /* Split into words so natural word-wrap is preserved on narrow screens */
+    let charIndex = 0;
+    const lineWords = lines.map((line) =>
+        line.split(" ").map((word) => {
+            const chars = word.split("").map((char) => ({ char, index: charIndex++ }));
+            charIndex++; // account for the space
+            return chars;
+        })
+    );
+
     return (
-        <section ref={sectionRef} className="relative overflow-hidden bg-bg px-5 py-24 sm:px-6 sm:py-32 md:px-20 md:py-40">
+        <section ref={sectionRef} className="relative overflow-hidden bg-bg px-5 py-20 sm:px-6 sm:py-28 md:px-20 md:py-40">
             {/* Background Delta Arrow */}
             <motion.div
                 animate={{ rotate: 360 }}
@@ -47,16 +57,21 @@ export default function HomeCTA() {
                 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.04] select-none"
             >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/favicon.png" alt="" className="h-auto w-[clamp(220px,40vw,500px)]" />
+                <img src="/logo.png" alt="" className="h-auto w-[clamp(180px,35vw,500px)]" />
             </motion.div>
 
             <div className="relative z-10 mx-auto max-w-5xl text-center">
-                <h2 ref={headlineRef} className="heading-xl mb-6">
-                    {lines.map((line, li) => (
+                <h2 ref={headlineRef} className="heading-xl mb-6 text-[clamp(32px,8vw,64px)]">
+                    {lineWords.map((words, li) => (
                         <span key={li} className="block">
-                            {line.split("").map((char, ci) => (
-                                <span key={`${li}-${ci}`} className="cta-char inline-block" style={{ whiteSpace: char === " " ? "pre" : undefined }}>
-                                    {char === " " ? "\u00A0" : char}
+                            {words.map((chars, wi) => (
+                                <span key={`${li}-${wi}`} className="inline-block whitespace-nowrap">
+                                    {chars.map(({ char, index }) => (
+                                        <span key={index} className="cta-char inline-block">
+                                            {char}
+                                        </span>
+                                    ))}
+                                    {wi < words.length - 1 && <span className="cta-char inline-block">&nbsp;</span>}
                                 </span>
                             ))}
                         </span>

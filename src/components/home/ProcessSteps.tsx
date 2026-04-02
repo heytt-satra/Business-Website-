@@ -131,7 +131,7 @@ export default function ProcessSteps() {
             <div className="w-full px-5 sm:px-6 md:px-20">
                 <div className="mb-6 sm:mb-8 md:mb-10">
                     <p className="label-mono mb-4">How We Work</p>
-                    <h2 className="heading-lg">From idea to live product, one focused system.</h2>
+                    <h2 className="heading-lg text-[clamp(26px,6vw,48px)]">From idea to live product, one focused system.</h2>
                 </div>
             </div>
 
@@ -146,7 +146,7 @@ export default function ProcessSteps() {
                         {steps.map((step, i) => (
                             <article
                                 key={step.number}
-                                className="process-card relative flex h-[min(360px,calc(100vh-19rem))] w-[78vw] min-w-[280px] max-w-[320px] shrink-0 snap-start flex-col overflow-hidden rounded-[26px] border border-border/85 bg-gradient-to-b from-white to-surface-alt/55 p-5 shadow-[0_10px_24px_rgba(12,35,64,0.08)] transition-all duration-300 md:hover:-translate-y-1 md:hover:border-accent/45 md:hover:shadow-[0_18px_45px_rgba(12,35,64,0.16)] sm:h-[min(390px,calc(100vh-17rem))] sm:w-[320px] sm:max-w-[340px] sm:p-6 md:h-[min(420px,calc(100vh-15rem))] md:w-[340px]"
+                                className="process-card relative flex h-[min(360px,calc(100svh-12rem))] w-[78vw] min-w-[250px] max-w-[300px] shrink-0 snap-start flex-col overflow-hidden rounded-[22px] border border-border/85 bg-gradient-to-b from-white to-surface-alt/55 p-4 shadow-[0_10px_24px_rgba(12,35,64,0.08)] transition-all duration-300 active:scale-[0.98] sm:h-[min(390px,calc(100svh-17rem))] sm:w-[320px] sm:max-w-[340px] sm:rounded-[26px] sm:p-6 md:h-[min(420px,calc(100vh-15rem))] md:w-[340px] md:hover:-translate-y-1 md:hover:border-accent/45 md:hover:shadow-[0_18px_45px_rgba(12,35,64,0.16)]"
                             >
                                 <div className="pointer-events-none absolute -right-16 top-14 hidden h-36 w-36 rounded-full bg-accent/10 blur-2xl sm:block" />
                                 <p className="pointer-events-none absolute right-4 top-4 select-none text-[64px] font-black leading-none tracking-[-0.03em] text-primary/[0.06]">
@@ -166,7 +166,7 @@ export default function ProcessSteps() {
                                     <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
                                         Step {step.number}
                                     </p>
-                                    <h3 className="mt-2 text-[28px] font-extrabold leading-[0.95] tracking-[-0.03em] text-primary md:text-[30px]">
+                                    <h3 className="mt-2 text-[clamp(22px,6vw,30px)] font-extrabold leading-[0.95] tracking-[-0.03em] text-primary">
                                         {step.title}
                                     </h3>
                                     <p className="mt-3 text-sm leading-relaxed text-muted">
@@ -191,7 +191,7 @@ export default function ProcessSteps() {
                     </div>
 
                     <div className="px-5 sm:px-6 md:px-20">
-                        <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
+                        <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.14em] text-muted sm:text-[11px]">
                             Scroll to reveal each step
                         </p>
                     </div>

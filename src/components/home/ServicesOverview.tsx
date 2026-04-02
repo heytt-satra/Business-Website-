@@ -125,7 +125,7 @@ export default function ServicesOverview() {
                 {/* Left - Sticky */}
                 <div className="lg:sticky lg:top-28 lg:self-start">
                     <p className="label-mono mb-4">What We Do</p>
-                    <h2 className="heading-lg mb-4" style={{ maxWidth: "420px" }}>
+                    <h2 className="heading-lg mb-4 max-w-[420px] text-[clamp(26px,6vw,48px)]">
                         Every tool you need to go from idea to product.
                     </h2>
                     <p className="text-base text-muted mb-6">Six services. One focused team. Delivered fast.</p>
@@ -199,7 +199,7 @@ function ServiceAccordionItem({
         <div className="group border-b border-border py-5 sm:py-7">
             <button
                 onClick={onToggle}
-                className="flex w-full items-center justify-between text-left relative"
+                className="relative flex w-full items-start justify-between gap-3 pr-1 text-left"
             >
                 {/* Ghost number */}
                 <AnimatePresence>
@@ -215,17 +215,17 @@ function ServiceAccordionItem({
                     )}
                 </AnimatePresence>
 
-                <div className="flex items-center gap-3 sm:gap-4">
+                <div className="flex min-w-0 items-start gap-3 sm:gap-4">
                     <span className={`font-mono text-sm transition-colors duration-300 ${isOpen ? "text-accent font-semibold" : "text-muted-light"}`}>
                         {service.number}
                     </span>
-                    <span className={`text-lg sm:text-xl md:text-2xl transition-colors duration-200 ${isOpen ? "font-bold" : "font-semibold"} text-primary group-hover:text-accent`}>
+                    <span className={`min-w-0 text-lg leading-tight text-balance sm:text-xl md:text-2xl transition-colors duration-200 ${isOpen ? "font-bold" : "font-semibold"} text-primary group-hover:text-accent`}>
                         {service.title}
                     </span>
                 </div>
 
-                <div className="flex items-center">
-                    {isOpen ? <Minus size={20} className="text-accent" /> : <Plus size={20} className="text-muted" />}
+                <div className="flex shrink-0 items-center pt-1">
+                    {isOpen ? <Minus size={18} className="text-accent sm:h-5 sm:w-5" /> : <Plus size={18} className="text-muted sm:h-5 sm:w-5" />}
                 </div>
             </button>
 
@@ -250,7 +250,7 @@ function ServiceAccordionItem({
                                             </span>
                                         );
                                     })()}
-                                    <span className="text-xl font-bold text-primary">{service.title}</span>
+                                    <span className="text-lg font-bold leading-tight text-primary sm:text-xl">{service.title}</span>
                                 </div>
 
                                 <p className="mb-3 text-sm font-medium text-primary/90">{service.short}</p>
@@ -266,7 +266,7 @@ function ServiceAccordionItem({
                             </div>
 
                             <p className="mb-2 text-base font-semibold text-primary sm:text-lg">{service.short}</p>
-                            <p className="text-sm text-muted leading-relaxed mb-4" style={{ maxWidth: "480px" }}>{service.desc}</p>
+                            <p className="text-sm leading-relaxed text-muted mb-4 max-w-[480px]">{service.desc}</p>
                             <div className="hidden flex-wrap gap-2 lg:flex">
                                 {service.tags.map((tag) => (
                                     <span key={tag} className="rounded-full border border-border px-3 py-1 text-xs font-medium text-primary">

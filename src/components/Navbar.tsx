@@ -46,7 +46,7 @@ const aboutLinks = [
     },
 ] as const;
 
-const NAV_WIDTH = "min(1120px, calc(100vw - 24px))";
+const NAV_WIDTH = "min(1120px, calc(100vw - 16px))";
 
 function CompanyMarkIcon() {
     return (
@@ -168,11 +168,11 @@ export default function Navbar() {
                 initial={{ opacity: 0, filter: "blur(8px)", y: -10 }}
                 animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-                className="fixed left-1/2 top-3 z-100 flex -translate-x-1/2 items-center justify-between overflow-visible px-4 transition-all duration-400 sm:top-4 sm:px-6 md:top-5 md:px-8"
+                className="fixed left-1/2 top-2.5 z-100 flex -translate-x-1/2 items-center justify-between overflow-visible px-3.5 transition-all duration-400 sm:top-4 sm:px-6 md:top-5 md:px-8"
                 onMouseLeave={() => setAboutOpen(false)}
                 style={{
                     width: NAV_WIDTH,
-                    height: "clamp(62px, 8vw, 72px)",
+                    height: "clamp(58px, 8vw, 72px)",
                     borderRadius: "999px",
                     background: scrolled ? "rgba(255,255,255,0.95)" : "rgba(244,248,251,0.72)",
                     backdropFilter: scrolled ? "blur(20px)" : "blur(12px)",
@@ -190,7 +190,7 @@ export default function Navbar() {
                         <img
                             src="/logo-horizontal.png"
                             alt="Tera Industries"
-                            className="h-auto w-[138px] object-contain sm:w-[165px] md:w-[186px]"
+                            className="h-auto w-[122px] object-contain sm:w-[165px] md:w-[186px]"
                         />
                         <span
                             aria-hidden="true"
@@ -328,7 +328,7 @@ export default function Navbar() {
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: "8%", opacity: 0.82 }}
                             transition={{ duration: 0.34, ease: [0.16, 1, 0.3, 1] }}
-                            className="absolute inset-y-0 right-0 w-full max-w-[420px] border-l border-[#D0DEE9] bg-[#F8FBFE] px-5 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-4 shadow-[-20px_0_48px_rgba(12,35,64,0.16)]"
+                            className="absolute inset-y-0 right-0 w-full max-w-[380px] border-l border-[#D0DEE9] bg-[#F8FBFE] px-4 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-3.5 shadow-[-20px_0_48px_rgba(12,35,64,0.16)] sm:px-5 sm:pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:pt-4"
                         >
                             <div className="flex h-full flex-col">
                                 <div className="mb-5 flex items-center justify-between rounded-2xl border border-border bg-white/80 px-3 py-2 backdrop-blur-sm">
@@ -337,7 +337,7 @@ export default function Navbar() {
                                         <img
                                             src="/logo-horizontal.png"
                                             alt="Tera Industries"
-                                            className="h-auto w-[138px] object-contain"
+                                            className="h-auto w-[122px] object-contain sm:w-[138px]"
                                         />
                                     </Link>
                                     <button
@@ -360,7 +360,7 @@ export default function Navbar() {
                                             <Link
                                                 href="/"
                                                 onClick={closeMobileMenu}
-                                                className={`block rounded-xl px-2 py-1.5 text-[clamp(30px,9vw,40px)] font-black leading-[0.97] tracking-[-0.03em] ${pathname === "/" ? "text-accent" : "text-primary"}`}
+                                                className={`block rounded-xl px-2 py-2 text-[clamp(24px,8vw,34px)] font-black leading-[0.98] tracking-[-0.03em] ${pathname === "/" ? "text-accent" : "text-primary"}`}
                                             >
                                                 Home
                                             </Link>
@@ -374,7 +374,7 @@ export default function Navbar() {
                                             <button
                                                 type="button"
                                                 onClick={() => setMobileAboutOpen((prev) => !prev)}
-                                                className={`flex w-full items-center justify-between rounded-xl px-2 py-1.5 text-left text-[clamp(30px,9vw,40px)] font-black leading-[0.97] tracking-[-0.03em] ${isAboutActive || mobileAboutOpen ? "text-accent" : "text-primary"}`}
+                                                className={`flex w-full items-center justify-between rounded-xl px-2 py-2 text-left text-[clamp(24px,8vw,34px)] font-black leading-[0.98] tracking-[-0.03em] ${isAboutActive || mobileAboutOpen ? "text-accent" : "text-primary"}`}
                                             >
                                                 <span>About</span>
                                                 <motion.span
@@ -382,7 +382,7 @@ export default function Navbar() {
                                                     transition={{ duration: 0.2 }}
                                                     className="mt-1 text-primary"
                                                 >
-                                                    <ChevronDown size={24} />
+                                                    <ChevronDown size={22} />
                                                 </motion.span>
                                             </button>
                                         </motion.div>
@@ -429,7 +429,7 @@ export default function Navbar() {
                                                 <Link
                                                     href={link.href}
                                                     onClick={closeMobileMenu}
-                                                    className={`block rounded-xl px-2 py-1.5 text-[clamp(30px,9vw,40px)] font-black leading-[0.97] tracking-[-0.03em] ${pathname === link.href ? "text-accent" : "text-primary"}`}
+                                                    className={`block rounded-xl px-2 py-2 text-[clamp(24px,8vw,34px)] font-black leading-[0.98] tracking-[-0.03em] ${pathname === link.href ? "text-accent" : "text-primary"}`}
                                                 >
                                                     {link.label}
                                                 </Link>

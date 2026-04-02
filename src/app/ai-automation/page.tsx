@@ -188,10 +188,10 @@ function ToolCloudSection() {
                     {tools.map((tool) => (
                         <div
                             key={tool.name}
-                            className="tool-item group relative flex h-24 items-center justify-center rounded-xl border border-light-grey bg-white text-sm font-semibold text-navy shadow-sm transition-all hover:scale-105 hover:shadow-lg hover:border-cyan/30"
+                            className="tool-item group relative flex h-20 items-center justify-center rounded-xl border border-light-grey bg-white px-3 text-center text-xs font-semibold text-navy shadow-sm transition-all hover:scale-105 hover:shadow-lg hover:border-cyan/30 sm:h-24 sm:px-4 sm:text-sm"
                         >
                             {tool.name}
-                            <div className="pointer-events-none absolute -top-12 left-1/2 -translate-x-1/2 rounded-lg bg-navy px-3 py-2 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100 whitespace-nowrap z-20">
+                            <div className="pointer-events-none absolute -top-12 left-1/2 z-20 hidden -translate-x-1/2 whitespace-nowrap rounded-lg bg-navy px-3 py-2 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100 sm:block">
                                 {tool.desc}
                                 <div className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-navy" />
                             </div>
@@ -310,7 +310,7 @@ function RoiCalculator() {
             </div>
 
             <div className="mt-8 text-center">
-                <Button label="Automate These Hours - Talk to Us" href="/contact" variant="primary" />
+                <Button label="Automate These Hours - Talk to Us" href="/contact" variant="primary" className="w-full sm:w-auto" />
             </div>
         </div>
     );

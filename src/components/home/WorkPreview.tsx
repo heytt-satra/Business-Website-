@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 import { projects, type Project } from "@/data/projects";
-import { cn } from "@/lib/utils";
+
 
 type MatterModule = typeof import("matter-js");
 
@@ -30,12 +30,6 @@ type DesktopTile = {
   y: number;
 };
 
-type MobileTile = {
-  slug: Project["slug"];
-  preview: PreviewVariant;
-  className: string;
-};
-
 type TileEntry = {
   tile: DesktopTile;
   targetX: number;
@@ -57,21 +51,31 @@ const desktopTiles: DesktopTile[] = [
   { slug: "greenleaf-ecommerce", preview: "pricing", width: 228, height: 164, x: 0.87, y: 0.79 },
 ];
 
-const mobileTiles: MobileTile[] = [
-  { slug: "greenleaf-ecommerce", preview: "orb", className: "h-44" },
-  { slug: "finflow-saas", preview: "dashboard", className: "h-44" },
-  { slug: "taskpilot-app", preview: "portrait", className: "h-56" },
-  { slug: "brightpath-website", preview: "profile", className: "h-56" },
-  { slug: "automail-automation", preview: "darkboard", className: "col-span-2 h-48" },
-  { slug: "mediscan-ai", preview: "blueprint", className: "h-56" },
+/* Mobile: all 9 tiles, same previews, positions spread for narrow viewports */
+const mobilPhysicsTiles: DesktopTile[] = [
+  { slug: "greenleaf-ecommerce", preview: "orb", width: 250, height: 164, x: 0.25, y: 0.32 },
+  { slug: "finflow-saas", preview: "dashboard", width: 252, height: 164, x: 0.75, y: 0.32 },
+  { slug: "taskpilot-app", preview: "portrait", width: 182, height: 208, x: 0.18, y: 0.62 },
+  { slug: "brightpath-website", preview: "profile", width: 182, height: 208, x: 0.50, y: 0.55 },
+  { slug: "automail-automation", preview: "darkboard", width: 238, height: 138, x: 0.82, y: 0.62 },
+  { slug: "mediscan-ai", preview: "blueprint", width: 172, height: 208, x: 0.35, y: 0.85 },
+  { slug: "finflow-saas", preview: "social", width: 230, height: 170, x: 0.70, y: 0.85 },
+  { slug: "brightpath-website", preview: "portrait-dark", width: 168, height: 225, x: 0.15, y: 0.85 },
+  { slug: "greenleaf-ecommerce", preview: "pricing", width: 228, height: 164, x: 0.85, y: 0.85 },
 ];
 
 const projectBySlug = new Map(projects.map((project) => [project.slug, project]));
+
+function getActiveTiles() {
+  if (typeof window === "undefined") return desktopTiles;
+  return window.innerWidth < 768 ? mobilPhysicsTiles : desktopTiles;
+}
 
 export default function WorkPreview() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const canvasRef = useRef<HTMLDivElement | null>(null);
   const tileRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const activeTilesRef = useRef(desktopTiles);
 
   useEffect(() => {
     const canvasElement = canvasRef.current;
@@ -94,12 +98,16 @@ export default function WorkPreview() {
       }
 
       cleanup();
+      activeTilesRef.current = getActiveTiles();
+      const refOffset = activeTilesRef.current === mobilPhysicsTiles ? desktopTiles.length : 0;
       cleanup = createLabSimulation(
         canvasRef.current,
         sectionElement,
         tileRefs.current,
         Matter,
         prefersReducedMotion,
+        activeTilesRef.current,
+        refOffset,
       );
     };
 
@@ -129,6 +137,10 @@ export default function WorkPreview() {
     };
   }, []);
 
+  const allTiles = [...desktopTiles, ...mobilPhysicsTiles];
+  /* Deduplicate for sr-only list */
+  const uniqueSlugs = [...new Set(desktopTiles.map((t) => t.slug))];
+
   return (
     <section
       ref={sectionRef}
@@ -138,22 +150,22 @@ export default function WorkPreview() {
       <div className="w-full px-5 sm:px-6 md:px-20">
         <div className="mb-6 sm:mb-8 md:mb-10">
           <p className="label-mono mb-4">Featured Work</p>
-          <h2 className="heading-lg whitespace-nowrap">
+          <h2 className="heading-lg max-w-[12ch] text-balance text-[clamp(28px,7vw,48px)] md:max-w-none md:whitespace-nowrap">
             Products built. Problems solved.
           </h2>
         </div>
       </div>
 
       <div className="relative left-1/2 mt-8 w-screen -translate-x-1/2">
-        <div className="relative mx-auto hidden h-[24rem] max-w-[1900px] overflow-visible px-6 md:block lg:h-[26rem] lg:px-10 xl:h-[28rem] xl:px-14">
+        <div className="relative mx-auto h-[22rem] max-w-[1900px] overflow-visible px-3 sm:h-[24rem] sm:px-6 md:px-6 lg:h-[26rem] lg:px-10 xl:h-[28rem] xl:px-14">
           <div ref={canvasRef} className="tag-canvas absolute inset-0 z-10">
-            {desktopTiles.map((tile, index) => {
+            {allTiles.map((tile, index) => {
               const project = projectBySlug.get(tile.slug);
               if (!project) return null;
 
               return (
                 <Link
-                  key={`${tile.slug}-${index}`}
+                  key={`${tile.slug}-${tile.preview}-${index}`}
                   ref={(element) => {
                     tileRefs.current[index] = element;
                   }}
@@ -168,33 +180,17 @@ export default function WorkPreview() {
             })}
           </div>
         </div>
-
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-5 md:hidden">
-          {mobileTiles.map((tile, index) => {
-            const project = projectBySlug.get(tile.slug);
-            if (!project) return null;
-
-            return (
-              <LabCard
-                key={`${tile.slug}-mobile-${index}`}
-                project={project}
-                preview={tile.preview}
-                className={tile.className}
-              />
-            );
-          })}
-        </div>
       </div>
 
       <div className="sr-only">
         <h3>Featured projects</h3>
         <ul>
-          {desktopTiles.map((tile, index) => {
-            const project = projectBySlug.get(tile.slug);
+          {uniqueSlugs.map((slug) => {
+            const project = projectBySlug.get(slug);
             if (!project) return null;
 
             return (
-              <li key={`${tile.slug}-sr-${index}`}>
+              <li key={slug}>
                 <Link href={`/work/${project.slug}`}>{getDisplayTitle(project)}</Link>
               </li>
             );
@@ -211,12 +207,15 @@ function createLabSimulation(
   tileNodes: (HTMLAnchorElement | null)[],
   Matter: MatterModule,
   prefersReducedMotion: boolean,
+  tiles: DesktopTile[],
+  refOffset: number,
 ) {
   const { Bodies, Body, Composite, Engine, Events, Runner, Sleeping, World } = Matter;
 
-  const containerWidth = Math.max(container.clientWidth, 960);
-  const containerHeight = Math.max(container.clientHeight, 440);
-  const scale = clamp(containerWidth / 1720, 0.68, 1.04);
+  const isMobile = container.clientWidth < 768;
+  const containerWidth = Math.max(container.clientWidth, isMobile ? 320 : 960);
+  const containerHeight = Math.max(container.clientHeight, isMobile ? 320 : 440);
+  const scale = clamp(containerWidth / 1720, isMobile ? 0.42 : 0.68, 1.04);
   const floorPadding = 18 * scale;
 
   const engine = Engine.create({
@@ -230,7 +229,7 @@ function createLabSimulation(
 
   const entries: TileEntry[] = [];
 
-  desktopTiles.forEach((tile, index) => {
+  tiles.forEach((tile, index) => {
     const width = tile.width * scale;
     const height = tile.height * scale;
     const jitterX = seededBetween(index + 1.17, -88, 88) * scale;
@@ -319,11 +318,23 @@ function createLabSimulation(
   }
 
   const runner = Runner.create();
-  Runner.run(runner, engine);
+
+  /* Don't start runner until gravity activates — keeps tiles frozen at spawn until visible */
+  if (prefersReducedMotion) {
+    Runner.run(runner, engine);
+  }
+
+  /* Hide all tile nodes first, then show only the active ones */
+  tileNodes.forEach((node) => {
+    if (node) {
+      node.style.visibility = "hidden";
+      node.style.opacity = "0";
+    }
+  });
 
   const syncTiles = () => {
     entries.forEach((entry, index) => {
-      const node = tileNodes[index];
+      const node = tileNodes[refOffset + index];
       if (!node) {
         return;
       }
@@ -369,6 +380,9 @@ function createLabSimulation(
     }
 
     hasActivatedGravity = true;
+
+    /* Start the physics runner now so tiles begin moving */
+    Runner.run(runner, engine);
     engine.world.gravity.y = 1.36;
 
     entries.forEach((entry, index) => {
@@ -384,8 +398,9 @@ function createLabSimulation(
   };
 
   const shouldActivate = () => {
-    const rect = triggerElement.getBoundingClientRect();
-    return rect.top < window.innerHeight * 1.12 && rect.bottom > window.innerHeight * 0.06;
+    const canvasRect = container.getBoundingClientRect();
+    /* Activate when the canvas area is actually entering the viewport */
+    return canvasRect.top < window.innerHeight * 0.85 && canvasRect.bottom > 0;
   };
 
   const handleViewportCheck = () => {
@@ -476,21 +491,21 @@ function TileCard({
   const title = getDisplayTitle(project);
 
   return (
-    <div className="relative h-full w-full rounded-[1.55rem] bg-white p-3 ring-1 ring-[#d5dde6]">
-      <div className="relative h-full overflow-hidden rounded-[1.1rem] bg-white ring-1 ring-inset ring-[rgba(215,223,232,0.9)]">
+    <div className="relative h-full w-full rounded-[1.1rem] bg-white p-2 ring-1 ring-[#d5dde6] sm:rounded-[1.55rem] sm:p-3">
+      <div className="relative h-full overflow-hidden rounded-[0.75rem] bg-white ring-1 ring-inset ring-[rgba(215,223,232,0.9)] sm:rounded-[1.1rem]">
         <div className="absolute inset-0 [filter:saturate(1.24)_contrast(1.08)_brightness(0.98)]">
           <LabPreview project={project} preview={preview} />
         </div>
 
-        <div className="pointer-events-none absolute inset-x-3 bottom-3 flex items-end justify-between rounded-[1rem] bg-white px-3 py-2 ring-1 ring-[rgba(215,223,232,0.75)]">
-          <div>
-            <p className="text-sm font-semibold text-primary">{title}</p>
-            <p className="text-[10px] uppercase tracking-[0.18em] text-primary/54">
+        <div className="pointer-events-none absolute inset-x-2 bottom-2 flex items-end justify-between rounded-4xl bg-white/95 px-2 py-1.5 ring-1 ring-[rgba(215,223,232,0.75)] backdrop-blur-sm sm:inset-x-3 sm:bottom-3 sm:rounded-[1rem] sm:px-3 sm:py-2">
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-xs font-semibold text-primary sm:text-sm">{title}</p>
+            <p className="truncate text-[9px] uppercase tracking-[0.14em] text-primary/54 sm:text-[10px] sm:tracking-[0.18em]">
               {normalizeText(project.category)}
             </p>
           </div>
-          <div className="rounded-full bg-primary p-2 text-white">
-            <ArrowUpRight size={14} />
+          <div className="ml-2 shrink-0 rounded-full bg-primary p-1.5 text-white sm:p-2">
+            <ArrowUpRight size={12} className="sm:h-3.5 sm:w-3.5" />
           </div>
         </div>
       </div>
@@ -498,23 +513,6 @@ function TileCard({
   );
 }
 
-function LabCard({
-  project,
-  preview,
-  className,
-}: {
-  project: Project;
-  preview: PreviewVariant;
-  className?: string;
-}) {
-  return (
-    <Link href={`/work/${project.slug}`} className={cn("group block", className)} data-cursor="image">
-      <div className="transition-transform duration-300 group-hover:-translate-y-2">
-        <TileCard project={project} preview={preview} />
-      </div>
-    </Link>
-  );
-}
 
 function LabPreview({
   project,

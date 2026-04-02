@@ -149,7 +149,7 @@ export default function Footer() {
                         </a>
                         <Link
                             href="/contact"
-                            className="inline-block rounded-full border border-dark-border text-bg px-5 py-2.5 text-sm font-medium hover:border-accent-2 hover:bg-accent hover:text-white transition-all duration-300"
+                            className="inline-block w-full rounded-full border border-dark-border px-5 py-2.5 text-center text-sm font-medium text-bg transition-all duration-300 hover:border-accent-2 hover:bg-accent hover:text-white sm:w-auto"
                         >
                             Book a 30-min Call
                         </Link>

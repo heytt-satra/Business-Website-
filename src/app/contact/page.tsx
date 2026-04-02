@@ -58,7 +58,7 @@ export default function ContactPage() {
 
     if (submitted) {
         return (
-            <section className="flex min-h-[calc(100vh-72px)] items-center justify-center bg-bg px-6">
+            <section className="flex min-h-[calc(100svh-72px)] items-center justify-center bg-bg px-6">
                 <motion.div
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
@@ -90,8 +90,8 @@ export default function ContactPage() {
     }
 
     return (
-        <section className="min-h-[calc(100vh-72px)] bg-bg">
-            <div className="mx-auto grid min-h-[calc(100vh-72px)] max-w-7xl lg:grid-cols-2">
+        <section className="min-h-[calc(100svh-72px)] bg-bg">
+            <div className="mx-auto grid min-h-[calc(100svh-72px)] max-w-7xl lg:grid-cols-2">
                 {/* Left Panel */}
                 <div className="relative flex flex-col justify-center overflow-hidden bg-[#EEF1F8] p-6 sm:p-10 lg:p-16">
                     {/* Floating deltas */}
@@ -182,11 +182,12 @@ export default function ContactPage() {
                                             </button>
                                         ))}
                                     </div>
-                                    <div className="mt-8 flex justify-end">
+                                    <div className="mt-8 flex">
                                         <Button
                                             label="Next"
                                             onClick={() => setStep(2)}
                                             variant="primary"
+                                            className="w-full sm:ml-auto sm:w-auto"
                                         />
                                     </div>
                                 </motion.div>
@@ -243,16 +244,18 @@ export default function ContactPage() {
                                             </select>
                                         </div>
                                     </div>
-                                    <div className="mt-8 flex justify-between">
+                                    <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
                                         <Button
                                             label="Back"
                                             onClick={() => setStep(1)}
                                             variant="secondary"
+                                            className="w-full sm:w-auto"
                                         />
                                         <Button
                                             label="Next"
                                             onClick={() => setStep(3)}
                                             variant="primary"
+                                            className="w-full sm:w-auto"
                                         />
                                     </div>
                                 </motion.div>
@@ -309,17 +312,19 @@ export default function ContactPage() {
                                             />
                                         </div>
                                     </div>
-                                    <div className="mt-8 flex justify-between">
+                                    <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
                                         <Button
                                             label="Back"
                                             onClick={() => setStep(2)}
                                             variant="secondary"
+                                            className="w-full sm:w-auto"
                                         />
                                         <Button
                                             label="Send My Brief"
                                             type="submit"
                                             variant="primary"
                                             glow
+                                            className="w-full sm:w-auto"
                                         />
                                     </div>
                                 </motion.div>

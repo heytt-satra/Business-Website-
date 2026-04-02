@@ -87,22 +87,22 @@ export default function StatsStrip() {
     return (
         <section ref={sectionRef} className="bg-dark-surface px-5 py-16 sm:px-6 sm:py-[4.5rem] md:px-20 md:py-20">
             <div className="mx-auto max-w-6xl">
-                <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-6">
+                <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-4">
                     {pillars.map((p) => (
-                        <div key={p.headline} className="pillar-item text-center group">
+                        <div key={p.headline} className="pillar-item group text-center">
                             {/* SVG Icon */}
-                            <div className="text-accent-2 mx-auto mb-4 transition-transform duration-300 group-hover:scale-110 flex justify-center">
+                            <div className="mx-auto mb-3 flex justify-center text-accent-2 transition-transform duration-300 group-hover:scale-110 sm:mb-4">
                                 {p.icon}
                             </div>
 
                             {/* Headline */}
-                            <p className="mb-1 text-sm font-bold text-white sm:text-base">{p.headline}</p>
+                            <p className="mb-1 text-[13px] font-bold text-white sm:text-sm md:text-base">{p.headline}</p>
 
                             {/* Divider */}
-                            <div className="w-8 h-px bg-white/15 mx-auto my-2.5" />
+                            <div className="mx-auto my-2 h-px w-6 bg-white/15 sm:my-2.5 sm:w-8" />
 
                             {/* Tagline */}
-                            <p className="font-mono text-xs leading-relaxed text-white/40">{p.tagline}</p>
+                            <p className="font-mono text-[10px] leading-relaxed text-white/40 sm:text-xs">{p.tagline}</p>
                         </div>
                     ))}
                 </div>

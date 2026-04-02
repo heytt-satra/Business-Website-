@@ -68,9 +68,9 @@ export default function Testimonials() {
     <section className="overflow-hidden bg-bg py-20 sm:py-24 md:py-28">
       <div className="relative mb-12 w-full px-5 sm:px-6 md:mb-16 md:px-20">
         <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-3xl">
+          <div className="max-w-4xl">
             <p className="label-mono mb-4">Client Love</p>
-            <h2 className="heading-lg">
+            <h2 className="heading-lg text-[clamp(26px,6vw,48px)]">
               The work moved fast. The feedback was even faster.
             </h2>
           </div>
@@ -110,8 +110,8 @@ export default function Testimonials() {
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <Card className="group relative w-[min(84vw,360px)] shrink-0 overflow-hidden rounded-[30px] border border-border bg-white shadow-[0_24px_70px_-30px_rgba(12,35,64,0.28)] transition duration-500 ease-out [transform:perspective(1200px)_rotateX(6deg)_rotateY(-8deg)] [transform-style:preserve-3d] hover:[transform:perspective(1200px)_rotateX(0deg)_rotateY(0deg)_translateY(-8px)]">
-      <CardContent className="relative flex h-full transform-gpu flex-col gap-6 p-6 sm:p-7 [transform:translateZ(28px)]">
+    <Card className="group relative w-[min(80vw,300px)] shrink-0 overflow-hidden rounded-[22px] border border-border bg-white shadow-[0_20px_54px_-32px_rgba(12,35,64,0.22)] transition duration-500 ease-out sm:w-[min(84vw,360px)] sm:rounded-[30px] md:[transform:perspective(1200px)_rotateX(6deg)_rotateY(-8deg)] md:[transform-style:preserve-3d] md:hover:[transform:perspective(1200px)_rotateX(0deg)_rotateY(0deg)_translateY(-8px)]">
+      <CardContent className="relative flex h-full transform-gpu flex-col gap-4 p-5 sm:gap-6 sm:p-7 [transform:translateZ(28px)]">
         <div className="flex items-center justify-between gap-4">
           <span className="inline-flex rounded-full border border-border bg-bg px-3 py-1 font-mono text-[0.65rem] uppercase tracking-[0.28em] text-accent shadow-sm">
             {testimonial.eyebrow}

@@ -111,7 +111,7 @@ function ServicesAccordion() {
                     <div key={service.number} className="group border-b border-border py-6 sm:py-8 md:py-9">
                         <button
                             onClick={() => setOpenIndex(openIndex === i ? -1 : i)}
-                            className="flex w-full items-center justify-between text-left relative"
+                            className="relative flex w-full items-start justify-between gap-3 text-left"
                         >
                             {/* Ghost number */}
                             <AnimatePresence>
@@ -127,16 +127,16 @@ function ServicesAccordion() {
                                 )}
                             </AnimatePresence>
 
-                            <div className="flex items-center gap-3 sm:gap-5">
+                            <div className="flex min-w-0 items-start gap-3 sm:gap-5">
                                 <span className={`font-mono text-base sm:text-lg transition-colors duration-300 ${openIndex === i ? "text-accent font-semibold" : "text-muted-light"}`}>
                                     {service.number}
                                 </span>
-                                <span className="text-xl sm:text-3xl md:text-4xl font-bold text-primary group-hover:text-accent transition-colors" style={{ letterSpacing: "-0.02em" }}>
+                                <span className="min-w-0 text-lg font-bold leading-tight text-balance text-primary transition-colors group-hover:text-accent sm:text-3xl md:text-4xl" style={{ letterSpacing: "-0.02em" }}>
                                     {service.title}
                                 </span>
                             </div>
 
-                            <div className="flex items-center gap-4">
+                            <div className="flex shrink-0 items-center gap-3 pt-1 sm:gap-4">
                                 <span className="hidden md:inline font-mono text-sm text-muted">From {service.price}</span>
                                 {openIndex === i ? <Minus size={22} className="text-accent" /> : <Plus size={22} className="text-muted" />}
                             </div>
