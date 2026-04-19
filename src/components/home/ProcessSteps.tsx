@@ -95,6 +95,48 @@ export default function ProcessSteps() {
 
         const mm = gsap.matchMedia();
 
+        mm.add("(max-width: 767px)", () => {
+            const getTravel = () => Math.max(0, track.scrollWidth - pinWrap.clientWidth);
+            const mobileSnap =
+                steps.length > 1
+                    ? {
+                        snapTo: 1 / (steps.length - 1),
+                        duration: { min: 0.18, max: 0.32 },
+                        delay: 0.04,
+                        directional: true as const,
+                        ease: "power1.inOut",
+                    }
+                    : undefined;
+
+            gsap.set(track, { x: 0, force3D: true });
+
+            const tween = gsap.to(track, {
+                x: () => -getTravel(),
+                ease: "none",
+                scrollTrigger: {
+                    trigger: pinWrap,
+                    start: "top top+=72",
+                    end: () => {
+                        const travel = getTravel();
+                        return `+=${travel * 1.7 + 220}`;
+                    },
+                    scrub: 0.85,
+                    pin: true,
+                    pinType: "transform",
+                    invalidateOnRefresh: true,
+                    anticipatePin: 1,
+                    fastScrollEnd: true,
+                    snap: mobileSnap,
+                },
+            });
+
+            return () => {
+                tween.scrollTrigger?.kill();
+                tween.kill();
+                gsap.set(track, { clearProps: "x" });
+            };
+        });
+
         mm.add("(min-width: 768px)", () => {
             const getTravel = () => Math.max(0, track.scrollWidth - pinWrap.clientWidth);
 
@@ -138,20 +180,9 @@ export default function ProcessSteps() {
                     <p className="label-mono mb-4">How We Work</p>
                     <h2 className="heading-lg text-[clamp(26px,6vw,48px)]">From idea to live product, one focused system.</h2>
                 </div>
-
-                <div className="space-y-4 md:hidden">
-                    {steps.map((step, i) => (
-                        <ProcessStepCard
-                            key={step.number}
-                            step={step}
-                            index={i}
-                            className="min-h-[340px] w-full rounded-[22px] p-5"
-                        />
-                    ))}
-                </div>
             </div>
 
-            <div className="relative left-1/2 hidden w-screen -translate-x-1/2 md:block">
+            <div className="relative left-1/2 w-screen -translate-x-1/2">
                 <div ref={pinWrapRef} className="relative overflow-hidden">
                     <div
                         ref={trackRef}
@@ -164,7 +195,7 @@ export default function ProcessSteps() {
                                 key={step.number}
                                 step={step}
                                 index={i}
-                                className="process-card h-[min(420px,calc(100vh-15rem))] w-[340px] shrink-0 rounded-[26px] p-6 transition-all duration-300 active:scale-[0.98] md:hover:-translate-y-1 md:hover:border-accent/45 md:hover:shadow-[0_18px_45px_rgba(12,35,64,0.16)]"
+                                className="process-card h-[min(360px,calc(100svh-12rem))] w-[calc(100vw-2.5rem)] min-w-[calc(100vw-2.5rem)] shrink-0 rounded-[22px] p-4 transition-all duration-300 active:scale-[0.98] sm:h-[min(390px,calc(100svh-17rem))] sm:w-[calc(100vw-3rem)] sm:min-w-[calc(100vw-3rem)] sm:rounded-[26px] sm:p-6 md:h-[min(420px,calc(100vh-15rem))] md:w-[340px] md:min-w-[340px] md:hover:-translate-y-1 md:hover:border-accent/45 md:hover:shadow-[0_18px_45px_rgba(12,35,64,0.16)]"
                             />
                         ))}
                     </div>
