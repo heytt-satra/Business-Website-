@@ -8,7 +8,7 @@ export const services = [
         shortDescription: "From idea to working product in weeks",
         proofPoint: "Launched 15+ MVPs that raised funding",
         description:
-            "We take your idea and craft a fully designed, investor-ready SaaS product — fast. UI/UX, prototyping, and handoff included.",
+            "We take your idea and craft a fully designed, investor-ready SaaS product, fast. UI/UX, prototyping, and handoff included.",
         features: [
             "User flow mapping",
             "Figma prototype",
@@ -56,7 +56,7 @@ export const services = [
         shortDescription: "Smart features powered by modern AI",
         proofPoint: "Integrated AI into 10+ production products",
         description:
-            "Embed AI into your product or operations — chatbots, recommendation engines, document processing, and more.",
+            "Embed AI into your product or operations. Chatbots, recommendation engines, document processing, and more.",
         features: [
             "OpenAI / Gemini APIs",
             "Custom AI pipelines",

@@ -61,7 +61,7 @@ const values = [
     },
     {
         title: "AI-native mindset",
-        desc: "Every product gets the AI audit — where can intelligence genuinely multiply value?",
+        desc: "Every product gets the AI audit. Where can intelligence genuinely multiply value?",
         icon: (
             <svg viewBox="0 0 32 32" fill="none" className="w-8 h-8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="6" y="8" width="20" height="16" rx="4" />

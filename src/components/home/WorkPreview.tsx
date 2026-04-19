@@ -40,28 +40,26 @@ type TileEntry = {
 };
 
 const desktopTiles: DesktopTile[] = [
-  { slug: "greenleaf-ecommerce", preview: "orb", width: 250, height: 164, x: 0.11, y: 0.47 },
-  { slug: "finflow-saas", preview: "dashboard", width: 252, height: 164, x: 0.11, y: 0.79 },
-  { slug: "taskpilot-app", preview: "portrait", width: 182, height: 208, x: 0.255, y: 0.74 },
-  { slug: "brightpath-website", preview: "profile", width: 182, height: 208, x: 0.37, y: 0.74 },
-  { slug: "automail-automation", preview: "darkboard", width: 238, height: 138, x: 0.53, y: 0.79 },
-  { slug: "mediscan-ai", preview: "blueprint", width: 172, height: 208, x: 0.645, y: 0.74 },
-  { slug: "finflow-saas", preview: "social", width: 230, height: 170, x: 0.785, y: 0.44 },
-  { slug: "brightpath-website", preview: "portrait-dark", width: 168, height: 225, x: 0.89, y: 0.31 },
-  { slug: "greenleaf-ecommerce", preview: "pricing", width: 228, height: 164, x: 0.87, y: 0.79 },
+  { slug: "swarna-palace", preview: "orb", width: 250, height: 164, x: 0.11, y: 0.47 },
+  { slug: "profitpulse", preview: "dashboard", width: 252, height: 164, x: 0.11, y: 0.79 },
+  { slug: "peerclub", preview: "portrait", width: 182, height: 208, x: 0.255, y: 0.74 },
+  { slug: "scale-your-dreams", preview: "profile", width: 182, height: 208, x: 0.37, y: 0.74 },
+  { slug: "blackboard-communications", preview: "darkboard", width: 238, height: 138, x: 0.53, y: 0.79 },
+  { slug: "advocate-prateek", preview: "blueprint", width: 172, height: 208, x: 0.645, y: 0.74 },
+  { slug: "teraindustries", preview: "social", width: 230, height: 170, x: 0.785, y: 0.44 },
+  { slug: "ssbe", preview: "portrait-dark", width: 168, height: 225, x: 0.89, y: 0.31 },
 ];
 
-/* Mobile: all 9 tiles, same previews, positions spread for narrow viewports */
+/* Mobile: same 8 tiles, positions spread for narrow viewports */
 const mobilPhysicsTiles: DesktopTile[] = [
-  { slug: "greenleaf-ecommerce", preview: "orb", width: 250, height: 164, x: 0.25, y: 0.32 },
-  { slug: "finflow-saas", preview: "dashboard", width: 252, height: 164, x: 0.75, y: 0.32 },
-  { slug: "taskpilot-app", preview: "portrait", width: 182, height: 208, x: 0.18, y: 0.62 },
-  { slug: "brightpath-website", preview: "profile", width: 182, height: 208, x: 0.50, y: 0.55 },
-  { slug: "automail-automation", preview: "darkboard", width: 238, height: 138, x: 0.82, y: 0.62 },
-  { slug: "mediscan-ai", preview: "blueprint", width: 172, height: 208, x: 0.35, y: 0.85 },
-  { slug: "finflow-saas", preview: "social", width: 230, height: 170, x: 0.70, y: 0.85 },
-  { slug: "brightpath-website", preview: "portrait-dark", width: 168, height: 225, x: 0.15, y: 0.85 },
-  { slug: "greenleaf-ecommerce", preview: "pricing", width: 228, height: 164, x: 0.85, y: 0.85 },
+  { slug: "swarna-palace", preview: "orb", width: 250, height: 164, x: 0.25, y: 0.32 },
+  { slug: "profitpulse", preview: "dashboard", width: 252, height: 164, x: 0.75, y: 0.32 },
+  { slug: "peerclub", preview: "portrait", width: 182, height: 208, x: 0.18, y: 0.62 },
+  { slug: "scale-your-dreams", preview: "profile", width: 182, height: 208, x: 0.50, y: 0.55 },
+  { slug: "blackboard-communications", preview: "darkboard", width: 238, height: 138, x: 0.82, y: 0.62 },
+  { slug: "advocate-prateek", preview: "blueprint", width: 172, height: 208, x: 0.28, y: 0.85 },
+  { slug: "teraindustries", preview: "social", width: 230, height: 170, x: 0.68, y: 0.85 },
+  { slug: "ssbe", preview: "portrait-dark", width: 168, height: 225, x: 0.50, y: 0.90 },
 ];
 
 const projectBySlug = new Map(projects.map((project) => [project.slug, project]));

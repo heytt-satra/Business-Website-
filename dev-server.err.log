@@ -1,0 +1,29 @@
+⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+⨯ ReferenceError: ArrowUpRight is not defined
+    at TileCard (src\components\home\WorkPreview.tsx:494:14)
+  492 |           </div>
+  493 |           <div className="rounded-full bg-primary p-2 text-white">
+> 494 |             <ArrowUpRight size={14} />
+      |              ^
+  495 |           </div>
+  496 |         </div>
+  497 |       </div> {
+  digest: '3356021806'
+}
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⨯ ReferenceError: mobileTiles is not defined
+    at WorkPreview (src\components\home\WorkPreview.tsx:167:12)
+  165 |
+  166 |         <div className="mx-auto grid max-w-[540px] grid-cols-2 gap-3 px-5 sm:max-w-[600px] sm:gap-4 md:hidden">
+> 167 |           {mobileTiles.map((tile, index) => {
+      |            ^
+  168 |             const project = projectBySlug.get(tile.slug);
+  169 |             if (!project) return null;
+  170 | {
+  digest: '2080435541'
+}
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.

@@ -19,14 +19,14 @@ const rows = [
     },
     {
         feature: "AI & Automation",
-        tera: "Yes — Native",
-        agency: "No — Outsourced",
+        tera: "Yes, Native",
+        agency: "No, Outsourced",
         freelancer: "No",
     },
     {
         feature: "Fixed pricing",
         tera: "Yes",
-        agency: "No — Hourly",
+        agency: "No, Hourly",
         freelancer: "Variable",
     },
     {

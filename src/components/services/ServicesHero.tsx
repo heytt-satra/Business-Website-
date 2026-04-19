@@ -48,7 +48,7 @@ export default function ServicesHero() {
                     transition={{ delay: 0.2 }}
                     className="text-lg text-muted md:text-xl"
                 >
-                    From first sketch to full automation — we do it all under one roof.
+                    From first sketch to full automation. We do it all under one roof.
                 </motion.p>
             </div>
         </section>

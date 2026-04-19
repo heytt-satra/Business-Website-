@@ -14,7 +14,7 @@ const services = [
         number: "01", title: "MVP Development", headline: "Your idea. Live in 6 weeks.",
         desc: "We scope, design, build, and deploy your MVP end-to-end. No agency bloat. You get a real, usable product in the hands of real users, fast.",
         items: ["Detailed scope + technical architecture", "Full Figma design file", "Production-ready TypeScript codebase", "CI/CD pipeline", "Staging + production environment", "2-week post-launch support", "Full documentation"],
-        timeline: "4–6 weeks", price: "$8,000",
+        timeline: "4 to 6 weeks", price: "$8,000",
         tags: ["Next.js", "TypeScript", "React", "Node.js", "PostgreSQL", "Prisma"],
         ideal: "Founders with validated ideas who need to move fast"
     },
@@ -22,15 +22,15 @@ const services = [
         number: "02", title: "SaaS Platform Development", headline: "Recurring revenue, engineered.",
         desc: "Multi-tenant SaaS platforms with subscription billing, dashboards, admin panels, and analytics from day one.",
         items: ["Multi-tenant database architecture", "Stripe billing", "Complete auth system", "User dashboard + admin panel", "Analytics and tracking", "Email notifications (Resend)", "API documentation"],
-        timeline: "6–10 weeks", price: "$15,000",
+        timeline: "6 to 10 weeks", price: "$15,000",
         tags: ["Stripe", "Auth.js", "Prisma", "Redis", "PostgreSQL", "Resend"],
         ideal: "SaaS founders ready to build a scalable platform"
     },
     {
         number: "03", title: "AI Integration & Solutions", headline: "Make your product 10x smarter.",
-        desc: "We embed AI where it creates genuine, measurable value — LLM features, computer vision, voice AI, RAG pipelines.",
+        desc: "We embed AI where it creates genuine, measurable value. LLM features, computer vision, voice AI, RAG pipelines.",
         items: ["AI opportunity audit", "LLM integration", "Vector database setup", "Custom prompt engineering", "Streaming UI", "Cost optimization + caching", "AI feature analytics"],
-        timeline: "2–6 weeks", price: "$5,000",
+        timeline: "2 to 6 weeks", price: "$5,000",
         tags: ["OpenAI GPT-4o", "Claude 3.5", "LangChain", "Pinecone", "Whisper"],
         ideal: "Products that need an intelligent edge"
     },
@@ -38,7 +38,7 @@ const services = [
         number: "04", title: "Website Design & Development", headline: "Websites that convert, not just impress.",
         desc: "Marketing sites, landing pages, and web apps with scroll animations, perfect performance, and conversion-focused layouts.",
         items: ["Full Figma mockups", "Framer Motion animation system", "CMS integration", "SEO setup", "Lighthouse 90+ scores", "Analytics integration", "Domain + deployment"],
-        timeline: "2–4 weeks", price: "$4,000",
+        timeline: "2 to 4 weeks", price: "$4,000",
         tags: ["Next.js", "Framer Motion", "Tailwind CSS", "GSAP", "Sanity CMS"],
         ideal: "Brands that need a web presence that converts"
     },
@@ -46,7 +46,7 @@ const services = [
         number: "05", title: "Mobile App Development", headline: "iOS + Android without the complexity.",
         desc: "Cross-platform mobile apps using React Native and Expo. One codebase, native performance, shipped to both stores.",
         items: ["Complete UI/UX design", "React Native + Expo codebase", "App Store + Google Play submission", "Push notifications", "Deep linking", "OTA update capability", "Analytics (Posthog)"],
-        timeline: "6–12 weeks", price: "$12,000",
+        timeline: "6 to 12 weeks", price: "$12,000",
         tags: ["React Native", "Expo", "TypeScript", "Supabase", "Expo Router"],
         ideal: "Teams that need mobile without doubling engineering"
     },
@@ -245,9 +245,9 @@ function ContactSplit() {
                     <div>
                         <label className="block text-sm font-medium text-primary mb-1.5">Budget Range</label>
                         <select className="w-full rounded-xl border border-border bg-white px-4 py-3.5 text-sm text-primary transition-all focus:outline-none focus:border-accent">
-                            <option>$2K–$5K</option>
-                            <option>$5K–$15K</option>
-                            <option>$15K–$30K</option>
+                            <option>$2K to $5K</option>
+                            <option>$5K to $15K</option>
+                            <option>$15K to $30K</option>
                             <option>$30K+</option>
                         </select>
                     </div>
