@@ -93,36 +93,41 @@ export default function ProcessSteps() {
         const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         if (prefersReducedMotion) return;
 
-        const getTravel = () => Math.max(0, track.scrollWidth - pinWrap.clientWidth);
-        const isMobile = () => window.innerWidth < 768;
+        const mm = gsap.matchMedia();
 
-        gsap.set(track, { x: 0, force3D: true });
+        mm.add("(min-width: 768px)", () => {
+            const getTravel = () => Math.max(0, track.scrollWidth - pinWrap.clientWidth);
 
-        const tween = gsap.to(track, {
-            x: () => -getTravel(),
-            ease: "none",
-            scrollTrigger: {
-                trigger: pinWrap,
-                start: () => (isMobile() ? "top top+=72" : "top top+=92"),
-                end: () => {
-                    const travel = getTravel();
-                    const factor = isMobile() ? 1.6 : 1.22;
-                    const extra = isMobile() ? 210 : 180;
-                    return `+=${travel * factor + extra}`;
+            gsap.set(track, { x: 0, force3D: true });
+
+            const tween = gsap.to(track, {
+                x: () => -getTravel(),
+                ease: "none",
+                scrollTrigger: {
+                    trigger: pinWrap,
+                    start: "top top+=92",
+                    end: () => {
+                        const travel = getTravel();
+                        return `+=${travel * 1.22 + 180}`;
+                    },
+                    scrub: 0.9,
+                    pin: true,
+                    pinType: "transform",
+                    invalidateOnRefresh: true,
+                    anticipatePin: 1,
+                    fastScrollEnd: true,
                 },
-                scrub: isMobile() ? 1.15 : 0.9,
-                pin: true,
-                pinType: "transform",
-                invalidateOnRefresh: true,
-                anticipatePin: 1,
-                fastScrollEnd: true,
-            },
+            });
+
+            return () => {
+                tween.scrollTrigger?.kill();
+                tween.kill();
+                gsap.set(track, { clearProps: "x" });
+            };
         });
 
         return () => {
-            tween.scrollTrigger?.kill();
-            tween.kill();
-            gsap.set(track, { clearProps: "x" });
+            mm.revert();
         };
     }, []);
 
@@ -133,9 +138,20 @@ export default function ProcessSteps() {
                     <p className="label-mono mb-4">How We Work</p>
                     <h2 className="heading-lg text-[clamp(26px,6vw,48px)]">From idea to live product, one focused system.</h2>
                 </div>
+
+                <div className="space-y-4 md:hidden">
+                    {steps.map((step, i) => (
+                        <ProcessStepCard
+                            key={step.number}
+                            step={step}
+                            index={i}
+                            className="min-h-[340px] w-full rounded-[22px] p-5"
+                        />
+                    ))}
+                </div>
             </div>
 
-            <div className="relative left-1/2 w-screen -translate-x-1/2">
+            <div className="relative left-1/2 hidden w-screen -translate-x-1/2 md:block">
                 <div ref={pinWrapRef} className="relative overflow-hidden">
                     <div
                         ref={trackRef}
@@ -144,49 +160,12 @@ export default function ProcessSteps() {
                         data-cursor="drag"
                     >
                         {steps.map((step, i) => (
-                            <article
+                            <ProcessStepCard
                                 key={step.number}
-                                className="process-card relative flex h-[min(360px,calc(100svh-12rem))] w-[78vw] min-w-[250px] max-w-[300px] shrink-0 snap-start flex-col overflow-hidden rounded-[22px] border border-border/85 bg-gradient-to-b from-white to-surface-alt/55 p-4 shadow-[0_10px_24px_rgba(12,35,64,0.08)] transition-all duration-300 active:scale-[0.98] sm:h-[min(390px,calc(100svh-17rem))] sm:w-[320px] sm:max-w-[340px] sm:rounded-[26px] sm:p-6 md:h-[min(420px,calc(100vh-15rem))] md:w-[340px] md:hover:-translate-y-1 md:hover:border-accent/45 md:hover:shadow-[0_18px_45px_rgba(12,35,64,0.16)]"
-                            >
-                                <div className="pointer-events-none absolute -right-16 top-14 hidden h-36 w-36 rounded-full bg-accent/10 blur-2xl sm:block" />
-                                <p className="pointer-events-none absolute right-4 top-4 select-none text-[64px] font-black leading-none tracking-[-0.03em] text-primary/[0.06]">
-                                    {step.number}
-                                </p>
-
-                                <div className="relative z-10 mb-5 flex items-center justify-between gap-3">
-                                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-border bg-white text-accent shadow-[0_4px_16px_rgba(12,35,64,0.08)]">
-                                        {stepIcons[i]}
-                                    </div>
-                                    <span className="rounded-full border border-accent/20 bg-accent-light/80 px-3 py-1 text-xs font-semibold text-accent">
-                                        {step.duration}
-                                    </span>
-                                </div>
-
-                                <div className="relative z-10">
-                                    <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
-                                        Step {step.number}
-                                    </p>
-                                    <h3 className="mt-2 text-[clamp(22px,6vw,30px)] font-extrabold leading-[0.95] tracking-[-0.03em] text-primary">
-                                        {step.title}
-                                    </h3>
-                                    <p className="mt-3 text-sm leading-relaxed text-muted">
-                                        {step.desc}
-                                    </p>
-                                </div>
-
-                                <div className="relative z-10 mt-auto space-y-2 border-t border-border/70 pt-3">
-                                    {step.deliverables.map((d) => (
-                                        <div key={d} className="flex items-start gap-2 text-[13px] leading-snug text-primary sm:text-sm">
-                                            <svg viewBox="0 0 16 16" fill="none" className="mt-0.5 h-4 w-4 shrink-0 text-accent" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                <path d="M3 8l4 4 6-6" />
-                                            </svg>
-                                            {d}
-                                        </div>
-                                    ))}
-                                </div>
-
-                                <div className="absolute left-1/2 top-2 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(91,192,235,0.2)]" />
-                            </article>
+                                step={step}
+                                index={i}
+                                className="process-card h-[min(420px,calc(100vh-15rem))] w-[340px] shrink-0 rounded-[26px] p-6 transition-all duration-300 active:scale-[0.98] md:hover:-translate-y-1 md:hover:border-accent/45 md:hover:shadow-[0_18px_45px_rgba(12,35,64,0.16)]"
+                            />
                         ))}
                     </div>
 
@@ -204,5 +183,60 @@ export default function ProcessSteps() {
                 }
             `}</style>
         </section>
+    );
+}
+
+function ProcessStepCard({
+    step,
+    index,
+    className,
+}: {
+    step: (typeof steps)[number];
+    index: number;
+    className: string;
+}) {
+    return (
+        <article
+            className={`relative flex flex-col overflow-hidden border border-border/85 bg-gradient-to-b from-white to-surface-alt/55 shadow-[0_10px_24px_rgba(12,35,64,0.08)] ${className}`}
+        >
+            <div className="pointer-events-none absolute -right-16 top-14 h-36 w-36 rounded-full bg-accent/10 blur-2xl" />
+            <p className="pointer-events-none absolute right-4 top-4 select-none text-[64px] font-black leading-none tracking-[-0.03em] text-primary/[0.06]">
+                {step.number}
+            </p>
+
+            <div className="relative z-10 mb-5 flex items-center justify-between gap-3">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-border bg-white text-accent shadow-[0_4px_16px_rgba(12,35,64,0.08)]">
+                    {stepIcons[index]}
+                </div>
+                <span className="rounded-full border border-accent/20 bg-accent-light/80 px-3 py-1 text-xs font-semibold text-accent">
+                    {step.duration}
+                </span>
+            </div>
+
+            <div className="relative z-10">
+                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
+                    Step {step.number}
+                </p>
+                <h3 className="mt-2 text-[clamp(22px,6vw,30px)] font-extrabold leading-[0.95] tracking-[-0.03em] text-primary">
+                    {step.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted">
+                    {step.desc}
+                </p>
+            </div>
+
+            <div className="relative z-10 mt-auto space-y-2 border-t border-border/70 pt-3">
+                {step.deliverables.map((deliverable) => (
+                    <div key={deliverable} className="flex items-start gap-2 text-[13px] leading-snug text-primary sm:text-sm">
+                        <svg viewBox="0 0 16 16" fill="none" className="mt-0.5 h-4 w-4 shrink-0 text-accent" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M3 8l4 4 6-6" />
+                        </svg>
+                        {deliverable}
+                    </div>
+                ))}
+            </div>
+
+            <div className="absolute left-1/2 top-2 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(91,192,235,0.2)]" />
+        </article>
     );
 }
