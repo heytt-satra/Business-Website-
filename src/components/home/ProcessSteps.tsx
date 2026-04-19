@@ -115,7 +115,7 @@ export default function ProcessSteps() {
                 ease: "none",
                 scrollTrigger: {
                     trigger: pinWrap,
-                    start: "top top+=72",
+                    start: "top top+=24",
                     end: () => {
                         const travel = getTravel();
                         return `+=${travel * 1.7 + 220}`;
@@ -174,9 +174,9 @@ export default function ProcessSteps() {
     }, []);
 
     return (
-        <section ref={sectionRef} className="bg-bg py-12 sm:py-14 md:py-16">
+        <section ref={sectionRef} className="bg-bg py-10 sm:py-14 md:py-16">
             <div className="w-full px-5 sm:px-6 md:px-20">
-                <div className="mb-6 sm:mb-8 md:mb-10">
+                <div className="mb-5 sm:mb-8 md:mb-10">
                     <p className="label-mono mb-4">How We Work</p>
                     <h2 className="heading-lg text-[clamp(26px,6vw,48px)]">From idea to live product, one focused system.</h2>
                 </div>
@@ -195,7 +195,7 @@ export default function ProcessSteps() {
                                 key={step.number}
                                 step={step}
                                 index={i}
-                                className="process-card h-[min(360px,calc(100svh-12rem))] w-[calc(100vw-2.5rem)] min-w-[calc(100vw-2.5rem)] shrink-0 rounded-[22px] p-4 transition-all duration-300 active:scale-[0.98] sm:h-[min(390px,calc(100svh-17rem))] sm:w-[calc(100vw-3rem)] sm:min-w-[calc(100vw-3rem)] sm:rounded-[26px] sm:p-6 md:h-[min(420px,calc(100vh-15rem))] md:w-[340px] md:min-w-[340px] md:hover:-translate-y-1 md:hover:border-accent/45 md:hover:shadow-[0_18px_45px_rgba(12,35,64,0.16)]"
+                                className="process-card h-[clamp(312px,calc(100svh-14rem),344px)] w-[calc(100vw-2.5rem)] min-w-[calc(100vw-2.5rem)] shrink-0 rounded-[22px] p-4 transition-all duration-300 active:scale-[0.98] sm:h-[clamp(350px,calc(100svh-16rem),390px)] sm:w-[calc(100vw-3rem)] sm:min-w-[calc(100vw-3rem)] sm:rounded-[26px] sm:p-6 md:h-[min(420px,calc(100vh-15rem))] md:w-[340px] md:min-w-[340px] md:hover:-translate-y-1 md:hover:border-accent/45 md:hover:shadow-[0_18px_45px_rgba(12,35,64,0.16)]"
                             />
                         ))}
                     </div>
@@ -231,12 +231,12 @@ function ProcessStepCard({
             className={`relative flex flex-col overflow-hidden border border-border/85 bg-gradient-to-b from-white to-surface-alt/55 shadow-[0_10px_24px_rgba(12,35,64,0.08)] ${className}`}
         >
             <div className="pointer-events-none absolute -right-16 top-14 h-36 w-36 rounded-full bg-accent/10 blur-2xl" />
-            <p className="pointer-events-none absolute right-4 top-4 select-none text-[64px] font-black leading-none tracking-[-0.03em] text-primary/[0.06]">
+            <p className="pointer-events-none absolute right-4 top-4 select-none text-[56px] font-black leading-none tracking-[-0.03em] text-primary/[0.06] sm:text-[64px]">
                 {step.number}
             </p>
 
-            <div className="relative z-10 mb-5 flex items-center justify-between gap-3">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-border bg-white text-accent shadow-[0_4px_16px_rgba(12,35,64,0.08)]">
+            <div className="relative z-10 mb-4 flex items-center justify-between gap-3 sm:mb-5">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-border bg-white text-accent shadow-[0_4px_16px_rgba(12,35,64,0.08)] sm:h-12 sm:w-12">
                     {stepIcons[index]}
                 </div>
                 <span className="rounded-full border border-accent/20 bg-accent-light/80 px-3 py-1 text-xs font-semibold text-accent">
@@ -248,17 +248,17 @@ function ProcessStepCard({
                 <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
                     Step {step.number}
                 </p>
-                <h3 className="mt-2 text-[clamp(22px,6vw,30px)] font-extrabold leading-[0.95] tracking-[-0.03em] text-primary">
+                <h3 className="mt-2 text-[clamp(18px,6vw,30px)] font-extrabold leading-[0.98] tracking-[-0.03em] text-primary sm:leading-[0.95]">
                     {step.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">
+                <p className="mt-2.5 text-[13px] leading-relaxed text-muted sm:mt-3 sm:text-sm">
                     {step.desc}
                 </p>
             </div>
 
-            <div className="relative z-10 mt-auto space-y-2 border-t border-border/70 pt-3">
+            <div className="relative z-10 mt-4 space-y-1.5 border-t border-border/70 pt-2.5 sm:mt-auto sm:space-y-2 sm:pt-3">
                 {step.deliverables.map((deliverable) => (
-                    <div key={deliverable} className="flex items-start gap-2 text-[13px] leading-snug text-primary sm:text-sm">
+                    <div key={deliverable} className="flex items-start gap-2 text-[12.5px] leading-snug text-primary sm:text-sm">
                         <svg viewBox="0 0 16 16" fill="none" className="mt-0.5 h-4 w-4 shrink-0 text-accent" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M3 8l4 4 6-6" />
                         </svg>
