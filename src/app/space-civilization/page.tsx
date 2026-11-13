@@ -12,13 +12,13 @@ export default function Page() {
     <div className="page-shell space-page">
       <PageIntro
         label="SPACE & CIVILIZATION"
-        title="CIVILIZATION BEYOND EARTH."
+        title="Civilization beyond Earth."
         description="Expansion requires energy, intelligence, propulsion, autonomy, materials, and sustainable infrastructure. Explore six horizons, with their possibilities and limits clearly stated."
       />
       <Visual kind="orbital" className="space-panorama" />
       <p className="image-caption">
-        AI-generated orbital concept visualization. No operating TERA
-        infrastructure is depicted.
+        Earth&apos;s horizon and the International Space Station. NASA reference
+        photography, not TERA infrastructure.
       </p>
       <Journey expanded />
       <Disclosure />

@@ -13,7 +13,7 @@ export function ArrowLink({
   return (
     <Link className={`button ${primary ? "primary" : ""}`} href={href}>
       {children}
-      <span aria-hidden="true">↗</span>
+      <span aria-hidden="true">›</span>
     </Link>
   );
 }
@@ -21,51 +21,37 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="footer-top">
-        <Link className="brand" href="/">
+        <Link href="/" className="brand">
           <Mark />
-          <span>
-            TERA<span className="brand-sub">INDUSTRIES</span>
-          </span>
         </Link>
-        <p>
-          Engineering the next era
-          <br />
-          of civilization.
-        </p>
         <div className="footer-nav">
           <Link href="/technologies">Technologies</Link>
-          {navLinks.map(([n, h]) => (
-            <Link href={h} key={h}>
-              {n}
+          {navLinks.map(([name, href]) => (
+            <Link key={href} href={href}>
+              {name}
             </Link>
           ))}
         </div>
       </div>
-      <div className="footer-word" aria-hidden="true">
-        TERA INDUSTRIES
-      </div>
       <div className="footer-bottom">
-        <span>
-          © {new Date().getFullYear()} TERA INDUSTRIES · A FICTIONAL CONCEPT
-        </span>
+        <span>© {new Date().getFullYear()} TERA INDUSTRIES</span>
         <p>
-          Concept studies, not company achievements. No operating facilities,
-          deployed technologies, or medical benefits are claimed. Imagery
-          includes synthetic concept renders and original diagrams.
+          A fictional research concept. Photographs show existing science and
+          engineering, not TERA facilities or products.
         </p>
-        <Link href="/about#editorial-standard">Our editorial standard ↗</Link>
+        <Link href="/about#image-credits">Photography credits</Link>
+        <Link href="/about#editorial-standard">About this project</Link>
       </div>
     </footer>
   );
 }
 export function SectionTitle({
-  number,
   label,
   title,
   href,
   link = "Explore all",
 }: {
-  number: string;
+  number?: string;
   label: string;
   title: string;
   href?: string;
@@ -74,14 +60,12 @@ export function SectionTitle({
   return (
     <div className="section-heading">
       <div>
-        <p className="eyebrow">
-          <span>{number}</span> {label}
-        </p>
+        <p className="eyebrow">{label}</p>
         <h2>{title}</h2>
       </div>
       {href && (
         <Link className="text-link" href={href}>
-          {link} <span>↗</span>
+          {link} <span>→</span>
         </Link>
       )}
     </div>
@@ -98,10 +82,7 @@ export function PageIntro({
 }) {
   return (
     <div className="page-intro">
-      <p className="eyebrow">
-        <span className="blue-dot" />
-        {label}
-      </p>
+      <p className="eyebrow">{label}</p>
       <h1>{title}</h1>
       <p className="intro-description">{description}</p>
     </div>
@@ -110,11 +91,10 @@ export function PageIntro({
 export function Disclosure() {
   return (
     <aside className="disclosure">
-      <span className="blue-dot" />
       <p>
-        <strong>A concept, clearly stated.</strong> TERA INDUSTRIES is a
-        fictional, concept-stage organization. These are research directions and
-        design studies, not validated products or operational capabilities.
+        TERA INDUSTRIES is a fictional, concept-stage project. These studies
+        describe proposed directions, not tested products or operating
+        capabilities.
       </p>
     </aside>
   );

@@ -67,13 +67,34 @@ for (const file of pages) {
   assert.ok(/name="description"/.test(html), `${route}: description required`);
   assert.ok(/rel="canonical"/.test(html), `${route}: canonical required`);
   assert.ok(/fictional/i.test(html), `${route}: concept disclosure required`);
+  assert.ok(!html.includes("\u2014"), `${route}: em dashes are not allowed`);
+  assert.ok(
+    !html.includes("orbital-hero.webp"),
+    `${route}: retired generated imagery must not render`,
+  );
 }
 assert.deepEqual(
   failures,
   [],
   "Internal links, anchors, and assets must resolve",
 );
-assert.ok(fs.existsSync(path.join(root, "media/orbital-hero.webp")));
+const photos = JSON.parse(
+  fs.readFileSync("src/data/photo-credits.json", "utf8"),
+);
+for (const photo of Object.values(photos)) {
+  assert.ok(
+    fs.existsSync(path.join(root, photo.src)),
+    `Photo exists: ${photo.src}`,
+  );
+  assert.ok(
+    fs.existsSync(path.join(root, photo.src.replace(".webp", "-small.webp"))),
+    `Mobile photo exists: ${photo.src}`,
+  );
+  assert.ok(
+    photo.author && photo.source && photo.license,
+    "Each photograph has attribution",
+  );
+}
 assert.ok(fs.existsSync(path.join(root, "media/social.jpg")));
 console.log(
   `PASS: ${pages.length} routes; ${links} internal links; ${assets} asset references; headings, metadata, canonicals, and disclosures.`,

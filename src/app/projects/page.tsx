@@ -12,9 +12,9 @@ export default function Page() {
   return (
     <div className="page-shell">
       <PageIntro
-        label="INITIATIVES / CONCEPT PORTFOLIO"
-        title="The future, under exploration."
-        description="Ten connected initiatives. Each starts with a meaningful question, makes its dependencies visible, and names what remains unknown."
+        label="Concept studies"
+        title="Projects."
+        description="Ten concepts across energy, computing, biology, and space. Each describes an engineering problem and the questions still open."
       />
       <Disclosure />
       <div className="project-grid portfolio">

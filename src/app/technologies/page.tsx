@@ -10,13 +10,13 @@ export default function Page() {
   return (
     <div className="page-shell">
       <PageIntro
-        label="THE TECHNOLOGY ATLAS"
-        title="Explore the frontiers."
-        description="Ten disciplines. Countless connections. Discover the scientific foundations and engineering questions behind our concept-stage vision."
+        label="Fields of research"
+        title="Technologies."
+        description="Ten areas of science and engineering. Explore how they work, where they connect, and the problems still to be solved."
       />
       <Catalog />
       <section className="section inset">
-        <h2 className="large-heading">The power of connection.</h2>
+        <h2 className="large-heading">How the fields connect.</h2>
         <Ecosystem />
       </section>
       <Disclosure />

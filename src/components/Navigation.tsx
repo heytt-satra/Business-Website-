@@ -5,127 +5,125 @@ import { useEffect, useRef, useState } from "react";
 import { divisions } from "@/data/frontiers";
 import { navLinks } from "@/data/navigation";
 export function Mark() {
-  return (
-    <svg viewBox="0 0 40 40" aria-hidden="true" className="mark">
-      <path
-        fill="currentColor"
-        d="M4 7h32l-5 8H9zM16 18h8v15h-8zM2 18h10v7H6zM28 18h10l-4 7h-6z"
-      />
-    </svg>
-  );
+  return <span className="wordmark">TERA INDUSTRIES</span>;
 }
 export default function Navigation() {
-  const [menu, setMenu] = useState(false),
-    [mobile, setMobile] = useState(false);
+  const [open, setOpen] = useState(false),
+    [tech, setTech] = useState(false);
   const path = usePathname();
   const root = useRef<HTMLElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
-  const techToggle = useRef<HTMLButtonElement>(null);
   useEffect(() => {
-    const close = (e: PointerEvent) => {
-      if (!root.current?.contains(e.target as Node)) {
-        setMenu(false);
-        setMobile(false);
+    const close = (event: PointerEvent) => {
+      if (!root.current?.contains(event.target as Node)) {
+        setOpen(false);
+        setTech(false);
       }
     };
     document.addEventListener("pointerdown", close);
     return () => document.removeEventListener("pointerdown", close);
   }, []);
-  function dismiss() {
-    setMenu(false);
-    setMobile(false);
-  }
+  const close = () => {
+    setOpen(false);
+    setTech(false);
+  };
   return (
     <header
       ref={root}
-      className="site-header"
-      onKeyDown={(e) => {
-        if (e.key === "Escape") {
-          dismiss();
-          (mobile ? toggle : techToggle).current?.focus();
+      className={`site-header ${path === "/" ? "over-hero" : ""} ${open ? "menu-open" : ""}`}
+      onKeyDown={(event) => {
+        if (event.key === "Escape") {
+          close();
+          toggle.current?.focus();
         }
       }}
     >
       <Link
         href="/"
-        className="brand"
         aria-label="TERA INDUSTRIES home"
-        onClick={dismiss}
+        className="brand"
+        onClick={close}
       >
         <Mark />
-        <span>
-          TERA<span className="brand-sub">INDUSTRIES</span>
-        </span>
       </Link>
-      <button
-        ref={toggle}
-        className="mobile-toggle"
-        aria-expanded={mobile}
-        aria-controls="primary-navigation"
-        onClick={() => {
-          setMobile(!mobile);
-          setMenu(false);
-        }}
-      >
-        {mobile ? "Close −" : "Menu +"}
-      </button>
-      <nav
-        id="primary-navigation"
-        aria-label="Primary navigation"
-        className={mobile ? "navigation open" : "navigation"}
-      >
-        <div className="tech-nav">
-          <button
-            ref={techToggle}
-            className={path.startsWith("/technologies") ? "nav-active" : ""}
-            aria-expanded={menu}
-            aria-controls="technology-menu"
-            onClick={() => setMenu(!menu)}
-          >
-            Technologies <span aria-hidden="true">{menu ? "−" : "+"}</span>
-          </button>
+      <div className="header-right">
+        <div className="quick-nav">
+          <Link href="/technologies">Technologies</Link>
+          <Link href="/projects">Projects</Link>
+          <Link href="/about">Our vision</Link>
         </div>
-        {navLinks.map(([name, href]) => (
-          <Link
-            key={href}
-            href={href}
-            onClick={dismiss}
-            aria-current={path.startsWith(href) ? "page" : undefined}
-          >
-            {name}
-          </Link>
-        ))}
-        <span className="nav-signal" aria-hidden="true">
-          <i /> EXPLORING WHAT’S NEXT
-        </span>
-      </nav>
-      {menu && (
-        <div id="technology-menu" className="mega-menu">
-          <div>
-            <span className="eyebrow">
-              TEN DIVISIONS. ONE CONNECTED VISION.
-            </span>
-            <Link href="/technologies" className="mega-title" onClick={dismiss}>
-              Explore the
-              <br />
-              frontiers. <span>↗</span>
+        <button
+          ref={toggle}
+          className="mobile-toggle"
+          onClick={() => {
+            setOpen(!open);
+            setTech(false);
+          }}
+          aria-expanded={open}
+          aria-controls="primary-navigation"
+        >
+          {open ? "Close" : "Menu"}
+          <span aria-hidden="true">{open ? "×" : "☰"}</span>
+        </button>
+      </div>
+      {open && (
+        <nav
+          id="primary-navigation"
+          className={`navigation open ${tech ? "technology-open" : ""}`}
+          aria-label="Primary navigation"
+        >
+          <div className="nav-main">
+            <Link href="/" onClick={close}>
+              Home
             </Link>
-            <p>Intelligence. Energy. Matter. Life. Space.</p>
-          </div>
-          <div className="mega-links">
-            {divisions.map((d, i) => (
-              <Link
-                onClick={dismiss}
-                href={`/technologies/${d.slug}`}
-                key={d.slug}
+            <div className="tech-nav">
+              <button
+                onClick={() => setTech(!tech)}
+                aria-expanded={tech}
+                aria-controls="technology-menu"
               >
-                <span>{String(i + 1).padStart(2, "0")}</span>
-                {d.short}
-                <span>↗</span>
+                Technologies <span>{tech ? "−" : "+"}</span>
+              </button>
+            </div>
+            {navLinks.map(([name, href]) => (
+              <Link
+                href={href}
+                onClick={close}
+                key={href}
+                aria-current={path.startsWith(href) ? "page" : undefined}
+              >
+                {name}
               </Link>
             ))}
           </div>
-        </div>
+          <div className="nav-secondary">
+            {tech ? (
+              <div id="technology-menu" className="mega-links">
+                <Link href="/technologies" onClick={close}>
+                  All technologies →
+                </Link>
+                {divisions.map((d) => (
+                  <Link
+                    key={d.slug}
+                    href={`/technologies/${d.slug}`}
+                    onClick={close}
+                  >
+                    {d.short}
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <>
+                <p>
+                  Intelligence. Energy.
+                  <br />
+                  Matter. Life. Space.
+                </p>
+                <span>A concept-stage research vision.</span>
+              </>
+            )}
+          </div>
+        </nav>
       )}
     </header>
   );

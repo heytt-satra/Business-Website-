@@ -33,7 +33,7 @@ export default function Page() {
     <div className="page-shell">
       <PageIntro
         label="HUMAN FUTURES"
-        title="THE NEXT EVOLUTION OF HUMAN CAPABILITY."
+        title="Technology that extends human capability."
         description="The measure of progress is not how far we can push a machine. It is how well technology supports human well-being, accessibility, and agency."
       />
       <div className="vision-banner">

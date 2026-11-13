@@ -26,7 +26,7 @@ Next.js App Router, React, TypeScript, and Tailwind CSS. Pages are statically ge
 - `src/data/frontiers.ts`: typed division, initiative, relationship, and civilization content.
 - `src/data/articles.ts`: full research and editorial content.
 - `src/components/Interactions.tsx`: search/filter, network controls, click/scroll-driven journey.
-- `src/components/Visual.tsx`: original topic-specific technical illustrations.
+- `src/components/Visual.tsx`: credited responsive photography.
 - `src/app/[section]/[slug]/page.tsx`: content-driven detail templates and metadata.
 - `src/app/globals.css`: responsive visual system, focus indicators, reduced-motion behavior.
 - `scripts/verify-export.mjs`: all routes, internal links, anchors, assets, headings, metadata, and disclosures.
@@ -40,9 +40,7 @@ Cloned from https://github.com/heytt-satra/Business-Website-.git. The former age
 
 ## Assets and credibility
 
-The hero is an original AI-generated orbital visualization, optimized to local WebP and labeled as a concept render. Other visuals are original SVG diagrams, not photos or validated engineering drawings. The emblem is original SVG. Google fonts are fetched at build time by `next/font` and self-hosted in the export. Runtime does not need an external image host.
-
-See `ASSET-NOTES.md` for the generation prompt. Articles distinguish explainers, concept studies, and speculation. The fusion explainer references US Department of Energy background science, not validation of TERA.
+The redesign uses real reference photography with source and license credits in `ASSET-NOTES.md`, `src/data/photo-credits.json`, and the About page. It removes the generated orbital image and technology diagrams. Images show existing work by other organizations, not TERA facilities or partnerships. Responsive WebP versions are served locally. Fonts are self-hosted in the build output.
 
 ## Verification
 
@@ -59,4 +57,3 @@ Serve `out/` with any static host, preserve nested index.html paths, and use 404
 The postbuild script preserves Next.js segment payloads and adds dot-separated filename aliases on Windows. Without these aliases, client navigation prefetches can return 404 even while HTML routes load. The export verification checks payload availability. Keep this step when building on Windows; it is harmless when aliases are already emitted by another platform.
 
 npm start is an alias for the static preview server.
-

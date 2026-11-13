@@ -1,22 +1,12 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import Navigation from "@/components/Navigation";
 import { Footer } from "@/components/Shell";
 import { siteUrl } from "@/lib/content";
 import "./globals.css";
-const display = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-});
 const body = Inter({
   subsets: ["latin"],
   variable: "--font-body",
-  display: "swap",
-});
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
   display: "swap",
 });
 export const metadata: Metadata = {
@@ -24,7 +14,7 @@ export const metadata: Metadata = {
     siteUrl || "https://tera-industries-frontiers.dotingpecan4.chatgpt.site",
   ),
   title: {
-    default: "TERA INDUSTRIES — Engineering the Next Era of Civilization",
+    default: "TERA INDUSTRIES. Engineering the Next Era of Civilization",
     template: "%s | TERA INDUSTRIES",
   },
   description:
@@ -39,10 +29,7 @@ export const metadata: Metadata = {
 };
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${display.variable} ${body.variable} ${mono.variable}`}
-    >
+    <html lang="en" className={body.variable}>
       <body>
         <a className="skip-link" href="#main">
           Skip to content

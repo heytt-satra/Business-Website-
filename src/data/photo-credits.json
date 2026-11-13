@@ -1,0 +1,98 @@
+{
+  "fusion": {
+    "title": "Alcator C-Mod Tokamak Interior",
+    "author": "Mike Garrett",
+    "source": "https://commons.wikimedia.org/wiki/File:Alcator_C-Mod_Tokamak_Interior.jpg",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "src": "/media/photography/fusion.webp"
+  },
+  "silicon": {
+    "title": "Silicon wafer researcher",
+    "author": "U.S. Department of Energy",
+    "source": "https://commons.wikimedia.org/wiki/File:Silicon_wafer_researcher.jpg",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "src": "/media/photography/silicon.webp"
+  },
+  "bio": {
+    "title": "SK8-18-2 human derived cells, fluorescence microscopy (29942101073)",
+    "author": "ZEISS Microscopy from Germany",
+    "source": "https://commons.wikimedia.org/wiki/File:SK8-18-2_human_derived_cells,_fluorescence_microscopy_(29942101073).jpg",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "src": "/media/photography/bio.webp"
+  },
+  "quantum": {
+    "title": "IBM Q system (Fraunhofer 2)",
+    "author": "IBM Research",
+    "source": "https://commons.wikimedia.org/wiki/File:IBM_Q_system_(Fraunhofer_2).jpg",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "src": "/media/photography/quantum.webp"
+  },
+  "orbital": {
+    "title": "Earth horizon and International Space Station solar panel array (Expedition 17 crew, August 2008)",
+    "author": "NASA",
+    "source": "https://commons.wikimedia.org/wiki/File:Earth_horizon_and_International_Space_Station_solar_panel_array_(Expedition_17_crew,_August_2008).jpg",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "src": "/media/photography/orbital.webp"
+  },
+  "propulsion": {
+    "title": "RS-25 Engine Hot Fire Test",
+    "author": "NASA & Aerojet Rocketdyne",
+    "source": "https://commons.wikimedia.org/wiki/File:RS-25_Engine_Hot_Fire_Test.jpg",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "src": "/media/photography/propulsion.webp"
+  },
+  "human": {
+    "title": "Brain-Controlled Prosthetic Arm",
+    "author": "Photo courtesy of The Johns Hopkins University Applied Physics Laboratory (JHU/APL)",
+    "source": "https://commons.wikimedia.org/wiki/File:Brain-Controlled_Prosthetic_Arm.jpg",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "src": "/media/photography/human.webp"
+  },
+  "materials": {
+    "title": "CSIRO ScienceImage 11637 Scanning electron microscope image of the seed inside the MOF crystals",
+    "author": "Dr Paolo Falcaro and Dr Dario Buso, CSIRO",
+    "source": "https://commons.wikimedia.org/wiki/File:CSIRO_ScienceImage_11637_Scanning_electron_microscope_image_of_the_seed_inside_the_MOF_crystals.jpg",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "src": "/media/photography/materials.webp"
+  },
+  "energy": {
+    "title": "PS20 & PS10 solar power plants",
+    "author": "kallerna",
+    "source": "https://commons.wikimedia.org/wiki/File:PS20_%26_PS10_solar_power_plants.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "src": "/media/photography/energy.webp"
+  },
+  "robotics": {
+    "title": "Robonaut R2A on Centaur 2 at KSC - brightened",
+    "author": "Joe Bibby",
+    "source": "https://commons.wikimedia.org/wiki/File:Robonaut_R2A_on_Centaur_2_at_KSC_-_brightened.jpg",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "src": "/media/photography/robotics.webp"
+  },
+  "intelligence": {
+    "title": "Summit (supercomputer)",
+    "author": "Carlos Jones/ORNL",
+    "source": "https://commons.wikimedia.org/wiki/File:Summit_(supercomputer).jpg",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "src": "/media/photography/intelligence.webp"
+  },
+  "earth": {
+    "title": "ISS-56 Earth's limb during an orbital sunrise",
+    "author": "NASA",
+    "source": "https://commons.wikimedia.org/wiki/File:ISS-56_Earth%27s_limb_during_an_orbital_sunrise.jpg",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "src": "/media/photography/earth.webp"
+  }
+}

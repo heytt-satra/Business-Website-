@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PageIntro, ArrowLink, Disclosure } from "@/components/Shell";
 import { pageMeta } from "@/lib/content";
+import credits from "@/data/photo-credits.json";
 export const metadata = pageMeta(
   "Our vision",
   "The vision and editorial standards of TERA INDUSTRIES, a fictional concept-stage frontier technology organization.",
@@ -93,9 +94,10 @@ export default function Page() {
         </p>
         <p>
           No factories, employees, investors, partners, clinical outcomes,
-          publications, patents, benchmarks, or revenue are claimed. The imagery
-          consists of original diagrams and a labeled AI-generated orbital
-          rendering.
+          publications, patents, benchmarks, or revenue are claimed. The
+          photographs show existing research and engineering from other
+          organizations. They do not depict TERA facilities, products, or
+          partnerships.
         </p>
         <h2>Continue the conversation through the ideas.</h2>
         <p>
@@ -105,6 +107,33 @@ export default function Page() {
           <Link href="/insights">editorial perspectives</Link> to understand the
           vision.
         </p>
+      </section>
+      <section id="image-credits" className="photo-credits">
+        <h2>Photography credits</h2>
+        <p>
+          Real photographs, used as references to the fields we explore. Images
+          have been resized, compressed, and cropped for the layout. Attribution
+          does not imply endorsement or a relationship with TERA. Each image
+          retains the license listed below.
+        </p>
+        <div className="credit-list">
+          {Object.entries(credits).map(([key, photo]) => (
+            <div key={key}>
+              <h3>{photo.title}</h3>
+              <p>
+                {photo.author} · {photo.license}
+              </p>
+              <a href={photo.source} target="_blank" rel="noreferrer">
+                Original photograph
+              </a>
+              {photo.licenseUrl && (
+                <a href={photo.licenseUrl} target="_blank" rel="noreferrer">
+                  License terms
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
       </section>
       <Disclosure />
     </div>

@@ -20,7 +20,7 @@ export const divisions: Division[] = [
     name: "Nuclear Physics & Nuclear Engineering",
     short: "Nuclear systems",
     field: "Energy",
-    tagline: "Power, at the heart of matter.",
+    tagline: "Nuclear energy, plasma physics, and reactor engineering.",
     description:
       "Exploring the physics of the nucleus, the behavior of plasmas, and the engineering systems that could turn nuclear energy into reliable power.",
     mechanism:
@@ -46,7 +46,7 @@ export const divisions: Division[] = [
     name: "Semiconductors & Microelectronics",
     short: "Semiconductor systems",
     field: "Intelligence",
-    tagline: "The physical foundation of intelligence.",
+    tagline: "Devices, fabrication, and computing architectures.",
     description:
       "From the behavior of electrons in a crystal to the architecture of an entire compute system: a connected view of microelectronics.",
     mechanism:
@@ -72,7 +72,7 @@ export const divisions: Division[] = [
     name: "Synthetic Biology & Biotechnology",
     short: "Biological engineering",
     field: "Life",
-    tagline: "Understanding life. Expanding possibility.",
+    tagline: "Biological systems, from molecules to cells.",
     description:
       "Studying biological systems as complex, adaptive networks, with computational tools that connect molecular mechanisms to responsible engineering.",
     mechanism:
@@ -98,7 +98,7 @@ export const divisions: Division[] = [
     name: "AI & Autonomous Intelligence",
     short: "Artificial intelligence",
     field: "Intelligence",
-    tagline: "Intelligence that extends discovery.",
+    tagline: "Learning systems for research and industry.",
     description:
       "Investigating machine intelligence as a tool for understanding difficult systems, guiding experiments, and supporting human judgment.",
     mechanism:
@@ -124,7 +124,7 @@ export const divisions: Division[] = [
     name: "Quantum Physics & Quantum Computing",
     short: "Quantum systems",
     field: "Matter",
-    tagline: "New possibilities in quantum behavior.",
+    tagline: "Computing, sensing, and communication using quantum systems.",
     description:
       "Exploring information, sensing, and communication at the scale where quantum mechanics governs what can be measured and controlled.",
     mechanism:
@@ -150,7 +150,7 @@ export const divisions: Division[] = [
     name: "Space Technology & Infrastructure",
     short: "Space systems",
     field: "Space",
-    tagline: "A sustained presence beyond Earth.",
+    tagline: "Spacecraft and the infrastructure that supports them.",
     description:
       "Considering the infrastructure that turns a space mission from a single expedition into a maintainable system.",
     mechanism:
@@ -176,7 +176,7 @@ export const divisions: Division[] = [
     name: "Rocket Science & Aerospace Engineering",
     short: "Aerospace & propulsion",
     field: "Space",
-    tagline: "The engineering of reaching further.",
+    tagline: "Propulsion, structures, and flight control.",
     description:
       "Connecting propulsion, structures, aerodynamics, and flight control to explore reliable transport through atmosphere and space.",
     mechanism:
@@ -202,7 +202,7 @@ export const divisions: Division[] = [
     name: "Materials Science & Engineering",
     short: "Advanced materials",
     field: "Matter",
-    tagline: "Every frontier has a material limit.",
+    tagline: "The relationship between structure, process, and performance.",
     description:
       "Exploring the connection between atomic structure, manufacturing history, and the properties that an engineered system can actually use.",
     mechanism:
@@ -228,7 +228,7 @@ export const divisions: Division[] = [
     name: "Advanced Energy Systems",
     short: "Energy & power systems",
     field: "Energy",
-    tagline: "Power is a system, not a source.",
+    tagline: "Generation, storage, conversion, and distribution.",
     description:
       "Considering generation, storage, power conversion, and distribution as one interconnected engineering challenge.",
     mechanism:
@@ -254,7 +254,7 @@ export const divisions: Division[] = [
     name: "Emerging & Transformational Technologies",
     short: "Frontier technologies",
     field: "Intelligence",
-    tagline: "Where disciplines become possibilities.",
+    tagline: "Research across robotics, computing, and manufacturing.",
     description:
       "An open research space for ideas that cross established boundaries, from autonomous instruments to new ways of processing information.",
     mechanism:
@@ -294,7 +294,7 @@ export const projects: Project[] = [
   {
     slug: "tera-fusion",
     name: "TERA FUSION",
-    title: "Containing a star. Engineering a system.",
+    title: "Fusion power as a complete system.",
     description:
       "A concept study of plasma confinement and the infrastructure around a future fusion power plant.",
     problem:
@@ -316,7 +316,7 @@ export const projects: Project[] = [
   {
     slug: "tera-silicon",
     name: "TERA SILICON",
-    title: "Move less data. Unlock more compute.",
+    title: "Compute architecture, from memory to cooling.",
     description:
       "An architecture study of specialized compute, memory proximity, and heterogeneous integration.",
     problem:
@@ -338,7 +338,7 @@ export const projects: Project[] = [
   {
     slug: "tera-intelligence",
     name: "TERA INTELLIGENCE",
-    title: "A collaborator for difficult questions.",
+    title: "AI tools for scientific work.",
     description:
       "A research direction for bounded AI systems that assist scientific reasoning and industrial decisions.",
     problem:
@@ -360,7 +360,7 @@ export const projects: Project[] = [
   {
     slug: "tera-quantum",
     name: "TERA QUANTUM",
-    title: "Control the fragile. Study the possible.",
+    title: "Quantum computing, sensing, and communication.",
     description:
       "A concept portfolio spanning quantum computation, precision sensing, and communication.",
     problem:
@@ -382,7 +382,7 @@ export const projects: Project[] = [
   {
     slug: "tera-bio",
     name: "TERA BIO",
-    title: "Model living complexity.",
+    title: "Models of complex biological systems.",
     description:
       "A computational biotechnology direction centered on responsible modeling and biological understanding.",
     problem:
@@ -400,7 +400,7 @@ export const projects: Project[] = [
   {
     slug: "tera-orbital",
     name: "TERA ORBITAL",
-    title: "Infrastructure for the next horizon.",
+    title: "Power, servicing, and infrastructure in orbit.",
     description:
       "An orbital infrastructure concept exploring serviceable modules, distributed power, and autonomous maintenance.",
     problem:
@@ -423,7 +423,7 @@ export const projects: Project[] = [
   {
     slug: "tera-propulsion",
     name: "TERA PROPULSION",
-    title: "Reach further. Return reliably.",
+    title: "Propulsion designed for repeated use.",
     description:
       "A propulsion concept study connecting engine design with vehicle reuse and maintainability.",
     problem:
@@ -445,7 +445,7 @@ export const projects: Project[] = [
   {
     slug: "tera-materials",
     name: "TERA MATERIALS",
-    title: "Discover what the future can be made of.",
+    title: "Finding materials that can be manufactured.",
     description:
       "A direction for computational materials discovery with synthesis and lifecycle constraints built in.",
     problem:
@@ -467,7 +467,7 @@ export const projects: Project[] = [
   {
     slug: "tera-robotics",
     name: "TERA ROBOTICS",
-    title: "Capability where access is difficult.",
+    title: "Robots for difficult environments.",
     description:
       "A concept for supervised autonomous systems in industrial, scientific, and extreme environments.",
     problem:
@@ -489,7 +489,7 @@ export const projects: Project[] = [
   {
     slug: "tera-human",
     name: "TERA HUMAN",
-    title: "Technology in service of human agency.",
+    title: "Assistive technology built around its users.",
     description:
       "A human-centered vision for assistive interfaces, augmentation, and regenerative research.",
     problem:

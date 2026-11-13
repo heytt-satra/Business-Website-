@@ -16,11 +16,7 @@ export default function ArticleIndex({
             ? "RESEARCH & DISCOVERY"
             : "PERSPECTIVES / EDITORIAL"
         }
-        title={
-          section === "research"
-            ? "Understand the mechanisms."
-            : "Think beyond the immediate."
-        }
+        title={section === "research" ? "Research." : "Perspectives."}
         description={
           section === "research"
             ? "Explore the science, constraints, and systems behind frontier technologies. Original explainers and clearly labeled concept studies."
