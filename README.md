@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TERA INDUSTRIES
 
-## Getting Started
+A complete frontier-technology concept website built from the supplied brief. TERA is explicitly fictional and concept-stage. It makes no claims about real facilities, products, clinical benefits, benchmarks, employees, or financing.
 
-First, run the development server:
+## Run locally
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Requires Node.js 22+ and npm. Run `npm ci`, then `npm run dev`. Open http://localhost:3000.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+For the production export, run `npm run build`, `npm run verify`, then `npm run preview`. The preview serves `out/` on localhost:3000. Stop with Ctrl+C. Set `PORT` to choose another port. Do not use `next start` for this static export.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Copy `.env.example` to `.env.local` before building. Set `NEXT_PUBLIC_SITE_URL` to the deployment origin for canonical URLs and sitemap entries. Update the default metadataBase in `src/app/layout.tsx` if moving domains.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Site map
 
-## Learn More
+36 content pages, plus loading, error, and 404 states:
 
-To learn more about Next.js, take a look at the following resources:
+- Home, Technologies, Projects, Research, Human Futures, Space & Civilization, About, Insights.
+- Ten technology detail pages under `/technologies/[slug]`.
+- Ten initiative pages under `/projects/[slug]`.
+- Five research explainers/studies and three editorial articles.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Implementation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Next.js App Router, React, TypeScript, and Tailwind CSS. Pages are statically generated. Only navigation, filtering, ecosystem selection, reveals, and the journey require client interaction. No database, contact backend, authentication, or paid service is needed.
 
-## Deploy on Vercel
+- `src/data/frontiers.ts`: typed division, initiative, relationship, and civilization content.
+- `src/data/articles.ts`: full research and editorial content.
+- `src/components/Interactions.tsx`: search/filter, network controls, click/scroll-driven journey.
+- `src/components/Visual.tsx`: original topic-specific technical illustrations.
+- `src/app/[section]/[slug]/page.tsx`: content-driven detail templates and metadata.
+- `src/app/globals.css`: responsive visual system, focus indicators, reduced-motion behavior.
+- `scripts/verify-export.mjs`: all routes, internal links, anchors, assets, headings, metadata, and disclosures.
+- `scripts/preview.mjs`: local static server with real 404 responses.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Add typed records to extend the site. Static params and sitemap derive from the data. Update the expected route count in the verification script. A future CMS can replace the data access boundary while preserving record shapes and templates.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Original repository
+
+Cloned from https://github.com/heytt-satra/Business-Website-.git. The former agency site is preserved in `archive/original-src/` and excluded from compilation. Its admin editor, server actions, contact flow, testimonials, and service pages are inactive. Original assets and history remain available. This replacement keeps unsupported agency/company claims out of the new concept site.
+
+## Assets and credibility
+
+The hero is an original AI-generated orbital visualization, optimized to local WebP and labeled as a concept render. Other visuals are original SVG diagrams, not photos or validated engineering drawings. The emblem is original SVG. Google fonts are fetched at build time by `next/font` and self-hosted in the export. Runtime does not need an external image host.
+
+See `ASSET-NOTES.md` for the generation prompt. Articles distinguish explainers, concept studies, and speculation. The fusion explainer references US Department of Energy background science, not validation of TERA.
+
+## Verification
+
+Run `npm run typecheck`, `npm run lint`, `npm run build`, `npm run verify`, and `npm audit --omit=dev`.
+
+Browser QA should cover desktop/mobile navigation, combined search/category filters, empty results/reset, ecosystem connections, all journey stages, keyboard Escape/focus, reduced motion, and narrow layouts. See the delivered verification report for checks actually run.
+
+## Deployment
+
+Serve `out/` with any static host, preserve nested index.html paths, and use 404.html for unknown routes. `.openai/hosting.json` identifies the private Sites preview. No push to the original GitHub remote or public release is implied.
+
+### Windows static export compatibility
+
+The postbuild script preserves Next.js segment payloads and adds dot-separated filename aliases on Windows. Without these aliases, client navigation prefetches can return 404 even while HTML routes load. The export verification checks payload availability. Keep this step when building on Windows; it is harmless when aliases are already emitted by another platform.
+
+npm start is an alias for the static preview server.
+

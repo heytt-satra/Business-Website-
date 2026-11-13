@@ -1,64 +1,55 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono, Geist } from "next/font/google";
+import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import Navigation from "@/components/Navigation";
+import { Footer } from "@/components/Shell";
+import { siteUrl } from "@/lib/content";
 import "./globals.css";
-import LenisProvider from "@/components/providers/LenisProvider";
-import AppShell from "@/components/providers/AppShell";
-import { getSiteUrlObject } from "@/lib/site";
-import { cn } from "@/lib/utils";
-
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-cabinet",
+const display = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-display",
+  display: "swap",
 });
-
-const inter = Inter({
-  variable: "--font-inter",
+const body = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-body",
+  display: "swap",
 });
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains",
+const mono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-mono",
+  display: "swap",
 });
-
 export const metadata: Metadata = {
-  metadataBase: getSiteUrlObject(),
+  metadataBase: new URL(
+    siteUrl || "https://tera-industries-frontiers.dotingpecan4.chatgpt.site",
+  ),
   title: {
-    default: "TeraIndustries - MVPs, SaaS & AI Products That Ship Fast",
-    template: "%s | TeraIndustries",
+    default: "TERA INDUSTRIES — Engineering the Next Era of Civilization",
+    template: "%s | TERA INDUSTRIES",
   },
   description:
-    "We build MVPs, SaaS platforms, websites, apps, and AI integrations. From idea to deployed product in weeks, not months.",
-  icons: {
-    icon: "/favicon.png?v=20260305",
-    apple: "/favicon.png?v=20260305",
-  },
+    "Explore the connected frontiers of intelligence, energy, matter, life, and space. A fictional, concept-stage industrial research vision.",
+  icons: { icon: "/icon.svg" },
   openGraph: {
+    siteName: "TERA INDUSTRIES",
     type: "website",
-    locale: "en_US",
-    siteName: "TeraIndustries",
+    images: ["/media/social.jpg"],
   },
-  twitter: {
-    card: "summary_large_image",
-  },
+  twitter: { card: "summary_large_image", images: ["/media/social.jpg"] },
 };
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={cn(spaceGrotesk.variable, inter.variable, jetbrainsMono.variable, "font-sans", geist.variable)}>
-      <body className="antialiased">
-        <LenisProvider>
-          <AppShell>{children}</AppShell>
-        </LenisProvider>
+    <html
+      lang="en"
+      className={`${display.variable} ${body.variable} ${mono.variable}`}
+    >
+      <body>
+        <a className="skip-link" href="#main">
+          Skip to content
+        </a>
+        <Navigation />
+        <main id="main">{children}</main>
+        <Footer />
       </body>
     </html>
   );

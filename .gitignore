@@ -42,3 +42,7 @@ prod-server.err.log
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/qa/
+!.env.example
+.gstack/
