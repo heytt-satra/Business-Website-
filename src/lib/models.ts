@@ -1,6 +1,10 @@
 import * as T from "three";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
+import { createSignatureModel } from "./signature-models";
+import { finishSurfaces } from "./studio";
+import { addMechanicalDetails } from "./mechanical-details";
+import { addPrecisionDetails } from "./precision-details";
 
 export type Model = { root: T.Group; animate: (time: number) => void };
 
@@ -32,15 +36,18 @@ function batchFixedParts(parent: T.Object3D) {
       parent.remove(part);
       part.geometry.dispose();
     }
-    parent.add(new T.Mesh(combined, material));
+    const combinedMesh = new T.Mesh(combined, material);
+    combinedMesh.castShadow = true;
+    combinedMesh.receiveShadow = true;
+    parent.add(combinedMesh);
   }
 }
 const metal = (color: string, roughness = 0.28, metalness = 0.86) =>
-  new T.MeshStandardMaterial({ color, roughness, metalness });
-const silver = () => metal("#c3ccd1");
-const gold = () => metal("#b99151", 0.3);
-const black = () => metal("#20272b", 0.42);
-const blue = () => metal("#243a5b", 0.27, 0.62);
+  new T.MeshPhysicalMaterial({ color, roughness, metalness });
+const silver = () => metal("#929ca3", 0.36, 0.94);
+const gold = () => metal("#a88b58", 0.34, 0.92);
+const black = () => metal("#141a20", 0.48, 0.7);
+const blue = () => metal("#19293a", 0.22, 0.82);
 function mesh(
   g: T.BufferGeometry,
   m: T.Material,
@@ -67,7 +74,7 @@ function box(
   z = 0,
 ) {
   return mesh(
-    new RoundedBoxGeometry(w, h, d, 2, Math.min(w, h, d) * 0.12),
+    new RoundedBoxGeometry(w, h, d, 2, Math.min(w, h, d) * 0.055),
     m,
     p,
     x,
@@ -133,8 +140,14 @@ function ring(
 }
 
 export function createModel(kind: string): Model {
-  const root = new T.Group(),
-    steel = silver(),
+  const root = new T.Group();
+  const signature = createSignatureModel(kind, root);
+  if (signature) {
+    finishSurfaces(root);
+    batchFixedParts(root);
+    return { root, animate: signature };
+  }
+  const steel = silver(),
     copper = gold(),
     dark = black(),
     navy = blue();
@@ -383,40 +396,6 @@ export function createModel(kind: string): Model {
     tube(root, pearl, a, 0.053);
     tube(root, sage, b, 0.053);
     root.rotation.z = -0.25;
-  } else if (kind === "intelligence") {
-    const status = new T.MeshStandardMaterial({
-      color: "#8bc4c3",
-      emissive: "#5ab1b1",
-      emissiveIntensity: 1.2,
-    });
-    for (let rack = 0; rack < 3; rack++) {
-      const x = (rack - 1) * 0.95;
-      box(root, dark, 0.86, 2.5, 1.15, x);
-      box(root, steel, 0.88, 0.1, 1.18, x, 1.29);
-      for (let u = 0; u < 12; u++) {
-        const y = (u - 5.5) * 0.19;
-        box(root, black(), 0.77, 0.16, 0.06, x, y, 0.6);
-        for (let k = 0; k < 10; k++)
-          box(root, steel, 0.035, 0.08, 0.008, x + (k - 4.5) * 0.055, y, 0.638);
-        ball(root, status, 0.014, x + 0.34, y, 0.65);
-      }
-      for (let j = 0; j < 5; j++)
-        tube(
-          root,
-          copper,
-          [
-            new T.Vector3(x - 0.3 + j * 0.15, 1.26, -0.55),
-            new T.Vector3(x - 0.3 + j * 0.15, 1.4, -0.8),
-            new T.Vector3(x - 0.3 + j * 0.15, -1.1, -0.8),
-          ],
-          0.018,
-        );
-    }
-    root.rotation.y = -0.3;
-    root.scale.setScalar(0.88);
-    movers.push((t) => {
-      status.emissiveIntensity = 1.1 + Math.sin(t * 2) * 0.5;
-    });
   } else if (kind === "materials") {
     const nodes: T.Vector3[] = [];
     for (let x = 0; x < 3; x++)
@@ -447,85 +426,11 @@ export function createModel(kind: string): Model {
     );
     crystal.rotation.z = 0.4;
     root.rotation.set(0.25, 0.3, 0.12);
-  } else if (kind === "energy") {
-    const rotor = new T.Group();
-    root.add(rotor);
-    cyl(root, steel, 0.35, 0.6).rotation.x = Math.PI / 2;
-    for (let j = 0; j < 2; j++)
-      for (let i = 0; i < 16; i++) {
-        const a = (i / 16) * Math.PI * 2 + j * 0.12;
-        const blade = box(
-          rotor,
-          steel,
-          0.18,
-          0.8,
-          0.11,
-          Math.cos(a) * 0.73,
-          Math.sin(a) * 0.73,
-          j * 0.3 - 0.15,
-        );
-        blade.rotation.z = a - Math.PI / 2;
-        blade.rotation.y = 0.55;
-      }
-    const casing = mesh(
-      new T.TorusGeometry(1.25, 0.12, 16, 96, Math.PI * 1.65),
-      dark,
-      root,
-    );
-    casing.rotation.z = 0.55;
-    const rim = mesh(
-      new T.TorusGeometry(1.25, 0.025, 8, 96, Math.PI * 1.65),
-      copper,
-      root,
-      0,
-      0,
-      0.15,
-    );
-    rim.rotation.z = 0.55;
-    cyl(root, copper, 0.21, 0.85, 0, 0, 0).rotation.x = Math.PI / 2;
-    root.rotation.set(0.1, 0.5, 0);
-    movers.push((t) => (rotor.rotation.z = t * 0.32));
-  } else {
-    cyl(root, dark, 0.72, 0.18, 0, -1.3);
-    cyl(root, steel, 0.52, 0.25, 0, -1.1);
-    const shoulder = new T.Group();
-    shoulder.position.y = -0.86;
-    root.add(shoulder);
-    const upper = new T.Group();
-    upper.rotation.z = -0.35;
-    shoulder.add(upper);
-    ball(upper, dark, 0.29);
-    box(upper, steel, 0.35, 1.18, 0.42, 0, 0.53);
-    cyl(upper, copper, 0.19, 0.49).rotation.x = Math.PI / 2;
-    const fore = new T.Group();
-    fore.position.y = 1.13;
-    fore.rotation.z = -1.12;
-    upper.add(fore);
-    ball(fore, dark, 0.25);
-    box(fore, steel, 0.28, 1.05, 0.33, 0, 0.48);
-    cyl(fore, copper, 0.17, 0.4).rotation.x = Math.PI / 2;
-    ball(fore, dark, 0.2, 0, 1.02);
-    box(fore, steel, 0.45, 0.15, 0.25, 0, 1.17);
-    for (const s of [-1, 1]) {
-      box(fore, dark, 0.09, 0.36, 0.14, s * 0.21, 1.39);
-      box(fore, steel, 0.16, 0.08, 0.14, s * 0.16, 1.57);
-    }
-    tube(
-      upper,
-      copper,
-      [
-        new T.Vector3(0, -0.15, -0.26),
-        new T.Vector3(0.21, 0.4, -0.3),
-        new T.Vector3(0, 1.13, -0.26),
-      ],
-      0.035,
-    );
-    root.position.x = -0.5;
-    movers.push((t) => {
-      shoulder.rotation.y = Math.sin(t * 0.35) * 0.2;
-      fore.rotation.z = -1.12 + Math.sin(t * 0.5) * 0.1;
-    });
   }
+  addMechanicalDetails(kind, root);
+  addPrecisionDetails(kind, root);
+  if (kind === "bio") root.scale.setScalar(0.88);
+  finishSurfaces(root);
   batchFixedParts(root);
   return { root, animate: (t) => movers.forEach((f) => f(t)) };
 }

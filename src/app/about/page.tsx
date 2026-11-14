@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { PageIntro, ArrowLink, Disclosure } from "@/components/Shell";
 import { pageMeta } from "@/lib/content";
-import credits from "@/data/photo-credits.json";
+import cosmic from "@/data/cosmic-media.json";
 export const metadata = pageMeta(
   "Our vision",
   "The vision and editorial standards of TERA INDUSTRIES, a fictional concept-stage frontier technology organization.",
@@ -94,10 +94,9 @@ export default function Page() {
         </p>
         <p>
           No factories, employees, investors, partners, clinical outcomes,
-          publications, patents, benchmarks, or revenue are claimed. The
-          photographs show existing research and engineering from other
-          organizations. They do not depict TERA facilities, products, or
-          partnerships.
+          publications, patents, benchmarks, or revenue are claimed. The imagery
+          combines astronomical observations and scientific visualizations with
+          original concept models.
         </p>
         <h2>Continue the conversation through the ideas.</h2>
         <p>
@@ -111,10 +110,10 @@ export default function Page() {
       <section id="image-credits" className="photo-credits">
         <h2>Photography and motion credits</h2>
         <p>
-          Real photographs, used as references to the fields we explore. Images
-          have been resized, compressed, and cropped for the layout. Attribution
-          does not imply endorsement or a relationship with TERA. Each image
-          retains the license listed below.
+          Astronomical observations give the site its otherworldly setting.
+          Images have been resized, compressed, and cropped for the layout.
+          Attribution does not imply endorsement or a relationship with TERA.
+          Each image retains the license listed below.
         </p>
         <div className="credit-list">
           <div>
@@ -174,14 +173,36 @@ export default function Page() {
               Download the full logo
             </a>
           </div>
-          {Object.entries(credits).map(([key, photo]) => (
-            <div key={key}>
+          <div>
+            <h3>Binary black-hole film</h3>
+            <p>
+              NASA’s Goddard Space Flight Center/Jeremy Schnittman and Brian P.
+              Powell. Scientific visualization, compressed and shown without
+              audio.
+            </p>
+            <a
+              href="https://svs.gsfc.nasa.gov/13831/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              NASA source and credits
+            </a>
+            <a
+              href="https://www.nasa.gov/nasa-brand-center/images-and-media/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              NASA media guidelines
+            </a>
+          </div>
+          {cosmic.map((photo) => (
+            <div key={photo.id}>
               <h3>{photo.title}</h3>
               <p>
                 {photo.author} · {photo.license}
               </p>
               <a href={photo.source} target="_blank" rel="noreferrer">
-                Original photograph
+                Original observation
               </a>
               {photo.licenseUrl && (
                 <a href={photo.licenseUrl} target="_blank" rel="noreferrer">

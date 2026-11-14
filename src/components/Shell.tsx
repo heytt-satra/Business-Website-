@@ -36,10 +36,10 @@ export function Footer() {
       <div className="footer-bottom">
         <span>© {new Date().getFullYear()} TERA INDUSTRIES</span>
         <p>
-          A fictional research concept. Photographs show existing science and
-          engineering, not TERA facilities or products.
+          A fictional research concept. Cosmic observations, scientific
+          visualizations, and original engineering models.
         </p>
-        <Link href="/about#image-credits">Photography credits</Link>
+        <Link href="/about#image-credits">Image and film credits</Link>
         <Link href="/about#editorial-standard">About this project</Link>
       </div>
     </footer>

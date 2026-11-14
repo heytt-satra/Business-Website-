@@ -1,32 +1,22 @@
-# Motion redesign verification: 14 November 2026
+# Verification: cosmic imagery and detailed model revision
 
-## Delivered changes
+## Completed changes
 
-- Original TERA symbol and wordmark in the header and footer, with downloadable SVGs and matching favicon.
-- Local NASA Earth video hero, compressed to approximately 4 MB, with poster and visible attribution.
-- Native-scroll, pinned six-stage civilization scene using textured 3D planets, orbital paths, and a galaxy star field.
-- Ten distinct solid 3D technology models with field headings and TERA program names. Hover, keyboard focus, and click/tap select the model; dragging rotates it.
-- Technology catalogue hover previews and interactive models on all ten technology detail pages.
-- Global animation/video pause control, offscreen suspension, reduced-motion branches, and photographic WebGL fallback.
-- All 36 content routes retained. No em dashes in rendered site content.
+- Restored the previous NASA Earth hero.
+- Replaced visible industrial photos and the ISS loading fallback with five credited cosmic observations.
+- Added a local, silent binary black-hole film with a poster and shared motion controls.
+- Detailed all ten technology models with physical surface finishes, studio reflections, cast shadows and engineering details.
+- Replaced the AI rack with a photonic intelligence core, the turbine with a stellar power concept, and the robotic arm with a full humanoid.
+- Added two-axis rotation, zoom and reset controls. Model previews inside catalogue links contain no nested buttons.
 
-## Checks completed
+## Validation
 
-- Production build, TypeScript, and ESLint pass.
-- Export verification passes for 36 content routes, 947 internal link references, and 392 asset references, including canonical metadata, anchors, disclosures, portable navigation payloads, photographs, motion files, and logo assets.
-- All ten technology controls select the expected TERA program and render a 3D view. Each model was captured and visually inspected in Chromium.
-- All six civilization controls update the active stage, scroll location, heading, and rendered view.
-- Hero video loads from the local export, plays, and pauses through the global control.
-- Mobile navigation opens its technology list. Escape closes the menu and returns focus to the menu button.
-- Combined quantum search and Matter filter returns one division; empty results and reset restore all ten divisions.
-- Desktop and mobile layouts were inspected. No horizontal page overflow on the checked homepage, technology index, and technology detail layouts.
-- Production dependency audit reports zero vulnerabilities. Existing development-only audit findings were not addressed by forced dependency changes.
+Production build, TypeScript, ESLint and static export verification pass. The export contains 36 content routes, 947 internal links and 421 asset references. Rendered pages contain no em dashes or industrial photo paths.
 
-## Verification limits
+All ten model constructors pass finite-geometry and nonempty-bounds checks after animation and batching. All ten updated models were viewed in Chromium. Desktop and mobile checks covered the restored hero, technology selector, humanoid detail page and cosmic sections. The checked pages have no horizontal overflow. Zoom reaches 140 percent and reset returns it to 100 percent. All six civilization controls select the matching heading and rendered scene.
 
-Chromium was used for browser QA; physical devices and other browser engines were not tested. The gstack CDP allowlist does not permit reduced-motion emulation, so that branch was reviewed in source rather than reported as an emulated browser pass. No Lighthouse score or formal accessibility certification is claimed. Three-dimensional objects are illustrative concepts, not scientific simulations or TERA product specifications.
+The global motion control pauses both videos. The Earth hero points to its previous local file. WebGL context loss switches to a credited cosmic still. No application console errors appeared during the normal model checks; Chromium emitted GPU readback performance warnings while taking screenshots.
 
-The user requested a GitHub push after completion. GitHub and private Sites publication are separate final operations; the delivery reports their confirmed results.
+## Limits
 
-Photographic fallback also passed an explicit WebGL context-loss test: the reference image appeared and the interface remained usable.
-
+Chromium was used; physical devices and other browser engines were not tested. The gstack CDP allowlist does not permit reduced-motion emulation, so that branch was reviewed in source. No Lighthouse score or formal accessibility certification is claimed. Models are original illustrative concepts, not CAD assemblies or scientific simulations. Browser rendering quality and frame rate depend on GPU capability.

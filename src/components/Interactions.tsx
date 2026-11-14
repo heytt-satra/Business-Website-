@@ -75,6 +75,7 @@ export function Catalog() {
                 <ModelCanvas
                   kind={d.visual}
                   paused={paused}
+                  interactive={false}
                   label={`3D concept model for ${d.short}`}
                 />
               )}

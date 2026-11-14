@@ -92,7 +92,7 @@ export default function Home() {
         </div>
       </section>
       <section className="photo-scene space-scene scroll-scene">
-        <Visual kind="orbital" />
+        <HeroFilm film="binary" className="cosmic-film" />
         <div className="scene-shade" />
         <div className="scene-copy">
           <p className="eyebrow">TERA ORBITAL / Space systems</p>
@@ -108,6 +108,7 @@ export default function Home() {
             Explore TERA ORBITAL
           </ArrowLink>
         </div>
+        <span className="scene-film-credit">Binary black holes · NASA / Goddard / Schnittman &amp; Powell</span>
       </section>
       <section className="human-section scroll-scene">
         <div className="human-copy">

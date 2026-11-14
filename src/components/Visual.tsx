@@ -1,5 +1,5 @@
 import Image from "next/image";
-import credits from "@/data/photo-credits.json";
+import { cosmicImage } from "@/lib/cosmic";
 export default function Visual({
   kind = "fusion",
   className = "",
@@ -10,14 +10,13 @@ export default function Visual({
   color?: string;
 }) {
   void color;
-  const key = kind in credits ? kind : "fusion";
-  const photo = credits[key as keyof typeof credits];
+  const photo = cosmicImage(kind);
   return (
-    <figure className={`visual photo-${key} ${className}`}>
+    <figure className={`visual cosmic-photo photo-${photo.id} ${className}`}>
       <picture>
         <source
           media="(max-width: 700px)"
-          srcSet={photo.src.replace(".webp", "-small.webp")}
+          srcSet={photo.smallSrc}
         />
         <Image
           src={photo.src}
@@ -28,7 +27,7 @@ export default function Visual({
         />
       </picture>
       <figcaption>
-        Reference photograph <span aria-hidden="true">·</span> {photo.author}
+        {photo.title} <span aria-hidden="true">·</span> {photo.author}
       </figcaption>
     </figure>
   );

@@ -69,7 +69,8 @@ for (const file of pages) {
   assert.ok(/fictional/i.test(html), `${route}: concept disclosure required`);
   assert.ok(!html.includes("\u2014"), `${route}: em dashes are not allowed`);
   assert.ok(
-    !html.includes("orbital-hero.webp"),
+    !html.includes("orbital-hero.webp") &&
+      !html.includes("/media/photography/"),
     `${route}: retired generated imagery must not render`,
   );
 }
@@ -79,7 +80,7 @@ assert.deepEqual(
   "Internal links, anchors, and assets must resolve",
 );
 const photos = JSON.parse(
-  fs.readFileSync("src/data/photo-credits.json", "utf8"),
+  fs.readFileSync("src/data/cosmic-media.json", "utf8"),
 );
 for (const photo of Object.values(photos)) {
   assert.ok(
@@ -96,11 +97,32 @@ for (const photo of Object.values(photos)) {
   );
 }
 assert.ok(fs.existsSync(path.join(root, "media/social.jpg")));
-for (const asset of ["earth-orbit.mp4", "earth-poster.jpg", "earth.jpg", "mars.jpg", "sun.jpg", "clouds.jpg", "CREDITS.md"]) {
-  assert.ok(fs.existsSync(path.join(root, "media/motion", asset)), `Motion asset exists: ${asset}`);
+for (const asset of [
+  "earth-orbit.mp4",
+  "earth-poster.jpg",
+  "earth.jpg",
+  "mars.jpg",
+  "sun.jpg",
+  "clouds.jpg",
+  "CREDITS.md",
+]) {
+  assert.ok(
+    fs.existsSync(path.join(root, "media/motion", asset)),
+    `Motion asset exists: ${asset}`,
+  );
 }
-assert.ok(fs.statSync(path.join(root, "media/motion/earth-orbit.mp4")).size < 6 * 1024 * 1024, "Hero video stays within its download budget");
-for (const logo of ["icon.svg", "tera-symbol.svg", "tera-industries-logo.svg"]) assert.ok(fs.existsSync(path.join(root, logo)), `Logo exists: ${logo}`);
+assert.ok(
+  fs.statSync(path.join(root, "media/motion/earth-orbit.mp4")).size <
+    6 * 1024 * 1024,
+  "Hero video stays within its download budget",
+);
+for (const logo of ["icon.svg", "tera-symbol.svg", "tera-industries-logo.svg"])
+  assert.ok(fs.existsSync(path.join(root, logo)), `Logo exists: ${logo}`);
+for (const name of ["binary.mp4", "binary-poster.jpg"])
+  assert.ok(
+    fs.statSync(path.join(root, "media/cosmos", name)).size > 0,
+    `Cosmic motion asset: ${name}`,
+  );
 console.log(
   `PASS: ${pages.length} routes; ${links} internal links; ${assets} asset references; headings, metadata, canonicals, and disclosures.`,
 );

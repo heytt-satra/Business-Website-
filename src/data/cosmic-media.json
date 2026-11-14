@@ -1,0 +1,52 @@
+[
+  {
+    "id": "wr140",
+    "title": "Wolf-Rayet 140: concentric stellar dust shells",
+    "author": "NASA, ESA, CSA, STScI, E. Lieb (University of Denver), R. Lau (NSF NOIRLab), J. Hoffman (University of Denver)",
+    "source": "https://esawebb.org/images/weic2501d/",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "src": "/media/cosmos/wr140.webp",
+    "smallSrc": "/media/cosmos/wr140-small.webp"
+  },
+  {
+    "id": "red-rectangle",
+    "title": "The Red Rectangle: a stellar outflow",
+    "author": "NASA/ESA, Hans Van Winckel (Catholic University of Leuven, Belgium) and Martin Cohen (University of California, USA)",
+    "source": "https://esahubble.org/images/heic0408a/",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "src": "/media/cosmos/red-rectangle.webp",
+    "smallSrc": "/media/cosmos/red-rectangle-small.webp"
+  },
+  {
+    "id": "light-echo",
+    "title": "V838 Monocerotis: a light echo",
+    "author": "NASA, ESA and H. Bond (STScI)",
+    "source": "https://esahubble.org/images/heic0617a/",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "src": "/media/cosmos/light-echo.webp",
+    "smallSrc": "/media/cosmos/light-echo-small.webp"
+  },
+  {
+    "id": "dust-pillars",
+    "title": "Pillars of Creation in mid-infrared light",
+    "author": "NASA, ESA, CSA, STScI, J. DePasquale (STScI), A. Pagan (STScI)",
+    "source": "https://esawebb.org/images/weic2218a/",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "src": "/media/cosmos/dust-pillars.webp",
+    "smallSrc": "/media/cosmos/dust-pillars-small.webp"
+  },
+  {
+    "id": "wr124",
+    "title": "Wolf-Rayet 124: the dust around a dying star",
+    "author": "NASA, ESA, CSA, STScI, Webb ERO Production Team",
+    "source": "https://esawebb.org/images/weic2307a/",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "src": "/media/cosmos/wr124.webp",
+    "smallSrc": "/media/cosmos/wr124-small.webp"
+  }
+]

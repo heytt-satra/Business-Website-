@@ -26,9 +26,9 @@ Next.js App Router, React, TypeScript, Tailwind CSS, and Three.js. Pages are sta
 - `src/data/frontiers.ts`: typed division, initiative, relationship, and civilization content.
 - `src/data/articles.ts`: full research and editorial content.
 - `src/components/Interactions.tsx`: search/filter, network controls, click/scroll-driven journey.
-- `src/components/Visual.tsx`: credited responsive photography.
+- `src/components/Visual.tsx`: credited responsive cosmic observations.
 - `src/components/ScrollExperience.tsx`: video hero, technology selector, pinned civilization sequence, and native-scroll parallax.
-- `src/components/ModelCanvas.tsx`: lazy WebGL rendering, visibility control, drag rotation, resource cleanup, and photo fallback.
+- `src/components/ModelCanvas.tsx`: lazy WebGL rendering, visibility control, two-axis drag rotation, zoom/reset controls, resource cleanup, and cosmic fallback.
 - `src/lib/models.ts` and `src/lib/universe.ts`: ten procedural engineering models and the Earth-to-galaxy scene.
 - `src/components/Motion.tsx`: global pause control and reduced-motion preference.
 - `src/app/[section]/[slug]/page.tsx`: content-driven detail templates and metadata.
@@ -44,7 +44,7 @@ Cloned from https://github.com/heytt-satra/Business-Website-.git. The former age
 
 ## Assets and credibility
 
-The redesign uses real reference photography with source and license credits in `ASSET-NOTES.md`, `src/data/photo-credits.json`, and the About page. It removes the generated orbital image and technology diagrams. Images show existing work by other organizations, not TERA facilities or partnerships. Responsive WebP versions are served locally. Fonts are self-hosted in the build output.
+The site uses surreal telescope observations including Wolf-Rayet dust shells, the Red Rectangle, V838 Monocerotis, and mid-infrared stellar nurseries. Source credits and licenses are in `src/data/cosmic-media.json`, `public/media/cosmos/CREDITS.md`, and the About page. All visible industrial reference photos, including the spacecraft loading image, have been replaced.
 
 The motion revision adds a locally hosted 4 MB NASA Earth video, CC BY 4.0 Solar System Scope planetary textures, original solid 3D engineering concepts, and an original vector TERA identity. Attribution is in `public/media/motion/CREDITS.md` and the About page. The three-dimensional objects are illustrative concepts, not TERA product specifications. Canvas rendering starts near the viewport and pauses offscreen or in a background tab. The global control pauses idle animation and video; scroll navigation remains usable. Reduced-motion users receive direct stage selection without the long scroll sequence. WebGL failures retain reference photographs.
 
@@ -63,3 +63,5 @@ Serve `out/` with any static host, preserve nested index.html paths, and use 404
 The postbuild script preserves Next.js segment payloads and adds dot-separated filename aliases on Windows. Without these aliases, client navigation prefetches can return 404 even while HTML routes load. The export verification checks payload availability. Keep this step when building on Windows; it is harmless when aliases are already emitted by another platform.
 
 npm start is an alias for the static preview server.
+
+The detailed model revision adds machined surfaces, studio reflections, shadows, service wiring, cooling channels, fasteners, die traces, and molecular structures. TERA INTELLIGENCE is a suspended photonic core, TERA ENERGY is a stellar containment concept, and TERA ROBOTICS is a complete humanoid. These original designs deliberately express a speculative direction. The original Earth hero is retained.

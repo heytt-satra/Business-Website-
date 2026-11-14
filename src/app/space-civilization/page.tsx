@@ -17,8 +17,8 @@ export default function Page() {
       />
       <Visual kind="orbital" className="space-panorama" />
       <p className="image-caption">
-        Earth&apos;s horizon and the International Space Station. NASA reference
-        photography, not TERA infrastructure.
+        Light from V838 Monocerotis moves through surrounding dust, revealing
+        structure on an extraordinary scale.
       </p>
       <Journey expanded />
       <Disclosure />

@@ -21,13 +21,13 @@ const objects: Record<string, string> = {
   fusion: "Magnetic confinement reactor",
   silicon: "Advanced semiconductor package",
   bio: "Molecular double helix",
-  intelligence: "High-density compute system",
+  intelligence: "Photonic intelligence core",
   quantum: "Dilution refrigerator",
   orbital: "Solar-powered orbital platform",
   propulsion: "Liquid rocket engine",
   materials: "Engineered crystal lattice",
-  energy: "Power-generation turbine",
-  robotics: "Articulated robotic manipulator",
+  energy: "Stellar power core",
+  robotics: "Humanoid robotics platform",
 };
 
 export function TechnologyModel({ kind }: { kind: string }) {
@@ -232,7 +232,13 @@ export function CivilizationScroll() {
   );
 }
 
-export function HeroFilm() {
+export function HeroFilm({
+  film = "earth",
+  className = "hero-film",
+}: {
+  film?: "earth" | "binary";
+  className?: string;
+}) {
   const video = useRef<HTMLVideoElement>(null);
   const { paused, reduced } = useMotion();
   useEffect(() => {
@@ -257,15 +263,26 @@ export function HeroFilm() {
   return (
     <video
       ref={video}
-      className="hero-film"
+      className={className}
       muted
       loop
       playsInline
       preload={reduced ? "none" : "metadata"}
-      poster="/media/motion/earth-poster.jpg"
+      poster={
+        film === "earth"
+          ? "/media/motion/earth-poster.jpg"
+          : `/media/cosmos/${film}-poster.jpg`
+      }
       aria-hidden="true"
     >
-      <source src="/media/motion/earth-orbit.mp4" type="video/mp4" />
+      <source
+        src={
+          film === "earth"
+            ? "/media/motion/earth-orbit.mp4"
+            : `/media/cosmos/${film}.mp4`
+        }
+        type="video/mp4"
+      />
     </video>
   );
 }
