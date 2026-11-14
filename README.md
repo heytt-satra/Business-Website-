@@ -21,12 +21,16 @@ Copy `.env.example` to `.env.local` before building. Set `NEXT_PUBLIC_SITE_URL` 
 
 ## Implementation
 
-Next.js App Router, React, TypeScript, and Tailwind CSS. Pages are statically generated. Only navigation, filtering, ecosystem selection, reveals, and the journey require client interaction. No database, contact backend, authentication, or paid service is needed.
+Next.js App Router, React, TypeScript, Tailwind CSS, and Three.js. Pages are statically generated. Interactive sections include navigation, filtering, ecosystem selection, the scroll-driven civilization journey, and 3D technology previews. No database, contact backend, authentication, or paid service is needed.
 
 - `src/data/frontiers.ts`: typed division, initiative, relationship, and civilization content.
 - `src/data/articles.ts`: full research and editorial content.
 - `src/components/Interactions.tsx`: search/filter, network controls, click/scroll-driven journey.
 - `src/components/Visual.tsx`: credited responsive photography.
+- `src/components/ScrollExperience.tsx`: video hero, technology selector, pinned civilization sequence, and native-scroll parallax.
+- `src/components/ModelCanvas.tsx`: lazy WebGL rendering, visibility control, drag rotation, resource cleanup, and photo fallback.
+- `src/lib/models.ts` and `src/lib/universe.ts`: ten procedural engineering models and the Earth-to-galaxy scene.
+- `src/components/Motion.tsx`: global pause control and reduced-motion preference.
 - `src/app/[section]/[slug]/page.tsx`: content-driven detail templates and metadata.
 - `src/app/globals.css`: responsive visual system, focus indicators, reduced-motion behavior.
 - `scripts/verify-export.mjs`: all routes, internal links, anchors, assets, headings, metadata, and disclosures.
@@ -42,6 +46,8 @@ Cloned from https://github.com/heytt-satra/Business-Website-.git. The former age
 
 The redesign uses real reference photography with source and license credits in `ASSET-NOTES.md`, `src/data/photo-credits.json`, and the About page. It removes the generated orbital image and technology diagrams. Images show existing work by other organizations, not TERA facilities or partnerships. Responsive WebP versions are served locally. Fonts are self-hosted in the build output.
 
+The motion revision adds a locally hosted 4 MB NASA Earth video, CC BY 4.0 Solar System Scope planetary textures, original solid 3D engineering concepts, and an original vector TERA identity. Attribution is in `public/media/motion/CREDITS.md` and the About page. The three-dimensional objects are illustrative concepts, not TERA product specifications. Canvas rendering starts near the viewport and pauses offscreen or in a background tab. The global control pauses idle animation and video; scroll navigation remains usable. Reduced-motion users receive direct stage selection without the long scroll sequence. WebGL failures retain reference photographs.
+
 ## Verification
 
 Run `npm run typecheck`, `npm run lint`, `npm run build`, `npm run verify`, and `npm audit --omit=dev`.
@@ -50,7 +56,7 @@ Browser QA should cover desktop/mobile navigation, combined search/category filt
 
 ## Deployment
 
-Serve `out/` with any static host, preserve nested index.html paths, and use 404.html for unknown routes. `.openai/hosting.json` identifies the private Sites preview. No push to the original GitHub remote or public release is implied.
+Serve `out/` with any static host, preserve nested index.html paths, and use 404.html for unknown routes. `.openai/hosting.json` identifies the private Sites publication. GitHub source pushes and Sites deployments are separate operations. The original repository remains the `origin` remote.
 
 ### Windows static export compatibility
 

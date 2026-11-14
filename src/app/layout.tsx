@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Navigation from "@/components/Navigation";
 import { Footer } from "@/components/Shell";
 import { siteUrl } from "@/lib/content";
+import { MotionProvider } from "@/components/Motion";
 import "./globals.css";
 const body = Inter({
   subsets: ["latin"],
@@ -34,9 +35,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <a className="skip-link" href="#main">
           Skip to content
         </a>
-        <Navigation />
-        <main id="main">{children}</main>
-        <Footer />
+        <MotionProvider>
+          <Navigation />
+          <main id="main">{children}</main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );

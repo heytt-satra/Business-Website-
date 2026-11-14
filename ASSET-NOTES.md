@@ -147,3 +147,7 @@ License: Public domain
 Source: https://commons.wikimedia.org/wiki/File:ISS-56_Earth%27s_limb_during_an_orbital_sunrise.jpg
 
 Local file: `public/media/photography/earth.webp`
+
+## Motion revision, 14 November 2026
+
+See `public/media/motion/CREDITS.md` for NASA video and Solar System Scope texture attribution. The video is local, muted, looped, and compressed to about 4 MB. The ten technology models are original procedural Three.js geometry with physical materials, not SVG line illustrations. The civilization scene combines textured planets and a deterministic spiral star distribution. All are illustrative, not to scale. The TERA symbol and full wordmark are available as SVG files in `public/`.

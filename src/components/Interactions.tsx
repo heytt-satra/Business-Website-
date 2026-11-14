@@ -3,8 +3,12 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { divisions, relationships, stages } from "@/data/frontiers";
 import Visual from "./Visual";
+import ModelCanvas from "./ModelCanvas";
+import { useMotion } from "./Motion";
 
 export function Catalog() {
+  const [preview, setPreview] = useState<string | null>(null);
+  const { paused } = useMotion();
   const [query, setQuery] = useState(""),
     [field, setField] = useState("All fields");
   const filtered = divisions.filter(
@@ -58,8 +62,23 @@ export function Catalog() {
             className="division-card"
             key={d.slug}
             href={`/technologies/${d.slug}`}
+            onPointerEnter={(e) => {
+              if (e.pointerType !== "touch") setPreview(d.slug);
+            }}
+            onPointerLeave={() => setPreview(null)}
+            onFocus={() => setPreview(d.slug)}
+            onBlur={() => setPreview(null)}
           >
-            <Visual kind={d.visual} color={d.color} />
+            <div className="catalog-model">
+              <Visual kind={d.visual} color={d.color} />
+              {preview === d.slug && (
+                <ModelCanvas
+                  kind={d.visual}
+                  paused={paused}
+                  label={`3D concept model for ${d.short}`}
+                />
+              )}
+            </div>
             <div className="card-copy">
               <span className="eyebrow">
                 {String(divisions.indexOf(d) + 1).padStart(2, "0")} / {d.field}
@@ -68,6 +87,11 @@ export function Catalog() {
                 {d.short}
                 <span>↗</span>
               </h2>
+              <span className="catalog-program">
+                {d.visual === "energy"
+                  ? "TERA ENERGY"
+                  : d.project.replaceAll("-", " ").toUpperCase()}
+              </span>
               <p>{d.description}</p>
             </div>
           </Link>

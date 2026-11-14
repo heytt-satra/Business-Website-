@@ -1,28 +1,32 @@
-# Redesign verification: 13 November 2026
+# Motion redesign verification: 14 November 2026
 
-## Changes
+## Delivered changes
 
-Rebuilt the homepage, navigation, typography, spacing, section layouts, technology catalog, project pages, article layouts, and footer. Replaced every technology illustration and the generated orbital scene with real reference photographs. Twelve photographs have source, author, and license records, plus local desktop and mobile WebP versions. Credits are visible on the About page. The site remains a fictional concept and does not claim that the photographs depict TERA facilities.
+- Original TERA symbol and wordmark in the header and footer, with downloadable SVGs and matching favicon.
+- Local NASA Earth video hero, compressed to approximately 4 MB, with poster and visible attribution.
+- Native-scroll, pinned six-stage civilization scene using textured 3D planets, orbital paths, and a galaxy star field.
+- Ten distinct solid 3D technology models with field headings and TERA program names. Hover, keyboard focus, and click/tap select the model; dragging rotates it.
+- Technology catalogue hover previews and interactive models on all ten technology detail pages.
+- Global animation/video pause control, offscreen suspension, reduced-motion branches, and photographic WebGL fallback.
+- All 36 content routes retained. No em dashes in rendered site content.
 
-The new design uses full-width imagery, regular-weight typography, fewer labels, shorter copy, and unboxed layouts. All em dashes were removed from active site content. The ecosystem remains interactive through readable technology selectors and related-field links.
+## Checks completed
 
-## Verification
+- Production build, TypeScript, and ESLint pass.
+- Export verification passes for 36 content routes, 947 internal link references, and 392 asset references, including canonical metadata, anchors, disclosures, portable navigation payloads, photographs, motion files, and logo assets.
+- All ten technology controls select the expected TERA program and render a 3D view. Each model was captured and visually inspected in Chromium.
+- All six civilization controls update the active stage, scroll location, heading, and rendered view.
+- Hero video loads from the local export, plays, and pauses through the global control.
+- Mobile navigation opens its technology list. Escape closes the menu and returns focus to the menu button.
+- Combined quantum search and Matter filter returns one division; empty results and reset restore all ten divisions.
+- Desktop and mobile layouts were inspected. No horizontal page overflow on the checked homepage, technology index, and technology detail layouts.
+- Production dependency audit reports zero vulnerabilities. Existing development-only audit findings were not addressed by forced dependency changes.
 
-- Production build and TypeScript completed successfully.
-- Export verification covers all 36 content pages, 959 internal link references, 391 asset references, anchors, titles, descriptions, canonicals, disclosures, navigation payloads, photo attribution records, and mobile photo files.
-- Export verification also rejects em dashes and references to the retired generated orbital image.
-- Nine representative page types were checked in Chromium at 375, 768, and 1440 pixels. No horizontal overflow, broken loaded images, missing H1, duplicate H1, or em dashes were found.
-- Search and category combination returned the expected quantum division. Empty results and reset to ten divisions worked.
-- Technology selection updated its related links and destination.
-- Mobile navigation and technology submenu worked. Escape closed the menu and returned focus to the menu button.
-- All six homepage journey stages and the expanded journey's sixth stage worked.
-- Browser console showed no errors during the final interaction checks.
+## Verification limits
 
-## Limits
+Chromium was used for browser QA; physical devices and other browser engines were not tested. The gstack CDP allowlist does not permit reduced-motion emulation, so that branch was reviewed in source rather than reported as an emulated browser pass. No Lighthouse score or formal accessibility certification is claimed. Three-dimensional objects are illustrative concepts, not scientific simulations or TERA product specifications.
 
-No Lighthouse score or formal accessibility certification is claimed. Reduced-motion branches are implemented; this pass did not emulate that preference. Other browser engines and physical devices were not tested. Dependencies were unchanged during this redesign; the previous production audit was clean, with eight moderate findings in development-only lint tooling.
+The user requested a GitHub push after completion. GitHub and private Sites publication are separate final operations; the delivery reports their confirmed results.
 
-The original GitHub repository has not been pushed. The existing private Sites publication is updated separately.
-
-Final ESLint check passed with no errors or warnings. The final production rebuild and export verification passed after the caption fix.
+Photographic fallback also passed an explicit WebGL context-loss test: the reference image appeared and the interface remained usable.
 

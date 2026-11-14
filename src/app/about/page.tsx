@@ -109,7 +109,7 @@ export default function Page() {
         </p>
       </section>
       <section id="image-credits" className="photo-credits">
-        <h2>Photography credits</h2>
+        <h2>Photography and motion credits</h2>
         <p>
           Real photographs, used as references to the fields we explore. Images
           have been resized, compressed, and cropped for the layout. Attribution
@@ -117,6 +117,63 @@ export default function Page() {
           retains the license listed below.
         </p>
         <div className="credit-list">
+          <div>
+            <h3>Earth film and opening poster</h3>
+            <p>
+              NASA Scientific Visualization Studio. Visualization by Kel Elkins;
+              Blue Marble data courtesy of Reto Stockli, NASA/GSFC. Compressed
+              to 1280 × 720, without audio.
+            </p>
+            <a
+              href="https://svs.gsfc.nasa.gov/5570/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              NASA source and credits
+            </a>
+            <a
+              href="https://www.nasa.gov/nasa-brand-center/images-and-media/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              NASA media guidelines
+            </a>
+          </div>
+          <div>
+            <h3>Earth, Mars, and Sun textures</h3>
+            <p>
+              Solar System Scope / INOVE, based on NASA imagery. CC BY 4.0.
+              Mapped onto animated three-dimensional spheres.
+            </p>
+            <a
+              href="https://www.solarsystemscope.com/textures/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Texture collection
+            </a>
+            <a
+              href="https://creativecommons.org/licenses/by/4.0/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              License terms
+            </a>
+          </div>
+          <div>
+            <h3>TERA concept models and identity</h3>
+            <p>
+              Original procedural 3D models and vector identity created for this
+              project. The models illustrate recognizable engineering systems;
+              they are not manufactured TERA products or technical simulations.
+            </p>
+            <a href="/tera-symbol.svg" download>
+              Download the TERA symbol
+            </a>
+            <a href="/tera-industries-logo.svg" download>
+              Download the full logo
+            </a>
+          </div>
           {Object.entries(credits).map(([key, photo]) => (
             <div key={key}>
               <h3>{photo.title}</h3>

@@ -96,6 +96,11 @@ for (const photo of Object.values(photos)) {
   );
 }
 assert.ok(fs.existsSync(path.join(root, "media/social.jpg")));
+for (const asset of ["earth-orbit.mp4", "earth-poster.jpg", "earth.jpg", "mars.jpg", "sun.jpg", "clouds.jpg", "CREDITS.md"]) {
+  assert.ok(fs.existsSync(path.join(root, "media/motion", asset)), `Motion asset exists: ${asset}`);
+}
+assert.ok(fs.statSync(path.join(root, "media/motion/earth-orbit.mp4")).size < 6 * 1024 * 1024, "Hero video stays within its download budget");
+for (const logo of ["icon.svg", "tera-symbol.svg", "tera-industries-logo.svg"]) assert.ok(fs.existsSync(path.join(root, logo)), `Logo exists: ${logo}`);
 console.log(
   `PASS: ${pages.length} routes; ${links} internal links; ${assets} asset references; headings, metadata, canonicals, and disclosures.`,
 );

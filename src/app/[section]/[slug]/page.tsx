@@ -5,6 +5,7 @@ import { articles } from "@/data/articles";
 import { pageMeta } from "@/lib/content";
 import { ArrowLink, Disclosure } from "@/components/Shell";
 import Visual from "@/components/Visual";
+import { TechnologyModel } from "@/components/ScrollExperience";
 type Params = { section: string; slug: string };
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -57,7 +58,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
             <p className="detail-tagline">{d.tagline}</p>
             <span className="status">Research Direction</span>
           </div>
-          <Visual kind={d.visual} color={d.color} />
+          <TechnologyModel kind={d.visual} />
         </div>
         <div className="detail-body">
           <aside>

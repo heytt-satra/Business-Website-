@@ -1,9 +1,12 @@
 import Link from "next/link";
-import Image from "next/image";
-import { divisions } from "@/data/frontiers";
 import { articles } from "@/data/articles";
 import { ArrowLink } from "@/components/Shell";
-import { Ecosystem, Journey } from "@/components/Interactions";
+import {
+  CivilizationScroll,
+  TechnologyExplorer,
+  HeroFilm,
+  ScrollEffects,
+} from "@/components/ScrollExperience";
 import Visual from "@/components/Visual";
 import { pageMeta } from "@/lib/content";
 export const metadata = pageMeta(
@@ -11,137 +14,104 @@ export const metadata = pageMeta(
   "A concept-stage exploration of intelligence, energy, matter, life, and space.",
   "/",
 );
+
 export default function Home() {
   return (
     <>
-      <section className="hero">
-        <Image
-          src="/media/photography/energy.webp"
-          alt="PS20 and PS10 solar power plants photographed by kallerna"
-          fill
-          priority
-          sizes="100vw"
-          className="hero-image"
-        />
+      <ScrollEffects />
+      <section className="hero film-hero scroll-scene">
+        <HeroFilm />
         <div className="hero-shade" />
         <div className="hero-content">
+          <p className="hero-eyebrow">TERA INDUSTRIES</p>
           <h1>
-            Engineering the
+            Built for Earth.
             <br />
-            next era of civilization.
+            Bound for more.
           </h1>
-          <p>Intelligence, energy, matter, life, and space.</p>
+          <p>Intelligence. Energy. Life. Space.</p>
           <div className="hero-actions">
-            <ArrowLink href="/technologies" primary>
-              Explore technologies
+            <ArrowLink href="#technologies" primary>
+              Explore TERA
             </ArrowLink>
-            <ArrowLink href="/about">Our vision</ArrowLink>
+            <ArrowLink href="#civilization">The long view</ArrowLink>
           </div>
         </div>
         <div className="hero-foot">
-          <span>TERA INDUSTRIES / CONCEPT PROJECT</span>
-          <a href="#mission">Scroll to explore ↓</a>
+          <span>A CONCEPT-STAGE RESEARCH VISION</span>
+          <a href="#mission">
+            Scroll to explore <span className="scroll-arrow">↓</span>
+          </a>
         </div>
+        <span className="film-credit">
+          Earth visualization: NASA / Scientific Visualization Studio
+        </span>
       </section>
-      <section id="mission" className="statement-section">
+      <section
+        id="mission"
+        className="statement-section scroll-statement scroll-scene"
+      >
+        <p className="eyebrow">One connected ambition</p>
         <h2>
-          Better ways to compute.
+          The next chapter of civilization
           <br />
-          New sources of energy.
+          starts with what we can build.
           <br />
-          <span>A future beyond Earth.</span>
+          <span>And how far we dare to look.</span>
         </h2>
         <div>
           <p>
-            We explore the engineering that connects these ambitions, from the
-            materials inside a reactor to the systems that keep a spacecraft
-            running.
+            Compute needs energy. Energy needs materials. Life beyond Earth
+            needs all of them. TERA brings these questions into one research
+            vision.
           </p>
           <Link href="/about" className="text-link">
-            Meet TERA INDUSTRIES →
+            Meet TERA INDUSTRIES ↗
           </Link>
         </div>
       </section>
-      <section className="photo-scene fusion-scene">
+      <CivilizationScroll />
+      <TechnologyExplorer />
+      <section id="energy" className="photo-scene fusion-scene scroll-scene">
         <Visual kind="fusion" />
         <div className="scene-shade" />
         <div className="scene-copy">
-          <p className="eyebrow">Energy</p>
+          <p className="eyebrow">TERA FUSION / Nuclear systems</p>
           <h2>
-            Start with
+            It starts
             <br />
-            the source.
+            with energy.
           </h2>
           <p>
-            Explore plasma confinement, reactor materials, and the challenge of
-            turning fusion into useful power.
+            Plasma, magnetic fields, and the materials that must withstand them.
+            Explore what it takes to turn fusion into useful power.
           </p>
           <ArrowLink href="/projects/tera-fusion" primary>
             Explore TERA FUSION
           </ArrowLink>
         </div>
       </section>
-      <section className="technology-section">
-        <div className="section-heading">
-          <h2>
-            The foundations
-            <br />
-            of what comes next.
-          </h2>
-          <Link href="/technologies" className="text-link">
-            All technologies →
-          </Link>
-        </div>
-        <div className="technology-pair">
-          {[divisions[1], divisions[3]].map((d) => (
-            <Link
-              key={d.slug}
-              href={`/technologies/${d.slug}`}
-              className="technology-photo"
-            >
-              <Visual kind={d.visual} />
-              <h3>{d.short}</h3>
-              <p>
-                {d.slug === "semiconductor-systems"
-                  ? "The devices, packaging, and architectures behind modern computing."
-                  : "Learning systems for scientific work and industrial decision-making."}
-              </p>
-              <span className="text-link">Explore →</span>
-            </Link>
-          ))}
-        </div>
-        <div className="discipline-links">
-          {divisions
-            .filter((d) => ![1, 3].includes(divisions.indexOf(d)))
-            .map((d) => (
-              <Link key={d.slug} href={`/technologies/${d.slug}`}>
-                {d.short}
-                <span>→</span>
-              </Link>
-            ))}
-        </div>
-      </section>
-      <section className="photo-scene space-scene">
+      <section className="photo-scene space-scene scroll-scene">
         <Visual kind="orbital" />
         <div className="scene-shade" />
         <div className="scene-copy">
-          <p className="eyebrow">Space infrastructure</p>
+          <p className="eyebrow">TERA ORBITAL / Space systems</p>
           <h2>
-            Beyond a mission.
+            Beyond arrival.
             <br />A lasting presence.
           </h2>
           <p>
-            Power, transport, life support, and repair. The systems needed to
-            keep working beyond Earth.
+            Power, transport, life support, and repair. The infrastructure
+            needed to keep working beyond Earth.
           </p>
           <ArrowLink href="/projects/tera-orbital" primary>
             Explore TERA ORBITAL
           </ArrowLink>
         </div>
       </section>
-      <section className="human-section">
+      <section className="human-section scroll-scene">
         <div className="human-copy">
-          <p className="eyebrow">Human futures</p>
+          <p className="eyebrow">TERA HUMAN / Human futures</p>
           <h2>
             More capability.
             <br />
@@ -149,46 +119,17 @@ export default function Home() {
           </h2>
           <p>
             Assistive machines and interfaces should serve the people who use
-            them. That means access, consent, and the freedom to choose.
+            them. Access, consent, and the freedom to choose come first.
           </p>
           <ArrowLink href="/human-futures">Explore human futures</ArrowLink>
         </div>
         <Visual kind="human" />
       </section>
-      <section className="civilization-section">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">The long view</p>
-            <h2>
-              Where could
-              <br />
-              civilization go?
-            </h2>
-          </div>
-          <p>
-            Six stages, from present-day infrastructure to distant speculation.
-            Select a stage to explore its requirements.
-          </p>
-        </div>
-        <Visual kind="earth" className="earth-panorama" />
-        <Journey />
-      </section>
-      <section className="connections-section">
-        <div className="section-heading">
-          <h2>
-            One field leads
-            <br />
-            to another.
-          </h2>
-          <p>Explore the relationships between the technologies.</p>
-        </div>
-        <Ecosystem />
-      </section>
       <section className="reading-section">
         <div className="section-heading">
           <h2>A closer look.</h2>
           <Link href="/research" className="text-link">
-            Research and explainers →
+            Research and explainers ↗
           </Link>
         </div>
         <div className="editorial-grid">
@@ -201,13 +142,14 @@ export default function Home() {
               <Visual kind={a.visual} />
               <p className="eyebrow">{a.category}</p>
               <h3>{a.title}</h3>
-              <span className="text-link">Read →</span>
+              <span className="text-link">Read ↗</span>
             </Link>
           ))}
         </div>
       </section>
       <section className="closing">
-        <h2>Explore the work.</h2>
+        <p className="eyebrow">Keep looking forward</p>
+        <h2>Explore what comes next.</h2>
         <ArrowLink href="/projects" primary>
           All ten initiatives
         </ArrowLink>
