@@ -21,13 +21,13 @@ const objects: Record<string, string> = {
   fusion: "Magnetic confinement reactor",
   silicon: "Advanced semiconductor package",
   bio: "Molecular double helix",
-  intelligence: "Photonic intelligence core",
+  intelligence: "Self-organising intelligence construct",
   quantum: "Dilution refrigerator",
   orbital: "Solar-powered orbital platform",
   propulsion: "Liquid rocket engine",
   materials: "Engineered crystal lattice",
-  energy: "Stellar power core",
-  robotics: "Humanoid robotics platform",
+  energy: "Dyson sphere around the Sun",
+  robotics: "Armored humanoid robotics platform",
 };
 
 export function TechnologyModel({ kind }: { kind: string }) {

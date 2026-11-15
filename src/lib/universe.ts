@@ -7,7 +7,9 @@ export function createUniverse() {
   const root = new T.Group(),
     loader = new T.TextureLoader();
   const texture = (file: string) => {
-    const t = loader.load(`/media/motion/${file}.jpg`);
+    const t = loader.load(`/media/motion/${file}.jpg`, () => {
+      root.userData.needsRender = true;
+    });
     t.colorSpace = T.SRGBColorSpace;
     return t;
   };

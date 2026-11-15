@@ -64,4 +64,6 @@ The postbuild script preserves Next.js segment payloads and adds dot-separated f
 
 npm start is an alias for the static preview server.
 
-The detailed model revision adds machined surfaces, studio reflections, shadows, service wiring, cooling channels, fasteners, die traces, and molecular structures. TERA INTELLIGENCE is a suspended photonic core, TERA ENERGY is a stellar containment concept, and TERA ROBOTICS is a complete humanoid. These original designs deliberately express a speculative direction. The original Earth hero is retained.
+The detailed model revision adds machined surfaces, studio reflections, shadows, service wiring, cooling channels, fasteners, die traces, and molecular structures. TERA INTELLIGENCE is a self-organising construct with a luminous core, glass facets, recursive branches and animated information packets. TERA ENERGY is a cutaway Dyson sphere around a textured Sun, with collector panels and orbital arrays. TERA ROBOTICS is a complete armored humanoid with red optics, segmented silver plating, actuators, tendons and articulated hands. These original designs deliberately express a speculative direction. The original Earth hero is retained.
+
+The signature models are implemented in `src/lib/constructs.ts` and `src/lib/humanoid.ts`. Late texture arrivals trigger one new frame even while motion is paused.

@@ -225,6 +225,8 @@ export default function ModelCanvas({
           !initial &&
           p === lastProgress &&
           pointerKey === lastPointer &&
+          !model?.root.userData.needsRender &&
+          !universe?.root.userData.needsRender &&
           ease.distanceTo(pointer) < 0.001 &&
           now - startedAt > 4000
         )
@@ -243,6 +245,8 @@ export default function ModelCanvas({
         }
         if (universe) universe.update(p, time, width < 700);
         renderer.render(scene, camera);
+        if (model) model.root.userData.needsRender = false;
+        if (universe) universe.root.userData.needsRender = false;
         if (!hasRendered) {
           hasRendered = true;
           setReady(true);
