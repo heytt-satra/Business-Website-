@@ -21,13 +21,13 @@ const objects: Record<string, string> = {
   fusion: "Magnetic confinement reactor",
   silicon: "Advanced semiconductor package",
   bio: "Molecular double helix",
-  intelligence: "Self-organising intelligence construct",
+  intelligence: "Super intelligence holographic neural network",
   quantum: "Dilution refrigerator",
   orbital: "Solar-powered orbital platform",
   propulsion: "Liquid rocket engine",
   materials: "Engineered crystal lattice",
   energy: "Dyson sphere around the Sun",
-  robotics: "Armored humanoid robotics platform",
+  robotics: "Humanoid with continuous sculpted armor",
 };
 
 export function TechnologyModel({ kind }: { kind: string }) {
@@ -143,7 +143,7 @@ export function CivilizationScroll() {
         Math.min(1, -r.top / (r.height - window.innerHeight)),
       );
       progress.current = p;
-      setActive(Math.min(5, Math.floor(p * 5 + 0.25)));
+      setActive(Math.min(5, Math.round(p * 5)));
     };
     const queue = () => {
       if (!raf) raf = requestAnimationFrame(update);
@@ -167,7 +167,7 @@ export function CivilizationScroll() {
     const top = el.getBoundingClientRect().top + window.scrollY;
     window.scrollTo({
       top: top + ((el.offsetHeight - window.innerHeight) * i) / 5 + 1,
-      behavior: "instant",
+      behavior: "smooth",
     });
   }
   const stage = stages[active];

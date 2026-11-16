@@ -1,0 +1,29 @@
+[
+  {
+    "id": "earth",
+    "title": "A clean future Earth, powered by advanced energy and supported by robotics",
+    "author": "TERA future concept · AI-generated",
+    "source": "/media/futures/PROMPTS.md",
+    "license": "Original generated concept artwork",
+    "src": "/media/futures/earth.webp",
+    "smallSrc": "/media/futures/earth-small.webp"
+  },
+  {
+    "id": "mars",
+    "title": "A Mars settlement with enclosed agriculture, nuclear power and robotic support",
+    "author": "TERA future concept · AI-generated",
+    "source": "/media/futures/PROMPTS.md",
+    "license": "Original generated concept artwork",
+    "src": "/media/futures/mars.webp",
+    "smallSrc": "/media/futures/mars-small.webp"
+  },
+  {
+    "id": "travel",
+    "title": "A human interstellar voyage with advanced propulsion and closed-loop life support",
+    "author": "TERA future concept · AI-generated",
+    "source": "/media/futures/PROMPTS.md",
+    "license": "Original generated concept artwork",
+    "src": "/media/futures/travel.webp",
+    "smallSrc": "/media/futures/travel-small.webp"
+  }
+]

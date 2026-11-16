@@ -2,6 +2,7 @@ import Link from "next/link";
 import { PageIntro, ArrowLink, Disclosure } from "@/components/Shell";
 import { pageMeta } from "@/lib/content";
 import cosmic from "@/data/cosmic-media.json";
+import futures from "@/data/future-media.json";
 export const metadata = pageMeta(
   "Our vision",
   "The vision and editorial standards of TERA INDUSTRIES, a fictional concept-stage frontier technology organization.",
@@ -95,8 +96,8 @@ export default function Page() {
         <p>
           No factories, employees, investors, partners, clinical outcomes,
           publications, patents, benchmarks, or revenue are claimed. The imagery
-          combines astronomical observations and scientific visualizations with
-          original concept models.
+          combines scientific visualizations with generated future concepts and
+          original interactive models.
         </p>
         <h2>Continue the conversation through the ideas.</h2>
         <p>
@@ -110,12 +111,23 @@ export default function Page() {
       <section id="image-credits" className="photo-credits">
         <h2>Photography and motion credits</h2>
         <p>
-          Astronomical observations give the site its otherworldly setting.
-          Images have been resized, compressed, and cropped for the layout.
-          Attribution does not imply endorsement or a relationship with TERA.
-          Each image retains the license listed below.
+          Generated concepts depict clean cities, Mars settlements and human
+          interstellar voyages. Images have been resized, compressed, and
+          cropped for the layout. Attribution does not imply endorsement or a
+          relationship with TERA. Each image retains the license listed below.
         </p>
         <div className="credit-list">
+          {futures.map((image) => (
+            <div key={image.id}>
+              <h3>{image.title}</h3>
+              <p>
+                Original AI-generated concept artwork created with OpenAI image
+                generation. These are speculative scenes, not photographs of
+                existing places or TERA products.
+              </p>
+              <a href={image.source}>Artwork prompts and provenance</a>
+            </div>
+          ))}
           <div>
             <h3>Earth film and opening poster</h3>
             <p>
@@ -139,7 +151,7 @@ export default function Page() {
             </a>
           </div>
           <div>
-            <h3>Earth, Mars, and Sun textures</h3>
+            <h3>Solar-system surface textures</h3>
             <p>
               Solar System Scope / INOVE, based on NASA imagery. CC BY 4.0.
               Mapped onto animated three-dimensional spheres.

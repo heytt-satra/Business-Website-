@@ -1,13 +1,11 @@
 # Design direction
 
-Use a restrained, photographic presentation close to the visual language of terafab.ai: black backgrounds, large full-width scenes, regular-weight sans-serif type, simple buttons, and generous spacing. Keep TERA branding and its concept-stage disclosure.
+Black backgrounds, generous space, restrained typography, original TERA branding and native scrolling. Keep the original Earth film hero. Preserve all 36 content routes, technology hover and keyboard previews, motion controls and model inspection tools.
 
-Use real, licensed photographs with credits. Do not reintroduce the SVG technology drawings, generated orbital artwork, blue wireframe diagrams, fake technical labels, dense card borders, or decorative gradients.
+Editorial images show human futures: a clean Earth with energy and robotics, a Mars settlement with nuclear power and enclosed agriculture, and a crewed interstellar vessel with propulsion, intelligence and life support. Use the generated concepts in public/media/futures with visible provenance. They are speculative scenes rather than documentary photographs.
 
-The updated brief adds a motion-led homepage: a local NASA Earth film, a pinned six-stage 3D civilization journey, and ten solid, lit 3D engineering models selected on hover, keyboard focus, or tap. Use field headings such as Nuclear systems together with program names such as TERA FUSION. Use the original TERA symbol and wordmark in the header and footer. Keep native scrolling. Pause offscreen animation, offer a global motion control, and honor reduced motion. Use photographs as a WebGL fallback. All imagery and textures require credits.
+Super intelligence uses a Jarvis-inspired amber holographic neural network, branching signals and orbital displays. The humanoid is rebuilt from continuous sculpted surfaces, with an Optimus-inspired silhouette, Ultron-inspired metallic facial details, concealed joints and human proportions. Energy remains a cutaway Dyson sphere around a textured Sun.
 
-Write short, direct copy. Do not use em dashes. Avoid unsupported company claims and invented accomplishments. Preserve the 36-page content set and its working search, relationships, and journey controls.
+The long-view journey uses detailed satellites, eight textured planets in astronomical radial order, layered colored galaxies and a speculative cosmic veil. Distances and sizes are compressed for composition. Use continuous transformations and damped scrolling. Never display fallback images in the 3D views; show a text-only status when WebGL is unavailable.
 
-## Cosmic and signature model revision
-
-Retain the Earth film hero and spare typography. Use real but unusual cosmic observations across editorial sections, with visible credits and local responsive images. Remove the ISS photograph from every loading/fallback path. Keep the technology stages black and uncluttered. Use brushed metals, muted gold accents, physical surface roughness, studio softbox reflections and cast shadows. AI is a self-organising construct with a luminous core, nested geometric layers, translucent facets, fine fractal growth, and flowing information particles. Energy is a cutaway Dyson sphere with a textured Sun and detailed collectors. Frontier technology is a complete silver humanoid with angular layered armor, exposed actuators, red optics and intricate hands. Provide two-axis drag, zoom and reset. Keep animation slow and honor the shared pause control.
+Keep field headings and TERA program names. Avoid em dashes, unsupported company claims and invented accomplishments. Honor reduced motion and global pause, stop offscreen rendering, and keep mobile controls usable.

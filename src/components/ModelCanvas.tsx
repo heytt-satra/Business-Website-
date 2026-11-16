@@ -1,7 +1,5 @@
 "use client";
 import { useEffect, useRef, useState, type RefObject } from "react";
-import Image from "next/image";
-import { cosmicImage } from "@/lib/cosmic";
 
 export default function ModelCanvas({
   kind,
@@ -175,6 +173,7 @@ export default function ModelCanvas({
         time = 0,
         lastRender = 0,
         lastProgress = -1,
+        displayedProgress = 0,
         lastPointer = "",
         initial = true,
         hasRendered = false;
@@ -224,6 +223,7 @@ export default function ModelCanvas({
           still &&
           !initial &&
           p === lastProgress &&
+          Math.abs(p - displayedProgress) < 0.00001 &&
           pointerKey === lastPointer &&
           !model?.root.userData.needsRender &&
           !universe?.root.userData.needsRender &&
@@ -243,7 +243,13 @@ export default function ModelCanvas({
           camera.lookAt(0, 0, 0);
           model.animate(time);
         }
-        if (universe) universe.update(p, time, width < 700);
+        if (universe) {
+          displayedProgress = preference.matches
+            ? p
+            : displayedProgress +
+              (p - displayedProgress) * (1 - Math.exp(-dt * 12));
+          universe.update(displayedProgress, time, width < 700);
+        }
         renderer.render(scene, camera);
         if (model) model.root.userData.needsRender = false;
         if (universe) universe.root.userData.needsRender = false;
@@ -294,20 +300,12 @@ export default function ModelCanvas({
       dispose?.();
     };
   }, []);
-  const fallback = cosmicImage(kind === "universe" ? "orbital" : kind);
   return (
     <div
       className={`model-view ${ready && !failed ? "is-ready" : ""}`}
       role="group"
       aria-label={label}
     >
-      <Image
-        className="model-fallback"
-        src={fallback.src}
-        alt=""
-        fill
-        sizes="(max-width:700px) 100vw, 65vw"
-      />
       <div
         ref={host}
         className="model-canvas"
@@ -345,11 +343,8 @@ export default function ModelCanvas({
         <span className="model-loading">Loading 3D view</span>
       )}
       {failed && (
-        <span className="model-loading">Cosmic view · 3D unavailable</span>
-      )}
-      {(!ready || failed) && (
-        <span className="model-image-credit">
-          {fallback.title} · {fallback.author}
+        <span className="model-loading" role="status">
+          3D view unavailable on this device
         </span>
       )}
     </div>

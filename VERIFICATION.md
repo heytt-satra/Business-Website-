@@ -1,26 +1,25 @@
-# Verification: cosmic imagery and detailed model revision
+# Verification
 
-## Completed changes
+## Delivered revision
 
-- Restored the previous NASA Earth hero.
-- Replaced visible industrial photos and the ISS loading fallback with five credited cosmic observations.
-- Added a local, silent binary black-hole film with a poster and shared motion controls.
-- Detailed all ten technology models with physical surface finishes, studio reflections, cast shadows and engineering details.
-- Replaced the AI rack with a luminous, layered intelligence construct with glass and fractal growth; replaced the turbine with a cutaway Dyson sphere around a textured Sun; rebuilt the robot as a silver armored humanoid with red optics.
-- Added two-axis rotation, zoom and reset controls. Model previews inside catalogue links contain no nested buttons.
+The original Earth film hero is retained. Editorial photography is replaced with three original generated future concepts: a clean Earth, an inhabited Mars settlement, and a human interstellar voyage. Responsive assets and exact generation prompts are saved in public/media/futures and credited on the About page.
 
-## Validation
+Super intelligence is an amber holographic neural network with branching signals and orbital displays. The humanoid was rebuilt from sculpted continuous surfaces, with a smoked faceplate, facial armor, enclosed limbs and detailed hands. The Dyson sphere remains in the energy program.
 
-Production build, TypeScript, ESLint and static export verification pass. The export contains 36 content routes, 947 internal links and 421 asset references. Rendered pages contain no em dashes or industrial photo paths.
+The civilization journey now uses detailed spacecraft, eight textured planets in their correct radial order, procedural colored galaxies and layered cosmic dust. Stage navigation uses smooth native scrolling; rendered progress is damped. No images are used as model loading or WebGL failure fallbacks.
 
-All ten model constructors pass finite-geometry and nonempty-bounds checks after animation and batching. All ten updated models were viewed in Chromium. Desktop and mobile checks covered the restored hero, technology selector, humanoid detail page and cosmic sections. The checked pages have no horizontal overflow. Zoom reaches 140 percent and reset returns it to 100 percent. All six civilization controls select the matching heading and rendered scene.
+## Checks
 
-The global motion control pauses both videos. The Earth hero points to its previous local file. WebGL context loss switches to a credited cosmic still. No application console errors appeared during the normal model checks; Chromium emitted GPU readback performance warnings while taking screenshots.
+- Production build, TypeScript, ESLint and static export verification pass.
+- Export: 36 content routes, 950 internal links, 409 asset references. No em dashes or retired industrial photo paths in rendered pages.
+- All ten model constructors pass finite-geometry and nonempty checks.
+- Regression checks validate all eight planetary orbit radii at three animation times and 501 continuous journey frames.
+- Chromium checks at 1440 x 1000 and 390 x 844 cover all six journey stage controls, matching headings, ready canvases and no horizontal overflow.
+- Robot and Super intelligence renders inspected. Zoom and reset remain usable; mobile robot view has no horizontal overflow.
+- Forced WebGL context loss produces the text status and zero image elements in the model view.
+- Generated Mars image loads locally. Original Earth hero remains local and respects shared pause.
+- No application or shader errors during normal rendering. Chromium emits GPU readback performance warnings during screenshots. The deliberate context-loss check emits its expected WebGL diagnostic.
 
 ## Limits
 
-Chromium was used; physical devices and other browser engines were not tested. The gstack CDP allowlist does not permit reduced-motion emulation, so that branch was reviewed in source. No Lighthouse score or formal accessibility certification is claimed. Models are original illustrative concepts, not CAD assemblies or scientific simulations. Browser rendering quality and frame rate depend on GPU capability.
-
-## Signature model follow-up
-
-The three new models pass geometry validation, production build, lint and static export verification. Their renders were inspected in Chromium. The Sun texture renders after loading while motion is paused; late texture invalidation also covers the civilization planets. Mobile Dyson controls render without horizontal overflow, and zoom changes the visible value to 120 percent. GPU-driven information particles, slowly moving geometric layers, collector arrays, solar prominences and subtle humanoid motion respect the global pause control.
+Chromium was used; physical devices and other browser engines were not tested. Reduced-motion behavior was reviewed in source because gstack does not permit its CDP emulation. No Lighthouse score is claimed. Models and future scenes are original illustrative concepts, not CAD assemblies, scientific simulations or existing TERA products. The humanoid combines the requested visual references; it is not an exact replica or a scanned movie model. Rendering quality and frame rate depend on the device GPU.

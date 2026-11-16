@@ -95,10 +95,10 @@ export const divisions: Division[] = [
   },
   {
     slug: "artificial-intelligence",
-    name: "AI & Autonomous Intelligence",
-    short: "Artificial intelligence",
+    name: "Super Intelligence",
+    short: "Super intelligence",
     field: "Intelligence",
-    tagline: "Learning systems for research and industry.",
+    tagline: "Intelligence for a wider horizon.",
     description:
       "Investigating machine intelligence as a tool for understanding difficult systems, guiding experiments, and supporting human judgment.",
     mechanism:
@@ -338,7 +338,7 @@ export const projects: Project[] = [
   {
     slug: "tera-intelligence",
     name: "TERA INTELLIGENCE",
-    title: "AI tools for scientific work.",
+    title: "Super intelligence for scientific work.",
     description:
       "A research direction for bounded AI systems that assist scientific reasoning and industrial decisions.",
     problem:

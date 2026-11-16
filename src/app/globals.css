@@ -2343,15 +2343,6 @@ button[aria-pressed="true"] .tech-arrow {
 .is-ready canvas {
   opacity: 1;
 }
-.model-view .model-fallback {
-  object-fit: cover;
-  opacity: 0.45;
-  transition: opacity 0.6s;
-}
-.model-view.is-ready .model-fallback {
-  opacity: 0;
-  pointer-events: none;
-}
 .model-instruction,
 .model-index {
   position: absolute;
@@ -2452,9 +2443,6 @@ button[aria-pressed="true"] .tech-arrow {
 }
 .universe-scene .model-canvas {
   cursor: auto;
-}
-.universe-scene .model-fallback {
-  object-fit: cover;
 }
 .civilization-shade {
   position: absolute;
@@ -3115,24 +3103,6 @@ button[aria-pressed="true"] .tech-arrow {
   bottom: 22px;
   font-size: 10px;
 }
-.model-image-credit {
-  position: absolute;
-  right: 20px;
-  bottom: 65px;
-  left: 20px;
-  color: #c5c6c9;
-  font-size: 10px;
-  line-height: 1.5;
-  background: #0008;
-  padding: 8px;
-  pointer-events: none;
-}
-.universe-scene .model-image-credit {
-  left: auto;
-  top: 140px;
-  bottom: auto;
-  max-width: 390px;
-}
 @media (max-width: 700px) {
   .photo-scene .cosmic-photo figcaption {
     left: 7%;
@@ -3140,16 +3110,16 @@ button[aria-pressed="true"] .tech-arrow {
     bottom: 20px;
     font-size: 9px;
   }
-  .universe-scene .model-image-credit {
-    top: 110px;
-    left: 7%;
-    right: 7%;
-    max-width: none;
-    font-size: 9px;
-  }
 }
 .cosmic-photo figcaption {
   opacity: 1;
 }
 /* Keep inspection controls clear of the model's feet and lower assembly. */
-.model-tools, .detail-model .model-tools { top:12px; right:12px; bottom:auto; left:auto; transform:none; }
+.model-tools,
+.detail-model .model-tools {
+  top: 12px;
+  right: 12px;
+  bottom: auto;
+  left: auto;
+  transform: none;
+}

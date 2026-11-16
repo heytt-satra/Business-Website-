@@ -80,7 +80,7 @@ assert.deepEqual(
   "Internal links, anchors, and assets must resolve",
 );
 const photos = JSON.parse(
-  fs.readFileSync("src/data/cosmic-media.json", "utf8"),
+  fs.readFileSync("src/data/future-media.json", "utf8"),
 );
 for (const photo of Object.values(photos)) {
   assert.ok(
@@ -101,6 +101,12 @@ for (const asset of [
   "earth-orbit.mp4",
   "earth-poster.jpg",
   "earth.jpg",
+  "mercury.jpg",
+  "venus.jpg",
+  "jupiter.jpg",
+  "saturn.jpg",
+  "uranus.jpg",
+  "neptune.jpg",
   "mars.jpg",
   "sun.jpg",
   "clouds.jpg",

@@ -44,9 +44,9 @@ Cloned from https://github.com/heytt-satra/Business-Website-.git. The former age
 
 ## Assets and credibility
 
-The site uses surreal telescope observations including Wolf-Rayet dust shells, the Red Rectangle, V838 Monocerotis, and mid-infrared stellar nurseries. Source credits and licenses are in `src/data/cosmic-media.json`, `public/media/cosmos/CREDITS.md`, and the About page. All visible industrial reference photos, including the spacecraft loading image, have been replaced.
+The editorial images show a clean future Earth, a Mars settlement, and a human interstellar voyage. These original AI-generated concepts connect robotics, energy, habitats, life support and propulsion. Responsive assets and complete generation prompts are in public/media/futures; provenance also appears on the About page.
 
-The motion revision adds a locally hosted 4 MB NASA Earth video, CC BY 4.0 Solar System Scope planetary textures, original solid 3D engineering concepts, and an original vector TERA identity. Attribution is in `public/media/motion/CREDITS.md` and the About page. The three-dimensional objects are illustrative concepts, not TERA product specifications. Canvas rendering starts near the viewport and pauses offscreen or in a background tab. The global control pauses idle animation and video; scroll navigation remains usable. Reduced-motion users receive direct stage selection without the long scroll sequence. WebGL failures retain reference photographs.
+The motion revision adds a locally hosted 4 MB NASA Earth video, CC BY 4.0 Solar System Scope planetary textures, original solid 3D engineering concepts, and an original vector TERA identity. Attribution is in `public/media/motion/CREDITS.md` and the About page. The three-dimensional objects are illustrative concepts, not TERA product specifications. Canvas rendering starts near the viewport and pauses offscreen or in a background tab. The global control pauses idle animation and video; scroll navigation remains usable. Reduced-motion users receive direct stage selection without the long scroll sequence. WebGL failures show a text status only. No fallback images are rendered in model views.
 
 ## Verification
 
@@ -64,6 +64,6 @@ The postbuild script preserves Next.js segment payloads and adds dot-separated f
 
 npm start is an alias for the static preview server.
 
-The detailed model revision adds machined surfaces, studio reflections, shadows, service wiring, cooling channels, fasteners, die traces, and molecular structures. TERA INTELLIGENCE is a self-organising construct with a luminous core, glass facets, recursive branches and animated information packets. TERA ENERGY is a cutaway Dyson sphere around a textured Sun, with collector panels and orbital arrays. TERA ROBOTICS is a complete armored humanoid with red optics, segmented silver plating, actuators, tendons and articulated hands. These original designs deliberately express a speculative direction. The original Earth hero is retained.
+The latest models use an amber holographic neural network for Super intelligence, a cutaway Dyson sphere for energy, and a rebuilt humanoid with continuous sculpted armor, a smoked faceplate and enclosed limbs. The original Earth hero is retained. The scroll journey uses detailed satellites, eight correctly ordered textured planets, and procedural colored galaxies with layered dust. Scroll movement is damped and stage navigation uses smooth native scrolling. Late texture arrivals trigger a new frame while motion is paused.
 
-The signature models are implemented in `src/lib/constructs.ts` and `src/lib/humanoid.ts`. Late texture arrivals trigger one new frame even while motion is paused.
+Run node --experimental-strip-types scripts/check-scenes.mjs to verify orbit order, transition continuity and model geometry.
